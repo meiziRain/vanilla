@@ -27,7 +27,8 @@ export default {}
 
 <style lang="scss" scoped>
 #ham {
-  scale: 0.6;
+  // scale: 0.8; 移动端scale属性无效，要使用transform: scale()
+  transform: scale(0.7);
 }
 .ham {
   cursor: pointer;
