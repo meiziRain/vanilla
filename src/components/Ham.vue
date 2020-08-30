@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="ham">
     <svg class="ham hamRotate ham1" viewBox="0 0 100 100" width="80" onclick="this.classList.toggle('active')">
       <path
         class="line top"
@@ -23,7 +23,11 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+
+#ham{
+  scale: 0.8;
+}
 .ham {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -32,9 +36,10 @@ export default {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-.hamRotate.active {
-  transform: rotate(45deg);
+
+  &.active{
+    transform: rotate(45deg);
+  }
 }
 .hamRotate180.active {
   transform: rotate(180deg);
