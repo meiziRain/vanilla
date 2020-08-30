@@ -1,0 +1,12 @@
+
+1. 按钮（主页）  优先级 高
+https://tympanus.net/Development/MagneticButtons/index4.html
+
+2. 鼠标hover  中
+https://codepen.io/shubniggurath/pen/LrXQBe
+
+3. 着重文本 优先级 高
+https://roughnotation.com/
+
+4.  灵感 优先级 高
+https://dwl.media/ 
