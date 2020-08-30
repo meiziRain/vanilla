@@ -26,7 +26,7 @@ export default {
 <style lang="scss" scoped>
 
 #ham{
-  scale: 0.8;
+  scale: 0.6;
 }
 .ham {
   cursor: pointer;
