@@ -1,9 +1,15 @@
 <template>
   <div id="app">
-    <Ham />
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="mobile">
+      <div id="header">
+        <Ham id="hamburger" />
+        <div id="logo" />
+      </div>
+
+      <div id="mobile-nav">
+        <router-link to="/">Home</router-link> |
+        <router-link to="/about">About</router-link>
+      </div>
     </div>
     <router-view />
   </div>
@@ -18,24 +24,31 @@ export default {
 }
 </script>
 <style lang="scss">
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
+#mobile {
+  position: fixed;
 }
 
-#nav {
-    padding: 30px;
+#header{
+  display: inline-block;
+  height: 80px;
+  width: 100vw;
+}
 
-    a {
-        font-weight: bold;
-        color: #2c3e50;
+#logo{
+  display: inline-block;
+  height: 80px;
+  width: 80px;
+  margin-left: auto;
+  margin-right: auto;
+}
+#hamburger {
+  width: 80px;
+  height: 80px;
+  margin-left: -10px;
+  margin-top: -10px;
+  display: inline-block;
+}
 
-        &.router-link-exact-active {
-            color: #42b983;
-        }
-    }
+#mobile-nav {
 }
 </style>
