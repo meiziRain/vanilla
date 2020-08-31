@@ -29,24 +29,20 @@ export default {
 }
 
 #header{
-  display: inline-block;
-  height: 80px;
+  display: flex;
+  height: 60px;
   width: 100vw;
+  border-bottom: 1px solid gray;
+}
+
+#hamburger {
+
 }
 
 #logo{
-  display: inline-block;
-  height: 80px;
+  height: 60px;
   width: 80px;
-  margin-left: auto;
-  margin-right: auto;
-}
-#hamburger {
-  width: 80px;
-  height: 80px;
-  margin-left: -10px;
-  margin-top: -10px;
-  display: inline-block;
+  background-color: red;
 }
 
 #mobile-nav {

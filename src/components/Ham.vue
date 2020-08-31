@@ -4,7 +4,7 @@
       <svg
         class="ham hamRotate ham1"
         viewBox="0 0 100 100"
-        width="80"
+        width="60"
         onclick="this.classList.toggle('active')"
       >
         <path
@@ -28,7 +28,7 @@ export default {}
 <style lang="scss" scoped>
 #ham {
   // scale: 0.8; 移动端scale属性无效，要使用transform: scale()
-  transform: scale(0.7);
+  transform: scale(0.9);
 }
 .ham {
   cursor: pointer;
