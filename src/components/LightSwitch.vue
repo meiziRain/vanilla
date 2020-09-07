@@ -45,7 +45,7 @@ export default {
   width: 24px;
   height: 24px;
   fill: currentColor;
-  scale: 1.5;
+  transform: scale(1.3);
   position: absolute;
   top: 50%;
   left:50%;
