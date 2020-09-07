@@ -1,18 +1,21 @@
 <template>
   <div id="app">
-    <div id="header-wrapper">
-      <div id="mobile">
+    <div id="mobile-header-wrapper">
+      <div id="mobile" ref="mobile">
         <div id="mobile-header">
-          <Ham id="hamburger" />
+          <Ham id="hamburger" @click.native="onHamClick()" />
           <div id="logo" />
-          <div id="left" />
+          <LightSwitch id="light-switch" />
         </div>
 
-        <div id="mobile-nav">
-          <router-link to="/">Home</router-link> |
+        <div id="mobile-nav" ref="mobile_nav">
+          <router-link to="/">Home</router-link>
           <router-link to="/about">About</router-link>
         </div>
       </div>
+    </div>
+    <div id="pc">
+      <Iris id="pc-nav" ref="nav" />
     </div>
     <router-view />
   </div>
@@ -20,40 +23,114 @@
 <script>
 // @ is an alias to /src
 import Ham from '@/components/Ham.vue'
+import Iris from '@/components/Iris.vue'
+import LightSwitch from '@/components/LightSwitch.vue'
 export default {
   components: {
-    Ham
+    Ham,
+    Iris,
+    LightSwitch
+  },
+  created() {},
+  mounted() {
+    this.$refs.nav.keepNavRender()
+  },
+  methods: {
+    onHamClick() {
+      const nav = this.$refs.mobile_nav
+      if (nav.classList.contains('active')) {
+        nav.style.animation = 'headerShrink 500ms forwards'
+      } else {
+        nav.style.animation = 'headerExpand 500ms forwards'
+      }
+      nav.classList.toggle('active')
+    }
   }
 }
 </script>
 <style lang="scss">
-#header-wrapper{
-    height: 60px;
+#mobile-header-wrapper {
+  height: 60px;
 }
 
 #mobile {
   position: fixed;
 }
 
-#mobile-header{
+#mobile-header {
   display: flex;
-  justify-content:space-between;
+  background-color: white;
+  justify-content: space-between;
   height: 60px;
   width: 100vw;
-  border-bottom: 1px solid gray;
 }
 
-#logo{
+#pc-nav {
+  position: fixed;
+  right: 5%;
+  top: 2%;
+}
+
+#logo {
   height: 60px;
-  width: 80px;
+  width: 120px;
   background-color: red;
 }
 
-#left{
+#light-switch {
   height: 60px;
   width: 80px;
 }
+// .active{
+//   animation: headerExpand 500ms;
+// }
 
 #mobile-nav {
+  height: 1px;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: inset 0px -1px 0px #e7e7e7;
+}
+#mobile-nav > a {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 12px 24px;
+  display: block;
+  color: #6e6d7a;
+  -webkit-transition: color 100ms;
+  transition: color 100ms;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@media (min-width: 920px) {
+  #mobile,
+  #mobile-header-wrapper {
+    display: none;
+  }
+}
+
+@media (max-width: 920px) {
+  #pc-nav {
+    display: none;
+  }
+}
+
+@keyframes headerExpand {
+  from {
+    height: 1px;
+  }
+  to {
+    height: 90px;
+  }
+}
+
+@keyframes headerShrink {
+  from {
+    height: 90px;
+  }
+  to {
+    height: 1px;
+  }
 }
 </style>

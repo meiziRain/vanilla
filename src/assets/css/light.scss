@@ -1,0 +1,15 @@
+
+@mixin color-scheme-dark {
+    --color-scale-0: #fff;
+    --color-scale-25: #e6f1f8;
+    --color-scale-50: #525252;
+    --color-scale-75: #272f34;
+    --color-scale-100: #001e2f;
+    --color-brand-primary: #6b5aed;
+    --color-brand-primary-offset: #5643ea;
+    --color-brand-secondary: #26ffae;
+    --color-brand-tertiary: #ed667b;
+    --gradient-brand-primary: linear-gradient(45deg,#6b5aed,#af80c6);
+    --gradient-brand-secondary: linear-gradient(45deg,#47bdb8,#26ffae);
+    --gradient-brand-tertiary: linear-gradient(45deg,#ed667b,#f38d7d);
+}
