@@ -1,7 +1,7 @@
 <template>
   <div id="home">
     <div id="word">
-      <Flashword />
+      <Flashword :key="refreshKey" :mode="dark" />
     </div></div>
 </template>
 
@@ -12,6 +12,19 @@ export default {
   name: 'Home',
   components: {
     Flashword
+  },
+  data() {
+    return {
+      dark: false,
+      refreshKey: ''
+    }
+  },
+  mounted() {
+    this.$eventHub.$on('darkListener', (data) => {
+      // 利用修改key的属性值，重新加载子组件，触发create事件
+      this.refreshKey = new Date().getTime()
+      this.dark = data
+    })
   }
 }
 </script>

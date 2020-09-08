@@ -45,7 +45,6 @@ export default {
       const path = me.$route.path
       for (const i in this.ways) {
         if (path.indexOf(this.ways[i]) > -1) {
-          console.log(i)
           this.currentindex = i
         }
       }

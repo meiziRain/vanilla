@@ -12,8 +12,23 @@
 // const charming = require('charming')
 export default {
   name: 'Flashword',
+  props: {
+    mode: {
+      type: Boolean,
+      default: false,
+      description: 'light or dark mode'
+    }
+  },
+  data() {
+    return {
+      animated: false
+    }
+  },
+  created() {
+    // 点击切换 light/dark 模式
+  },
   mounted() {
-    this.animateTitles()
+    this.mode ? this.animateTitles(true) : this.animateTitles(false) // true -> 白色 #fff
   },
   methods: {
     getRandomColor() {
@@ -21,7 +36,7 @@ export default {
         '#' + ('00000' + ((Math.random() * 16777215 + 0.5) >> 0).toString(16)).slice(-6)
       )
     },
-    animateTitles() {
+    animateTitles(dark) {
       const getRandomNumber = (min, max) => Math.random() * (max - min) + min
       const overlay = document.querySelector('.overlay')
       const title = document.querySelector('.content__title')
@@ -77,7 +92,7 @@ export default {
           TweenMax.set(el, {
             x: 0,
             y: 0,
-            color: '#fff'
+            color: dark ? '#fff' : '#000'
           })
           glitch(el, cycles - 1)
         }, getRandomNumber(20, 100))

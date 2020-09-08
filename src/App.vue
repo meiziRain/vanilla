@@ -31,7 +31,17 @@ export default {
     Iris,
     LightSwitch
   },
-  created() {},
+  created() {
+    if (this._isMobile()) {
+      // eslint-disable-next-line no-console
+      console.log('Mobile')
+      this.$store.state.isMobile = true
+    } else {
+      // eslint-disable-next-line no-console
+      console.log('PC')
+      this.$store.state.isMobile = false
+    }
+  },
   mounted() {
     this.$refs.nav.keepNavRender()
   },
@@ -44,6 +54,12 @@ export default {
         nav.style.animation = 'headerExpand 500ms forwards'
       }
       nav.classList.toggle('active')
+    },
+    _isMobile() {
+      const flag = navigator.userAgent.match(
+        /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
+      )
+      return flag
     }
   }
 }
