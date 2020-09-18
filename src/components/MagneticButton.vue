@@ -79,13 +79,6 @@ export default {
   justify-content: center;
 }
 
-@media (max-width: 920px) {
-  .magnetic-button {
-    min-width: 8rem;
-    height: 4rem;
-  }
-}
-
 .magnetic-button:focus,
 .button--hover {
   outline: none;
