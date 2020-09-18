@@ -9,7 +9,7 @@
 </template>
 
 <script>
-// const charming = require('charming')
+const charming = require('charming')
 export default {
   name: 'Flashword',
   props: {

@@ -1,18 +1,33 @@
 <template>
   <div>
-    <nav id="menu" class="menu menu--iris">
+    <nav
+      id="menu"
+      class="menu menu--iris"
+    >
       <ul class="menu__list">
         <li :class="0==currentindex ? 'menu__item menu__item--current':'menu__item'">
-          <a class="menu__link" @click="toHome">Home</a>
+          <a
+            class="menu__link"
+            @click="toHome"
+          >Home</a>
         </li>
         <li :class="1==currentindex ? 'menu__item menu__item--current':'menu__item'">
-          <a class="menu__link" @click="toBlog">Blog</a>
+          <a
+            class="menu__link"
+            @click="toBlog"
+          >Blog</a>
         </li>
         <li :class="2==currentindex ? 'menu__item menu__item--current':'menu__item'">
-          <a class="menu__link" @click="toStudio">Studio</a>
+          <a
+            class="menu__link"
+            @click="toStudio"
+          >Studio</a>
         </li>
         <li :class="3==currentindex ? 'menu__item menu__item--current':'menu__item'">
-          <a class="menu__link" @click="toAbout">About</a>
+          <a
+            class="menu__link"
+            @click="toAbout"
+          >About</a>
         </li>
       </ul>
     </nav>
@@ -53,7 +68,7 @@ export default {
     toHome() {
       const me = this
       me.currentindex = 0
-      me.$router.push('home')
+      me.$router.push('/')
     },
     toBlog() {
       const me = this

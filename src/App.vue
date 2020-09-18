@@ -1,21 +1,37 @@
 <template>
   <div id="app">
     <div id="mobile-header-wrapper">
-      <div id="mobile" ref="mobile">
+      <div
+        id="mobile"
+        ref="mobile"
+      >
         <div id="mobile-header">
-          <Ham id="hamburger" @click.native="onHamClick()" />
+          <Ham
+            id="hamburger"
+            @click.native="onHamClick()"
+          />
           <div id="logo" />
           <LightSwitch id="light-switch" />
         </div>
 
-        <div id="mobile-nav" ref="mobile_nav">
-          <router-link to="/">Home</router-link>
-          <router-link to="/about">About</router-link>
+        <div
+          id="mobile-nav"
+          ref="mobile_nav"
+        >
+          <router-link to="/">
+            Home
+          </router-link>
+          <router-link to="/about">
+            About
+          </router-link>
         </div>
       </div>
     </div>
     <div id="pc">
-      <Iris id="pc-nav" ref="nav" />
+      <Iris
+        id="pc-nav"
+        ref="nav"
+      />
     </div>
     <router-view />
   </div>
@@ -65,6 +81,9 @@ export default {
 }
 </script>
 <style lang="scss">
+@import "@/assets/css/_reset.scss";
+@import "@/assets/css/_base.scss";
+
 #mobile-header-wrapper {
   height: 60px;
 }
@@ -83,6 +102,7 @@ export default {
 
 #pc-nav {
   position: fixed;
+  z-index: 999;
   right: 5%;
   top: 2%;
 }

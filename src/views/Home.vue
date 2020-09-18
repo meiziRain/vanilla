@@ -1,17 +1,24 @@
 <template>
   <div id="home">
     <div id="word">
-      <Flashword :key="refreshKey" :mode="dark" />
-    </div></div>
+      <Flashword
+        :key="refreshKey"
+        :mode="dark"
+      />
+      <MagneticButton />
+    </div>
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import MagneticButton from '@/components/MagneticButton.vue'
 import Flashword from '@/components/Flashword.vue'
 export default {
   name: 'Home',
   components: {
-    Flashword
+    Flashword,
+    MagneticButton
   },
   data() {
     return {
@@ -33,7 +40,7 @@ export default {
 #home{
   width:100vw;
   height: 100vh;
-  background-color:beige;
+  background-color:#e5e3df;
 }
 
 #word {

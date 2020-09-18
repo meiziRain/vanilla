@@ -2,11 +2,17 @@
 1. 按钮（主页）  优先级 高
 https://tympanus.net/Development/MagneticButtons/index4.html
 
-2. 鼠标hover  中
-https://codepen.io/shubniggurath/pen/LrXQBe
+2. 夜间图片素材  中
+https://tympanus.net/Tutorials/the-substance/#07
 
 3. 着重文本 优先级 高
 https://roughnotation.com/
 
 4.  灵感 优先级 高
 https://dwl.media/ 
+
+5. 相册模块 优先级 高
+https://tympanus.net/Tutorials/GooeyImageHoverEffects/
+
+6. 鼠标图片互动
+http://www.htmleaf.com/Demo/201902265541.html
