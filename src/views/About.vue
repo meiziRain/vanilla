@@ -4,7 +4,10 @@
       <div class="message">
         This is a hover effects demo, please view on desktop.
       </div>
-      <div class="frame">
+      <div
+        class="frame"
+        style="display:none"
+      >
         <div class="frame__links">
           <a href="https://tympanus.net/codrops/?p=43947">Article</a>
         </div>

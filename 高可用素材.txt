@@ -16,3 +16,30 @@ https://tympanus.net/Tutorials/GooeyImageHoverEffects/
 
 6. 鼠标图片互动
 http://www.htmleaf.com/Demo/201902265541.html
+
+7. 圆圈  优先级 高
+https://codepen.io/stevn/pen/kXyKjQ
+
+8. neon 字  优先级 高
+http://www.htmleaf.com/Demo/201504111662.html
+
+9. 偏模糊风格 ，水雾 优先级 高
+http://www.htmleaf.com/Demo/201507172249.html
+
+10. 频闪 优先级 中
+http://www.htmleaf.com/Demo/201807135225.html
+
+11. neon场景，图片filter处理 优先级 高
+https://tympanus.net/Development/TextTrailEffect/index5.html
+
+12. neon hover 发光按钮  优先级 高  
+https://codepen.io/bhadupranjal/full/vYLZYqQ
+
+13. neon loader  优先级 高
+https://codepen.io/Trinca/pen/wzNWPG
+
+14. 适合neon风格的字体 优先级 高
+https://tympanus.net/Tutorials/WaveMotionEffect/
+
+15. webgl neon 优先级 中
+https://tympanus.net/Tutorials/InfiniteLights/index4.html

@@ -117,7 +117,7 @@ export default {
   flex: none;
   background: var(--button-bg-text);
   width: 100%;
-  height: 100%;
+  height: 5rem;
   border-radius: var(--button-border-radius);
 }
 </style>
