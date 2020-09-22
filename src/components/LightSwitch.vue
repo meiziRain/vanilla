@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div id="light-switch-wrapper" @click="switchLightMode">
+    <div
+      id="light-switch-wrapper"
+      @click="switchLightMode"
+    >
       <svg
         class="lightswitch__icon"
         xmlns="http://www.w3.org/2000/svg"
@@ -20,7 +23,6 @@
         />
       </svg>
     </div>
-
   </div>
 </template>
 
@@ -28,21 +30,32 @@
 export default {
   data() {
     return {
-      dark: false
-    }
+      dark: false,
+    };
   },
   mounted() {
-    window.localStorage.getItem('dark') === 'true' ? this.dark = true : this.dark = false
+    window.localStorage.getItem("dark") === "true" ? this.initTheme(true) : this.initTheme(false);
   },
   methods: {
+    initTheme(dark){
+      if(dark){
+        this.dark = true
+        document.body.setAttribute("data-user-color-scheme", "dark")
+      }
+      else{
+        this.dark = false
+        document.body.setAttribute("data-user-color-scheme", "light")
+      }
+    },
     switchLightMode() {
-      this.dark = !this.dark
+      this.dark = !this.dark;
       // localStorage 只能以字符串形式存储, 取值注意类型转换
-      window.localStorage.setItem('dark', this.dark)
-      this.$eventHub.$emit('darkListener', this.dark)
-    }
-  }
-}
+      window.localStorage.setItem("dark", this.dark);
+      this.$eventHub.$emit("darkListener", this.dark);
+      this.initTheme(this.dark)
+    },
+  },
+};
 </script>
 
 <style>
@@ -59,7 +72,7 @@ export default {
   transform: scale(1.2);
   position: absolute;
   top: 50%;
-  left:50%;
+  left: 50%;
   margin-top: -12px;
   margin-left: -12px;
 }

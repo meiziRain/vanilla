@@ -9,25 +9,24 @@
 </template>
 
 <script>
-import Cursor from "@/assets/js/cursor";
-import ButtonCtrl from "@/assets/js/buttonCtrl";
+import ButtonCtrl from '@/assets/js/buttonCtrl'
 export default {
-  name: "MagneticButton",
+  name: 'MagneticButton',
   components: {},
   data() {
-    return {};
+    return {}
   },
   created() {},
   mounted() {
-    this.init();
+    this.init()
   },
   methods: {
     init() {
       // initialize custom cursor
-      const button = new ButtonCtrl(document.querySelector(".magnetic-button"));
-    },
-  },
-};
+      new ButtonCtrl(document.querySelector('.magnetic-button'))
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

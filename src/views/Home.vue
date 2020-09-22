@@ -40,7 +40,7 @@ export default {
 #home{
   width:100vw;
   height: 100vh;
-  background-color:#e5e3df;
+  background: var(--background-color);
 }
 
 #word {

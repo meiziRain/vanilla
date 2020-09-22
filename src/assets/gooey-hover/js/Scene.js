@@ -1,5 +1,5 @@
 import * as THREE from 'three'
-// import Tile from './Tile'
+import Tile from './Tile'
 import DetailView from './Detail'
 import { ev } from './utils/utils'
 
@@ -31,13 +31,13 @@ export default class Scene {
 
     constructor($scene) {
         this.container = $scene
-        // this.$tiles = document.querySelectorAll('.slideshow-list__el')
+        this.$tiles = document.querySelectorAll('.slideshow-list__el')
 
         this.W = window.innerWidth
         this.H = window.innerHeight
 
         this.mouse = new THREE.Vector2(0, 0)
-        // this.activeTile = null
+        this.activeTile = null
 
         this.start()
 
@@ -66,7 +66,7 @@ export default class Scene {
         this.renderer.setSize(this.W, this.H)
         this.renderer.setPixelRatio(window.devicePixelRatio)
 
-        // this.tiles = Array.from(this.$tiles).map(($el, i) => new Tile($el, this, durations[i], shaders[i]))
+        this.tiles = Array.from(this.$tiles).map(($el, i) => new Tile($el, this, durations[i], shaders[i]))
 
         this.update()
     }
@@ -100,10 +100,10 @@ export default class Scene {
     }
 
     onToggleView({ target, open }) {
-        // this.activeTile = target // !== undefined ? target : this.activeTile
+        this.activeTile = target // !== undefined ? target : this.activeTile
 
         ev('lockScroll', { lock: open })
-        // ev('tile:zoom', { tile: this.activeTile, open })
+        ev('tile:zoom', { tile: this.activeTile, open })
     }
 
     /* Actions
@@ -112,9 +112,9 @@ export default class Scene {
     update() {
         requestAnimationFrame(this.update.bind(this))
 
-        // this.tiles.forEach((tile) => {
-        //     tile.update()
-        // })
+        this.tiles.forEach((tile) => {
+            tile.update()
+        })
 
         this.renderer.render(this.mainScene, this.camera)
     }

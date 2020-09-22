@@ -62,9 +62,6 @@ export default class Tile {
 
     onClick(e) {
         e.preventDefault()
-
-        if (APP.Layout.isMobile) return
-
         if (!this.mesh) return
 
         this.hasClicked = true
@@ -78,7 +75,7 @@ export default class Tile {
     onPointerEnter() {
         this.isHovering = true
 
-        if (this.isZoomed || this.hasClicked || APP.Layout.isMobile) return
+        if (this.isZoomed || this.hasClicked) return
 
         const idx = clamp([...this.$els.el.parentElement.children].indexOf(this.$els.el) + 1, 1, 5)
 
@@ -94,7 +91,7 @@ export default class Tile {
     }
 
     onPointerLeave() {
-        if (!this.mesh || this.isZoomed || this.hasClicked || APP.Layout.isMobile) return
+        if (!this.mesh || this.isZoomed || this.hasClicked) return
 
         TM.to(this.uniforms.u_progressHover, this.duration, {
             value: 0,
@@ -119,7 +116,7 @@ export default class Tile {
     }
 
     onMouseMove(event) {
-        if (this.isZoomed || this.hasClicked || APP.Layout.isMobile) return
+        if (this.isZoomed || this.hasClicked) return
 
         TM.to(this.mouse, 0.5, {
             x: event.clientX,

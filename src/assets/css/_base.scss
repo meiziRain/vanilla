@@ -1,4 +1,6 @@
 @import './dark';
+
+
 *,
 *::after,
 *::before {
@@ -21,25 +23,31 @@
     --color-link: var(--color-text);
     --color-link-hover: #fff;
 
-    font-size: 62.5%;
+    --background-light: #f3a1a1;
+    --background-dark:#0c0f13;
+
+    // border-radius
+    --main-border-radius:8px;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root:not([data-theme]) {
-      @include color-scheme-dark;
-    }
-  }
-  
-// override defaults through the data-theme attribute.
-:root[data-theme='dark'] {
-@include color-scheme-dark;
+[data-user-color-scheme='light'] {
+    --color-mode: 'light';
+    --text-color: var(--color-light);
+    --background-color: var(--background-light);
+    --border-color: var(--border-light);
+}
+[data-user-color-scheme='dark'] {
+    --color-mode: 'dark';
+    --text-color: var(--color-dark);
+    --background-color:var(--background-dark);
+    --border-color: var(--border-dark);
 }
 
 body {
     margin: 0;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    background-color: var(--color-bg);
+    background-color: var(--background-color);
     // font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
     transition: background-color .5s;
     font-family: 'source-sans-pro', sans-serif;

@@ -14,7 +14,7 @@ export default class DetailView {
     }
 
     bindEvent() {
-        document.addEventListener('view:toggle', ({ detail }) => { this.toggleReveal(detail) })
+        this.document.addEventListener('view:toggle', ({ detail }) => { this.toggleReveal(detail) })
 
         this.$els.closeBtn.addEventListener('click', () => { this.onClose() })
     }

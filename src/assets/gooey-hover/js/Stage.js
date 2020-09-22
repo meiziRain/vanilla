@@ -1,4 +1,4 @@
-import { TweenMax as TM } from 'gsap'
+import { TweenMax as TM } from 'gsap/all'
 import Scrollbar from 'smooth-scrollbar'
 import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
 import { map } from './utils/utils'
@@ -22,16 +22,12 @@ export default class Stage {
             progressCtn : document.querySelector('.slideshow__progress-ctn'),
             // scene       : document.getElementById('scene'),
         }
-
-
         this.init()
-
-        this.bindEvents()
+        this.bindEvents(this)
     }
 
-    bindEvents() {
-        document.addEventListener('lockScroll', ({ detail }) => { this.lockScroll(detail) })
-
+    bindEvents(me) {
+        // // me.document.addEventListener('lockScroll', ({ detail }) => { this.lockScroll(detail) })
         this.Scroll.addListener((s) => { this.onScroll(s) })
     }
 

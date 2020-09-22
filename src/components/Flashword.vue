@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { TweenMax, Expo, Quad } from 'gsap'
 const charming = require('charming')
 export default {
   name: 'Flashword',
