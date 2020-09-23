@@ -3,7 +3,7 @@
     <h1 ref="bg_title" class="page-title | title">What's your next <span class="slideshow__title__offset | title__offset">destination?</span></h1>
     <section class="cata">
       <div class="scroll-content">
-        <article class="slideshow-list__el">
+        <article class="slideshow-list__el" @click="showDetail">
           <img
             src="@/assets/gooey-hover/img/tiles/woods/base.jpg"
             data-hover="@/assets/gooey-hover/img/tiles/woods/hover.jpg"
@@ -61,14 +61,15 @@
         </div>
       </div>
     </section>
-    <DetailView />
+    <div id="detail-wrapper" ref="example">
+      <DetailView ref="dv" @close="closeDetailView" />
+    </div>
     <div ref="progress_ctn" class="slideshow__progress-ctn"><span ref="progress" class="slideshow__progress" /></div>
   </div>
 </template>
 
 <script>
 // import Stage from "@/assets/gooey-hover/js/Stage";
-// import DetailView from "@/assets/gooey-hover/js/Detail";
 import { TweenMax as TM } from 'gsap'
 import { map } from '@/assets/gooey-hover/js/utils/utils'
 // 滚动
@@ -112,9 +113,13 @@ export default {
       this.Scroll.addListener((s) => { this.onScroll(s) })
     },
     showDetail() {
-      this.$refs.detail.style.display = 'inherit'
-      this.$refs.detail.classList.toggle('is-interactive')
-      this.$refs.detail.classList.toggle('is-visible')
+      this.$refs.dv.open()
+      Scrollbar.destroy(document.querySelector('.cata'))
+      this.$refs.example.classList.toggle('visible')
+    },
+    closeDetailView() {
+      this.initScroller()
+      this.$refs.example.classList.toggle('visible')
     },
     /* Handlers
     --------------------------------------------------------- */
@@ -140,15 +145,15 @@ export default {
 }
 
 .page-title {
-    position: fixed;
-    top: 9rem;
-    left: 5vw;
-    z-index: -1;
-    white-space: nowrap;
-    font-size: calc(4vw + 8rem);
-    line-height: .975;
-    color: var(--textColor);
-    opacity: .1;
+  position: fixed;
+  top: 9rem;
+  left: 5vw;
+  z-index: -1;
+  white-space: nowrap;
+  font-size: calc(4vw + 8rem);
+  line-height: .975;
+  color: var(--textColor);
+  opacity: .1;
 }
 
 @media (max-width: 920px) {
@@ -158,19 +163,15 @@ export default {
 }
 
 .cata {
-    height: 100vh;
-    display: flex;
-    align-items: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .scroll-content {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-}
-
-.scroll-viewport{
-  display: block;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 .slideshow-list__el {
@@ -182,13 +183,33 @@ export default {
   margin-left: 15vw;
 }
 
+#detail-wrapper{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  padding: 3vh 2vw 2vh 2vw;
+  opacity: 0;
+  z-index: -999;
+  transition: opacity .4s ease-in-out;
+}
+// ID选择器 优先级大于 类选择器
+.visible{
+  opacity: 1 !important;
+  z-index: 99 !important;
+}
+
 img {
-    border-radius: var(--main-border-radius);
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    transition: opacity .3s;
+  // relative/absolute/fixed  z-index被激活，
+  // 如果不设置#mobile的z-index, nav的层级仍然小于这个，原因在于z-index取决于父级元素
+  position: relative;
+  border-radius: var(--main-border-radius);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity .3s;
 }
 
 @media (min-width: 920px) {
@@ -202,15 +223,15 @@ img {
 }
 
 @media (max-width: 920px) {
-    #about {
-        width: 100vw;
-        height: calc(100vh - 60px);
-    }
+  #about {
+    width: 100vw;
+    height: calc(100vh - 60px);
+  }
 
-    .cata {
-        height: calc(100vh - 60px);
-        display: flex;
-        align-items: center;
-    }
+  .cata {
+    height: calc(100vh - 60px);
+    display: flex;
+    align-items: center;
+  }
 }
 </style>

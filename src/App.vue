@@ -86,6 +86,7 @@ export default {
 
 #mobile {
     position: fixed;
+    z-index: 99; // 暂定并不是最上层，在 detail-view 下面
 }
 
 #mobile-header {

@@ -24,7 +24,9 @@
     --color-link-hover: #fff;
 
     --background-light: #f3a1a1;
+    --color-text-light:#0c0f13;
     --background-dark:#0c0f13;
+    --color-text-dark:#fff;
 
     // border-radius
     --main-border-radius:8px;
@@ -32,13 +34,13 @@
 
 [data-user-color-scheme='light'] {
     --color-mode: 'light';
-    --text-color: var(--color-light);
+    --text-color: var(--color-text-light);
     --background-color: var(--background-light);
     --border-color: var(--border-light);
 }
 [data-user-color-scheme='dark'] {
     --color-mode: 'dark';
-    --text-color: var(--color-dark);
+    --text-color: var(--color-text-dark);
     --background-color:var(--background-dark);
     --border-color: var(--border-dark);
 }

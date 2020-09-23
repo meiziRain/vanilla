@@ -1,8 +1,3 @@
-
-@keyframes rotate {
-    to { transform: rotate(1turn); }
-}
-
 /* DETAIL VIEW
 ---------------------------------------------------------------------------------------------------- */
 
@@ -57,30 +52,4 @@
             margin-bottom: 3rem;
         }
     }
-}
-
-
-/* Button
---------------------------------------------------------- */
-
-.close-detail {
-    position: relative;
-    z-index: 10; 
-    background: transparent;
-    border: 0;
-}
-
-.close-detail__path {
-    fill: var(--color-text);
-}
-
-.close-detail__back {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.close-detail__round {
-    animation: rotate 40s linear infinite;
 }
