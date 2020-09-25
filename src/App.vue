@@ -80,62 +80,68 @@ export default {
 @import "@/assets/css/_reset.scss";
 @import "@/assets/css/_base.scss";
 
+#app{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
 #mobile-header-wrapper {
-    height: 60px;
+  height: 60px;
 }
 
 #mobile {
-    position: fixed;
-    z-index: 99; // 暂定并不是最上层，在 detail-view 下面
+  position: fixed;
+  z-index: 99; // 暂定并不是最上层，在 detail-view 下面
 }
 
 #mobile-header {
-    display: flex;
-    background-color: white;
-    justify-content: space-between;
-    height: 60px;
-    width: 100vw;
+  display: flex;
+  background-color: white;
+  justify-content: space-between;
+  height: 60px;
+  width: 100vw;
 }
 
 #pc-nav {
-    position: fixed;
-    z-index: 999;
-    right: 5%;
-    top: 2%;
+  position: fixed;
+  z-index: 999;
+  right: 5%;
+  top: 2%;
 }
 
 #logo {
-    height: 60px;
-    width: 120px;
-    background-color: red;
+  height: 60px;
+  width: 120px;
+  background-color: red;
 }
 
 #light-switch {
-    height: 60px;
-    width: 80px;
+  height: 60px;
+  width: 80px;
 }
 
 #mobile-nav {
-    position: relative;
-    height: 1px;
-    z-index: 999;
-    overflow: hidden;
-    background-color: white;
-    box-shadow: inset 0px -1px 0px #e7e7e7;
+  position: relative;
+  height: 1px;
+  z-index: 999;
+  overflow: hidden;
+  background-color: white;
+  box-shadow: inset 0px -1px 0px #e7e7e7;
 }
 
 #mobile-nav>a {
-    position: relative;
-    font-size: 18px;
-    font-weight: 500;
-    z-index: 999;
-    padding: 12px 24px;
-    display: block;
-    color: #6e6d7a;
-    -webkit-transition: color 100ms;
-    transition: color 100ms;
-    cursor: pointer;
-    text-decoration: none;
+  position: relative;
+  font-size: 18px;
+  font-weight: 500;
+  z-index: 999;
+  padding: 12px 24px;
+  display: block;
+  color: #6e6d7a;
+  -webkit-transition: color 100ms;
+  transition: color 100ms;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 @media (min-width: 920px) {
