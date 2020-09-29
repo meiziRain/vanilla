@@ -30,32 +30,31 @@
 export default {
   data() {
     return {
-      dark: false,
-    };
+      dark: false
+    }
   },
   mounted() {
-    window.localStorage.getItem("dark") === "true" ? this.initTheme(true) : this.initTheme(false);
+    window.localStorage.getItem('dark') === 'true' ? this.initTheme(true) : this.initTheme(false)
   },
   methods: {
-    initTheme(dark){
-      if(dark){
+    initTheme(dark) {
+      if (dark) {
         this.dark = true
-        document.body.setAttribute("data-user-color-scheme", "dark")
-      }
-      else{
+        document.body.setAttribute('data-user-color-scheme', 'dark')
+      } else {
         this.dark = false
-        document.body.setAttribute("data-user-color-scheme", "light")
+        document.body.setAttribute('data-user-color-scheme', 'light')
       }
     },
     switchLightMode() {
-      this.dark = !this.dark;
+      this.dark = !this.dark
       // localStorage 只能以字符串形式存储, 取值注意类型转换
-      window.localStorage.setItem("dark", this.dark);
-      this.$eventHub.$emit("darkListener", this.dark);
+      window.localStorage.setItem('dark', this.dark)
+      this.$eventHub.$emit('darkListener', this.dark)
       this.initTheme(this.dark)
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style>

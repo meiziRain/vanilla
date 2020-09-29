@@ -4,6 +4,9 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 Vue.config.productionTip = false
+import VueFullPage from 'vue-fullpage.js'
+
+Vue.use(VueFullPage)
 
 Vue.prototype.$eventHub = Vue.prototype.$eventHub || new Vue() // 广播
 

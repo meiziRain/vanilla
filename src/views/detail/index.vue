@@ -2,7 +2,6 @@
   <div id="detail-view">
     <Closer class="closer" @clickHandler="closePage" />
     <div id="detail-view-container">
-      123
     </div>
   </div>
 </template>
@@ -19,6 +18,7 @@ export default {
   components: {
     Closer
   },
+  mounted() {},
   methods: {
     // Scrollbar 的要点在于有一个固定大小的视口 viewport ，里面还有一个大于视口宽度或者高度的滚动元素。
     // Scrollbar.init(viewport)初始化滚动，而且设置 viewport.style.overflow = 'scroll'
@@ -36,8 +36,17 @@ export default {
       // this.Scroll.addListener((s) => { this.onScroll(s) })
     },
     open() {
-      // FIXME: 为什么第一个使用this.$refs.el取元素，TM无法渲染效果
-      TM.fromTo(document.querySelector('.closer'), 0.5, {
+      // FIXME: 为什么第一个参数使用this.$refs.el取元素，TM无法渲染效果
+      TM.fromTo(document.querySelector('#detail-view'), 0.5, {
+        scale: 0,
+        alpha: 0
+      }, {
+        scale: 1,
+        alpha: 1,
+        ease: Power2.easeInOut,
+        force3D: true
+      })
+      TM.fromTo(document.querySelector('.closer'), 1, {
         rotate: -45,
         scale: 0,
         alpha: 0
@@ -74,8 +83,20 @@ export default {
 .closer{
   position: absolute;
 }
+
 #detail-view-container{
   width: 100%;
   height: 200vh;
+}
+
+.cover-img{
+  // position: relative;
+  z-index:0;
+  border-radius: var(--main-border-radius);
+  width: 250px;
+  height: 350px;
+  object-fit: cover;
+  object-position: center;
+  transition: opacity .3s;
 }
 </style>
