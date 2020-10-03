@@ -61,7 +61,7 @@
         <div id="dev-pc">
           <!-- Full-page will init itself automatically on `mount`. -->
           <Closer class="closer" @clickHandler="closePage" />
-          <NavIndicator id="daisies-nav" @choosed="onNavClick" />
+          <NavIndicator id="daisies-nav" ref="daisies_nav_indicator" @choosed="onNavClick" />
           <full-page id="fullpage" ref="fullpage" :options="options" :skip-init="true">
             <div class="section active">
               First section ...
@@ -123,7 +123,7 @@ export default {
   },
   methods: {
     onNavClick(index) {
-      this.$refs.fullpage.api.moveTo(2)
+      this.$refs.fullpage.api.moveTo(index + 1)
     },
     articleDaisiesHover(color) {
       this.$refs.blog.style.setProperty('background-color', color)
@@ -154,7 +154,7 @@ export default {
     },
     // origin, destination, direction 这三者的含义要清楚
     afterLoad(origin, destination, direction) {
-      console.log(destination, direction)
+      this.$refs.daisies_nav_indicator.itemChoosed(destination.index)
       if (destination.index === 0) {
         console.log('Section 1 ended loading')
       }

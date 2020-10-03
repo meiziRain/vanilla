@@ -22,6 +22,14 @@ export default {
     })
   },
   methods: {
+    itemChoosed(data) {
+      var navItems = [].slice.call(document.querySelectorAll('.nav__item'))
+      navItems.forEach((item, index) => {
+        if (index === data) {
+          this.setCurrent(item, index)
+        }
+      })
+    },
     setCurrent(item) {
       // return if already current
       if (item.classList.contains('nav__item--current')) {

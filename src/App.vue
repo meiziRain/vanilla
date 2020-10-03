@@ -21,9 +21,11 @@
     <div id="pc">
       <Iris id="pc-nav" ref="nav" />
     </div>
-    <keep-alive>
-      <router-view />
-    </keep-alive>
+    <transition name="slide-fade">
+      <keep-alive>
+        <router-view />
+      </keep-alive>
+    </transition>
   </div>
 </template>
 
@@ -79,6 +81,21 @@ export default {
 <style lang="scss">
 @import "@/assets/css/_reset.scss";
 @import "@/assets/css/_base.scss";
+
+// default vue router transition
+/* 可以设置不同的进入和离开动画 */
+/* 设置持续时间和动画函数 */
+.slide-fade-enter-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-leave-active {
+  transition: all .3s ease;
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active for below version 2.1.8 */ {
+  // transform: translateX(10px); maybe this property will influenced the feeling of dark style.
+  opacity: 0;
+}
 
 #app{
   width: 100vw;
