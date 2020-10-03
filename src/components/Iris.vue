@@ -20,14 +20,8 @@
         <li :class="2==currentindex ? 'menu__item menu__item--current':'menu__item'">
           <a
             class="menu__link"
-            @click="toStudio"
-          >Studio</a>
-        </li>
-        <li :class="3==currentindex ? 'menu__item menu__item--current':'menu__item'">
-          <a
-            class="menu__link"
             @click="toAbout"
-          >About</a>
+          >Me！</a>
         </li>
       </ul>
     </nav>
@@ -41,7 +35,7 @@ export default {
   data() {
     return {
       currentindex: 0,
-      ways: ['home', 'blog', 'studio', 'about']
+      ways: ['home', 'blog', 'about']
     }
   },
   watch: {
