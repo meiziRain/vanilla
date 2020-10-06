@@ -57,26 +57,10 @@
         </div>
       </section>
       <div id="detail-wrapper" ref="daisies_dv">
-        <DetailView v-if="false" ref="mobile_dv" @close="closeDetailView" />
-        <div id="dev-pc">
-          <!-- Full-page will init itself automatically on `mount`. -->
-          <Closer class="closer" @clickHandler="closePage" />
-          <NavIndicator id="daisies-nav" ref="daisies_nav_indicator" @choosed="onNavClick" />
-          <full-page id="fullpage" ref="fullpage" :options="options" :skip-init="true">
-            <div class="section active">
-              First section ...
-            </div>
-            <div class="section">
-              Second section ...
-            </div>
-            <div class="section">
-              Third section ...
-            </div>
-            <div class="section">
-              Fourth section ...
-            </div>
-          </full-page>
-        </div>
+        <!-- eslint-disable-next-line vue/valid-v-else -->
+        <DetailView v-if="isMobile" ref="mobile_dv" @close="closePage" />
+        <!-- eslint-disable-next-line vue/valid-v-else -->
+        <PcDetailView v-else ref="pc_dv" />
       </div>
       <div ref="progress_ctn" class="slideshow__progress-ctn"><span ref="progress" class="slideshow__progress" /></div>
     </div>
@@ -93,13 +77,11 @@ import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
 import HorizontalScrollPlugin from '@/assets/gooey-hover/js/utils/HorizontalScrollPlugin'
 Scrollbar.use(HorizontalScrollPlugin, OverscrollPlugin)
 import DetailView from '@/views/detail/index.vue'
-import Closer from '@/components/Closer.vue'
-import NavIndicator from '@/components/NavIndicator.vue'
+import PcDetailView from '@/views/detail/pc-index.vue'
 export default {
   components: {
     DetailView,
-    Closer,
-    NavIndicator
+    PcDetailView
   },
   data() {
     return {
@@ -113,7 +95,8 @@ export default {
       },
       offsetTitle: 100,
       progress: 0,
-      margin: 27
+      margin: 27,
+      isMobile: this.$store.state.isMobile
     }
   },
   created() {},
@@ -122,64 +105,13 @@ export default {
     this.initScroller()
   },
   methods: {
-    onNavClick(index) {
-      this.$refs.fullpage.api.moveTo(index + 1)
-    },
     articleDaisiesHover(color) {
       this.$refs.blog.style.setProperty('background-color', color)
     },
     closePage() {
       this.initScroller()
       this.$refs.daisies_dv.classList.toggle('visible')
-      const trigger = document.querySelector('.trigger')
-      TM.to(trigger, 1, {
-        x: 0,
-        scale: 1,
-        ease: Power2.easeInOut,
-        force3D: true,
-        onComplete: () => {
-          // 需要使用 setTimeout 之类的异步方式调用, 否则关闭时<section>会叠在一起(样式已经丢失).
-          // FIXME: 为什么 nextTick 不行?
-          this.$refs.fullpage.destroy()
-        }
-      })
       this.$refs.daisies.classList.toggle('trigger')
-      const els = document.querySelectorAll('.slideshow-list__el')
-      els.forEach(it => {
-        TM.to(it, 0.7, {
-          alpha: 1,
-          ease: Power4.easeInOut
-        })
-      })
-    },
-    // origin, destination, direction 这三者的含义要清楚
-    afterLoad(origin, destination, direction) {
-      this.$refs.daisies_nav_indicator.itemChoosed(destination.index)
-      if (destination.index === 0) {
-        console.log('Section 1 ended loading')
-      }
-      if (destination.index === 1) {
-        const trigger = document.querySelector('.trigger')
-        const offset = window.outerWidth - trigger.clientWidth - trigger.offsetWidth - this.margin
-        TM.to(trigger, 1, {
-          x: offset - 10,
-          scale: 1.1,
-          ease: Power2.easeInOut,
-          force3D: true
-        })
-      }
-    },
-    pageOnLeave(origin, destination, direction) {
-      if (origin.index === 1) {
-        const trigger = document.querySelector('.trigger')
-        const offset = window.outerWidth - trigger.clientWidth - trigger.offsetWidth - this.margin
-        TM.to(trigger, 1, {
-          x: offset - 10,
-          scale: 1.3,
-          ease: Power2.easeInOut,
-          force3D: true
-        })
-      }
     },
     initScroller() {
       this.Scroll = Scrollbar.init(document.querySelector('.cata'), {
@@ -204,41 +136,13 @@ export default {
         this.$refs.mobile_dv.open()
         Scrollbar.destroy(document.querySelector('.cata'))
         this.$refs.daisies_dv.classList.toggle('visible')
+        this.$refs.daisies.classList.toggle('trigger')
       } else {
         Scrollbar.destroy(document.querySelector('.cata'))
         this.$refs.daisies_dv.classList.toggle('visible')
-
         this.$refs.daisies.classList.toggle('trigger')
-        const els = document.querySelectorAll('.slideshow-list__el')
-        els.forEach(it => {
-          if (!it.classList.contains('trigger')) {
-            TM.to(it, 0.2, {
-              alpha: 0,
-              ease: Expo.easeIn
-            })
-          }
-        })
-
-        const trigger = document.querySelector('.trigger')
-        // index.hrml 使用 chrome浏览器 css属性拓展屏蔽了滚动条, 使得不同浏览器获取的可视区域宽度不同
-        // 务必大于17px
-        const offset = window.outerWidth - trigger.clientWidth - trigger.offsetWidth - this.margin
-        TM.to(trigger, 1, {
-          x: offset,
-          scale: 1.3,
-          ease: Power2.easeInOut,
-          force3D: true
-        })
-
-        // 初始化全屏滚动
-        this.$nextTick(() => {
-          this.$refs.fullpage.init()
-        })
+        this.$refs.pc_dv.showDetail()
       }
-    },
-    closeDetailView() {
-      this.initScroller()
-      this.$refs.daisies_dv.classList.toggle('visible')
     },
     /* Handlers
     --------------------------------------------------------- */
@@ -302,8 +206,8 @@ export default {
 
 .slideshow-list__el {
   cursor: pointer;
-  width: 250px;
-  height: 350px;
+  width: 40vw;
+  height: 60vh;
   min-width: 25rem;
   border-radius: var(--main-border-radius);
   max-width: 40vmin;
@@ -382,6 +286,7 @@ img {
 }
 
 @media (max-width: 920px) {
+
   #blog {
     width: 100vw;
     height: calc(100vh - 60px);
@@ -393,4 +298,13 @@ img {
     align-items: center;
   }
 }
+@media (max-width: 400px) {
+  .slideshow-list__el{
+    width: 80vw !important;
+    min-width: 80vw;
+    max-width: 80vw;
+    margin-left: 10vw;
+  }
+}
+
 </style>
