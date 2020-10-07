@@ -4,7 +4,6 @@
       <div id="mobile" ref="mobile">
         <div id="mobile-header">
           <Ham id="hamburger" ref="ham" @click.native="onHamClick()" />
-          <div id="logo" />
           <LightSwitch id="light-switch" />
         </div>
 
@@ -51,6 +50,7 @@ export default {
   },
   mounted() {
     this.$refs.nav.keepNavRender()
+    // eslint-disable-next-line no-undef
   },
   methods: {
     jump() {
@@ -123,8 +123,8 @@ export default {
 #pc-nav {
   position: fixed;
   z-index: 999;
-  right: 5%;
-  top: 2%;
+  right: 3%;
+  top: 3%;
 }
 
 #logo {

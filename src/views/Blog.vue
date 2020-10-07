@@ -1,69 +1,67 @@
 <template>
-  <div>
-    <div id="blog" ref="blog">
-      <h1 ref="bg_title" class="page-title | title">What's your next <span class="slideshow__title__offset | title__offset">destination?</span></h1>
-      <section class="cata">
-        <div class="scroll-content">
-          <article
-            ref="daisies"
-            class="slideshow-list__el"
-            @click="showDetail"
-            @mouseenter="articleDaisiesHover('rgb(207, 130, 125)')"
+  <div id="blog" ref="blog">
+    <h1 ref="bg_title" class="page-title | title">What's your next <span class="slideshow__title__offset | title__offset">destination?</span></h1>
+    <section class="cata">
+      <div class="scroll-content">
+        <article
+          ref="daisies"
+          class="slideshow-list__el"
+          @click="showDetail"
+          @mouseenter="articleDaisiesHover('rgb(207, 130, 125)')"
+        >
+          <img
+            src="@/assets/imgs/miao1.jpg"
+            data-hover="@/assets/gooey-hover/img/tiles/woods/hover.jpg"
+            alt="Woods & Forests"
           >
-            <img
-              src="@/assets/imgs/miao1.jpg"
-              data-hover="@/assets/gooey-hover/img/tiles/woods/hover.jpg"
-              alt="Woods & Forests"
-            >
-            <div class="tile__content">
-              <h2 class="tile__title | title title--medium ">
-                Rocks & <span class="title__offset title__offset--medium">Mountains</span></h2>
-              <div class="tile__cta">
-                <span class="btn-inline">See more</span>
-              </div>
+          <div class="tile__content">
+            <h2 class="tile__title | title title--medium ">
+              Rocks & <span class="title__offset title__offset--medium">Mountains</span></h2>
+            <div class="tile__cta">
+              <span class="btn-inline">See more</span>
             </div>
-          </article>
-          <article
-            class="slideshow-list__el"
-            @mouseenter="articleDaisiesHover('rgb(136, 114, 103)')"
+          </div>
+        </article>
+        <article
+          class="slideshow-list__el"
+          @mouseenter="articleDaisiesHover('rgb(136, 114, 103)')"
+        >
+          <img
+            src="@/assets/gooey-hover/img/tiles/deserts/base.jpg"
+            data-hover="@/assets/gooey-hover/img/tiles/woods/hover.jpg"
+            alt="Woods & Forests"
           >
-            <img
-              src="@/assets/gooey-hover/img/tiles/deserts/base.jpg"
-              data-hover="@/assets/gooey-hover/img/tiles/woods/hover.jpg"
-              alt="Woods & Forests"
-            >
-            <div class="tile__content">
-              <h2 class="tile__title | title title--medium ">
-                Rocks & <span class="title__offset title__offset--medium">Mountains</span></h2>
-              <div class="tile__cta">
-                <span class="btn-inline">See more</span>
-              </div>
+          <div class="tile__content">
+            <h2 class="tile__title | title title--medium ">
+              Rocks & <span class="title__offset title__offset--medium">Mountains</span></h2>
+            <div class="tile__cta">
+              <span class="btn-inline">See more</span>
             </div>
-          </article>
-          <article class="slideshow-list__el">
-            <img
-              src="@/assets/gooey-hover/img/tiles/deserts/base.jpg"
-              data-hover="@/assets/gooey-hover/img/tiles/woods/hover.jpg"
-              alt="Woods & Forests"
-            >
-            <div class="tile__content">
-              <h2 class="tile__title | title title--medium ">
-                Rocks & <span class="title__offset title__offset--medium">Mountains</span></h2>
-              <div class="tile__cta">
-                <span class="btn-inline">See more</span>
-              </div>
+          </div>
+        </article>
+        <article class="slideshow-list__el">
+          <img
+            src="@/assets/gooey-hover/img/tiles/deserts/base.jpg"
+            data-hover="@/assets/gooey-hover/img/tiles/woods/hover.jpg"
+            alt="Woods & Forests"
+          >
+          <div class="tile__content">
+            <h2 class="tile__title | title title--medium ">
+              Rocks & <span class="title__offset title__offset--medium">Mountains</span></h2>
+            <div class="tile__cta">
+              <span class="btn-inline">See more</span>
             </div>
-          </article>
-        </div>
-      </section>
-      <div id="detail-wrapper" ref="daisies_dv">
-        <!-- eslint-disable-next-line vue/valid-v-else -->
-        <DetailView v-if="isMobile" ref="mobile_dv" @close="closePage" />
-        <!-- eslint-disable-next-line vue/valid-v-else -->
-        <PcDetailView v-else ref="pc_dv" />
+          </div>
+        </article>
       </div>
-      <div ref="progress_ctn" class="slideshow__progress-ctn"><span ref="progress" class="slideshow__progress" /></div>
+    </section>
+    <div id="detail-wrapper" ref="daisies_dv">
+      <!-- eslint-disable-next-line vue/valid-v-else -->
+      <DetailView v-if="isMobile" ref="mobile_dv" @close="closePage" />
+      <!-- eslint-disable-next-line vue/valid-v-else -->
+      <PcDetailView v-else ref="pc_dv" />
     </div>
+    <div ref="progress_ctn" class="slideshow__progress-ctn"><span ref="progress" class="slideshow__progress" /></div>
   </div>
 </template>
 
@@ -186,6 +184,12 @@ export default {
   opacity: .1;
 }
 
+@media (min-width: 920px) {
+  .page-title {
+    font-size: 11vw;
+  }
+}
+
 @media (max-width: 920px) {
   .page-title {
     font-size: calc(4rem + 3vw);
@@ -213,12 +217,6 @@ export default {
   max-width: 40vmin;
   margin-left: 15vw;
   box-shadow: 0 10px 20px -4px rgba(0,0,0,0.6);
-}
-
-#dev-pc{
-  border:1px solid red;
-  width: 100%;
-  height: 100%;
 }
 
 .closer{

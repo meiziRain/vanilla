@@ -89,7 +89,7 @@ $mainColor:#000000;
 /* Common styles for all menus */
 #menu {
   font-family: "Poiret One", cursive;
-  font-size: 1.1em;
+  font-size: 1.5vw;
 }
 
 .menu__list {

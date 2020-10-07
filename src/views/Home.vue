@@ -57,4 +57,10 @@ export default {
   opacity: 0.9;
   z-index: 999;
 }
+
+@media (max-width: 920px) {
+  #home {
+    height: calc(100vh - 60px);
+  }
+}
 </style>
