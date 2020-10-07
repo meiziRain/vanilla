@@ -284,12 +284,6 @@ img {
 }
 
 @media (max-width: 920px) {
-
-  #blog {
-    width: 100vw;
-    height: calc(100vh - 60px);
-  }
-
   .cata {
     height: calc(100vh - 60px);
     display: flex;

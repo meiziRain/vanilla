@@ -1,13 +1,14 @@
 <template>
   <div id="dev-pc">
     <!-- Full-page will init itself automatically on `mount`. -->
-    <Closer class="closer" @clickHandler="closePage" />
+    <Closer class="daisies_closer" @clickHandler="closePage" />
     <NavIndicator id="daisies-nav" ref="daisies_nav_indicator" @choosed="onNavClick" />
     <full-page id="fullpage" ref="fullpage" :options="options" :skip-init="true">
       <div class="section active">
-        <div>
-          <h2 class="tile__title | title title--medium ">
-            Rocks & <span class="title__offset title__offset--medium">Mountains</span></h2>
+        <div class="section-content section-content-offset">
+          <h2 class="section-one-title">
+            Rocks & <span class="title__offset title__offset--medium">Mountains</span>
+          </h2>
         </div>
       </div>
       <div class="section">
@@ -60,6 +61,12 @@ export default {
       this.$refs.fullpage.api.moveTo(index + 1)
     },
     showDetail() {
+      // 初始化全屏滚动
+      this.$nextTick(() => {
+        this.$refs.fullpage.init()
+      })
+
+      // 点击el外其他的el退场
       const els = document.querySelectorAll('.slideshow-list__el')
       els.forEach(it => {
         if (!it.classList.contains('trigger')) {
@@ -70,9 +77,22 @@ export default {
         }
       })
 
+      // closer进场
+      TM.fromTo(document.querySelector('.daisies_closer'), 1, {
+        rotate: -45,
+        scale: 0,
+        alpha: 0
+      }, {
+        rotate: 0,
+        scale: 1,
+        alpha: 1,
+        ease: Power2.easeInOut,
+        force3D: true
+      })
+
+      // 点击el进场
       const trigger = document.querySelector('.trigger')
-      // index.hrml 使用 chrome浏览器 css属性拓展屏蔽了滚动条, 使得不同浏览器获取的可视区域宽度不同
-      // 务必大于17px
+      // TODO: Find a way to resolve the distance problem
       const offset = this.getWindowWidth() - this.getWindowWidth() * 13 / 100 - trigger.clientWidth - trigger.offsetWidth
       TM.to(trigger, 1, {
         x: offset,
@@ -81,6 +101,7 @@ export default {
         force3D: true
       })
 
+      // 点击el标题y轴退场
       const content = document.querySelector('.tile__content')
       TM.to(content, 0.5, {
         y: 500,
@@ -89,12 +110,31 @@ export default {
         force3D: true
       })
 
-      // 初始化全屏滚动
-      this.$nextTick(() => {
-        this.$refs.fullpage.init()
+      // 详情页section 1 标题进场
+      const section_one_title = document.querySelector('.section-one-title')
+      TM.fromTo(section_one_title, 1, {
+        y: 600,
+        alpha: 0,
+        ease: Power2.easeInOut,
+        force3D: true
+      }, {
+        y: 0,
+        alpha: 1,
+        ease: Power2.easeInOut,
+        force3D: true
       })
     },
     closePage() {
+      // closer 退场
+      TM.to(document.querySelector('.daisies_closer'), 1, {
+        rotate: -45,
+        scale: 0,
+        alpha: 0,
+        ease: Power2.easeInOut,
+        force3D: true
+      })
+
+      // 点击el退场复原, 销毁fullpage
       const trigger = document.querySelector('.trigger')
       TM.to(trigger, 1, {
         x: 0,
@@ -103,11 +143,12 @@ export default {
         force3D: true,
         onComplete: () => {
           // 需要使用 setTimeout 之类的异步方式调用, 否则关闭时<section>会叠在一起(样式已经丢失).
-          // FIXME: 为什么 nextTick 不行?
+          // FIXME: Why can not use nextTick() ?
           this.$refs.fullpage.destroy()
         }
       })
 
+      // 点击el标题复原
       const content = document.querySelector('.tile__content')
       TM.to(content, 0.5, {
         alpha: 1,
@@ -116,6 +157,7 @@ export default {
         force3D: true
       })
 
+      // 点击el标题外其他el恢复可视
       const els = document.querySelectorAll('.slideshow-list__el')
       els.forEach(it => {
         TM.to(it, 0.7, {
@@ -133,7 +175,7 @@ export default {
       }
       if (destination.index === 1) {
         const trigger = document.querySelector('.trigger')
-        const offset = this.getWindowWidth() - this.getWindowWidth() * 15 / 100 - trigger.clientWidth - trigger.offsetWidth
+        const offset = this.getWindowWidth() - this.getWindowWidth() * 13 / 100 - trigger.clientWidth - trigger.offsetWidth
         TM.to(trigger, 1, {
           x: offset - 10,
           scale: 1.1,
@@ -145,7 +187,7 @@ export default {
     pageOnLeave(origin, destination, direction) {
       if (origin.index === 1) {
         const trigger = document.querySelector('.trigger')
-        const offset = this.getWindowWidth() - this.getWindowWidth() * 15 / 100 - trigger.clientWidth - trigger.offsetWidth
+        const offset = this.getWindowWidth() - this.getWindowWidth() * 13 / 100 - trigger.clientWidth - trigger.offsetWidth
         TM.to(trigger, 1, {
           x: offset - 10,
           scale: 1.3,
@@ -159,13 +201,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/gooey-hover/sass/styles.scss';
 #dev-pc{
   width: 100%;
   height: 100%;
 }
 
-.closer{
+.daisies_closer{
   position: absolute;
   left: 10%;
   top :7%;
@@ -181,5 +222,21 @@ export default {
 .section{
   width: 100%;
   height: 100%;
+}
+
+.section-content{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.section-one-title{
+  font-size: 5vw;
+  color: var(--color-text1);
+  padding-top: 10vh;
+}
+
+.section-content-offset{
+  transform: translateX(-100px);
 }
 </style>

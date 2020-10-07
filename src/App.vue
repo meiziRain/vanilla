@@ -20,11 +20,9 @@
     <div id="pc">
       <Iris id="pc-nav" ref="nav" />
     </div>
-    <transition name="slide-fade">
-      <keep-alive>
-        <router-view />
-      </keep-alive>
-    </transition>
+    <keep-alive>
+      <router-view />
+    </keep-alive>
   </div>
 </template>
 
@@ -40,6 +38,8 @@ export default {
     LightSwitch
   },
   created() {
+    this.logSth()
+
     if (this._isMobile()) {
       console.log('Mobile')
       this.$store.state.isMobile = true
@@ -53,6 +53,28 @@ export default {
     // eslint-disable-next-line no-undef
   },
   methods: {
+    logSth() {
+      const styles = [
+        'color: green',
+        'background: black',
+        'font-size: 30px',
+        'border: 2px dashed red',
+        'text-shadow: 2px 2px black',
+        'padding: 100px'
+      ].join(';')
+      // 传入样式
+      console.log('%cHello There,www.baidu.com This is Vanilla', styles)
+
+      // 屏蔽后面的console
+      const logDebug = true
+      console.log = (function(oriLogFunc) {
+        return function() {
+          if (logDebug) {
+            oriLogFunc.apply(this, arguments)
+          }
+        }
+      })(console.log)
+    },
     jump() {
       const nav = this.$refs.mobile_nav
       nav.style.animation = 'headerShrink 500ms forwards'
@@ -94,7 +116,7 @@ export default {
 .slide-fade-enter, .slide-fade-leave-to
 /* .slide-fade-leave-active for below version 2.1.8 */ {
   // transform: translateX(10px); maybe this property will influenced the feeling of dark style.
-  opacity: 0;
+  // opacity: 0;
 }
 
 #app{
@@ -104,6 +126,7 @@ export default {
 }
 
 #mobile-header-wrapper {
+  position: absolute;
   height: 60px;
 }
 
