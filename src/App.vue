@@ -119,6 +119,10 @@ export default {
   // opacity: 0;
 }
 
+.disable{
+  pointer-events: none;
+}
+
 #app{
   width: 100vw;
   height: 100vh;

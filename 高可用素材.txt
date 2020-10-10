@@ -1,44 +1,44 @@
 
-1. 按钮（主页）  优先级 高
+1. 按钮（主页）  优先级 高 FIXME:
 https://tympanus.net/Development/MagneticButtons/index4.html
 
 2. 夜间图片素材  中
 https://tympanus.net/Tutorials/the-substance/#07
 
-3. 着重文本 优先级 高
+3. 着重文本 优先级 高 FIXME:
 https://roughnotation.com/
 
-4.  灵感 优先级 高
+4.  灵感 优先级 高 FIXME:
 https://dwl.media/ 
 
-5. 相册模块 优先级 高
+5. 相册模块 优先级 高 FIXME:
 https://tympanus.net/Tutorials/GooeyImageHoverEffects/
 
 6. 鼠标图片互动
 http://www.htmleaf.com/Demo/201902265541.html
 
-7. 圆圈  优先级 高
+7. 圆圈  优先级 高 FIXME:
 https://codepen.io/stevn/pen/kXyKjQ
 
-8. neon 字  优先级 高
+8. neon 字  优先级 高 FIXME:
 http://www.htmleaf.com/Demo/201504111662.html
 
-9. 偏模糊风格 ，水雾 优先级 高
+9. 偏模糊风格 ，水雾 优先级 高 FIXME:
 http://www.htmleaf.com/Demo/201507172249.html
 
 10. 频闪 优先级 中
 http://www.htmleaf.com/Demo/201807135225.html
 
-11. neon场景，图片filter处理 优先级 高
+11. neon场景，图片filter处理 优先级 高 FIXME:
 https://tympanus.net/Development/TextTrailEffect/index5.html
 
-12. neon hover 发光按钮  优先级 高  
+12. neon hover 发光按钮  优先级 高 FIXME:
 https://codepen.io/bhadupranjal/full/vYLZYqQ
 
-13. neon loader  优先级 高
+13. neon loader  优先级 高 FIXME:
 https://codepen.io/Trinca/pen/wzNWPG
 
-14. 适合neon风格的字体 优先级 高
+14. 适合neon风格的字体 优先级 高 FIXME:
 https://tympanus.net/Tutorials/WaveMotionEffect/
 
 15. webgl neon 优先级 中
@@ -50,7 +50,7 @@ https://tympanus.net/Development/DiagonalThumbnails/index2.html
 17 滚动不规则 优先级 中
 https://tympanus.net/Development/MorphingBackgroundShapes/index2.html
 
-18 字 linear 动画结束后可以加荧光 优先级 高
+18 字 linear 动画结束后可以加荧光 优先级 高 FIXME:
 https://tympanus.net/Development/LetterInteractions/weaver.html
 
 19. 也许可以用，页面切换边际过渡 优先级 中
@@ -58,3 +58,6 @@ https://tympanus.net/Development/MorphingPageTransition/index2.html#
 
 20. 滚动块指示器， 优先级 中
 https://tympanus.net/Development/NavigationIndicators/#Hagos
+
+21. 把这个滚动页效果给偷了 优先级 高 FIXME:
+https://www.bien-fonde.com/en/

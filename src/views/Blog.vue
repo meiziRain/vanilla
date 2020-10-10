@@ -6,7 +6,7 @@
         <article
           ref="daisies"
           class="slideshow-list__el"
-          @click="showDetail"
+          @click="showDaisiesDetail"
           @mouseenter="articleDaisiesHover('rgb(207, 130, 125)')"
         >
           <img
@@ -57,7 +57,7 @@
     </section>
     <div id="detail-wrapper" ref="daisies_dv">
       <!-- eslint-disable-next-line vue/valid-v-else -->
-      <DetailView v-if="isMobile" ref="mobile_dv" @close="closePage" />
+      <DetailView v-if="isMobile" ref="mobile_dv" @close="closeDaisiesDetailPage" />
       <!-- eslint-disable-next-line vue/valid-v-else -->
       <PcDetailView v-else ref="pc_dv" />
     </div>
@@ -106,11 +106,6 @@ export default {
     articleDaisiesHover(color) {
       this.$refs.blog.style.setProperty('background-color', color)
     },
-    closePage() {
-      this.initScroller()
-      this.$refs.daisies_dv.classList.toggle('visible')
-      this.$refs.daisies.classList.toggle('trigger')
-    },
     initScroller() {
       this.Scroll = Scrollbar.init(document.querySelector('.cata'), {
         delegateTo: document,
@@ -123,13 +118,43 @@ export default {
           }
         }
       })
-
       this.Scroll.track.xAxis.element.remove()
       this.Scroll.track.yAxis.element.remove()
       Scrollbar.detachStyle()
       this.Scroll.addListener((s) => { this.onScroll(s) })
     },
-    showDetail() {
+    closeDaisiesDetailPage() {
+      this.$refs.pc_dv.$refs.fullpage.destroy()
+      this.$refs.daisies_dv.classList.toggle('visible')
+      this.$refs.daisies.classList.toggle('trigger')
+      this.initScroller()
+      const progress = document.querySelector('.slideshow__progress-ctn')
+      TM.to(progress, 0.3, {
+        alpha: 1,
+        ease: Expo.easeIn
+      })
+      // iris
+      const pcNav = document.querySelector('#pc-nav')
+      TM.to(pcNav, 0.5, {
+        x: 0,
+        alpha: 1,
+        ease: Expo.easeOut
+      })
+    },
+    showDaisiesDetail() {
+      // list页滚动条退场
+      const progress = document.querySelector('.slideshow__progress-ctn')
+      TM.to(progress, 0.5, {
+        alpha: 0,
+        ease: Expo.easeIn
+      })
+      const pcNav = document.querySelector('#pc-nav')
+      TM.to(pcNav, 0.5, {
+        x: 800,
+        alpha: 0,
+        ease: Expo.easeIn
+      })
+
       if (this.$store.state.isMobile) {
         this.$refs.mobile_dv.open()
         Scrollbar.destroy(document.querySelector('.cata'))
@@ -182,6 +207,7 @@ export default {
   line-height: .975;
   color: var(--textColor);
   opacity: .1;
+  // transform: rotate(8deg);
 }
 
 @media (min-width: 920px) {
@@ -200,6 +226,7 @@ export default {
   height: 100vh;
   display: flex;
   align-items: center;
+  // transform: rotate(-8deg);
 }
 
 .scroll-content {
@@ -237,9 +264,7 @@ export default {
   top: 0;
   left: 0;
   width: 100vw;
-  // height: calc(100vh - 60px);
   height: 100vh;
-  // padding: 60px 2vw 2vh 2vw;
   opacity: 0;
   z-index: -999;
   transition: opacity .4s ease-in-out;

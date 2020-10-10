@@ -3,6 +3,7 @@
     <div id="word">
       <Flashword
         :key="refreshKey"
+        class="flashWord"
         :mode="dark"
       />
       <MagneticButton />
@@ -56,5 +57,9 @@ export default {
   text-align: center;
   opacity: 0.9;
   z-index: 999;
+}
+
+.flashWord{
+  transform: translateY(-20%);
 }
 </style>

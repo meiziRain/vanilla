@@ -17,8 +17,8 @@ const getMousePos = (e) => {
     posx = e.pageX
     posy = e.pageY
   } else if (e.clientX || e.clientY) {
-    posx = e.clientX + body.scrollLeft + document.documentElement.scrollLeft
-    posy = e.clientY + body.scrollTop + document.documentElement.scrollTop
+    posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft
+    posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop
   }
 
   return { x: posx, y: posy }
@@ -34,11 +34,33 @@ const distance = (x1, y1, x2, y2) => {
 // Generate a random float.
 const getRandomFloat = (min, max) => (Math.random() * (max - min) + min).toFixed(2)
 
+const getWindowWidth = () => {
+  if (document.compatMode === 'CSS1Compat') {
+    return document.documentElement.clientWidth
+  } else {
+    return document.body.clientWidth
+  }
+}
+
+const antiClick = (fn, el, ...args) => {
+  if (el.getAttribute('data-have-click') === 'true') {
+    return
+  }
+  const time = el.getAttribute('data-time') * 1 || 400
+  setTimeout(() => {
+    el.setAttribute('data-have-click', 'false')
+  }, time)
+  el.setAttribute('data-have-click', 'true')
+  fn.call(this, ...args)
+}
+
 export {
   map,
   lerp,
   calcWinsize,
   getMousePos,
   distance,
-  getRandomFloat
+  getRandomFloat,
+  getWindowWidth,
+  antiClick
 }
