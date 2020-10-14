@@ -15,7 +15,7 @@
             Blog
           </router-link>
           <router-link to="/about">
-            About
+            Me！
           </router-link>
         </div>
       </div>
