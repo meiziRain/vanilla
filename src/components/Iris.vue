@@ -67,7 +67,6 @@ export default {
     toBlog() {
       const me = this
       me.currentindex = 1
-      // sessionStorage.setItem("currentindex", 0); 是按字符型存储的，如果在HTML中使用 === 运算符与整形运算，那么就是false。
       me.$router.push('blog')
     },
     toStudio() {

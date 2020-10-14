@@ -99,7 +99,6 @@ export default {
   },
   created() {},
   mounted() {
-    // new Stage();
     this.initScroller()
   },
   methods: {
@@ -108,7 +107,7 @@ export default {
     },
     initScroller() {
       this.Scroll = Scrollbar.init(document.querySelector('.cata'), {
-        delegateTo: document,
+        delegateTo: document.querySelector('#blog'), // 必须有这个属性,而且需要设置 blog overflow hidden, 否则会出现fullpage的el元素
         continuousScrolling: false,
         overscrollEffect: 'bounce',
         damping: 0.05,
@@ -188,6 +187,9 @@ export default {
 #blog {
   width: 100vw;
   height: 100vh;
+  background-color: #cc8800;
+  background-image: url("https://www.transparenttextures.com/patterns/egg-shell.png");
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   background-color: rgb(207, 130, 125);
   transition-property: background-color;
   -webkit-transition-property: background-color;
@@ -195,6 +197,7 @@ export default {
   -webkit-transition-duration: 0.8s;
   transition-timing-function: ease;
   -webkit-transition-timing-function: ease;
+  overflow: hidden;
 }
 
 .page-title {

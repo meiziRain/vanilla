@@ -50,20 +50,19 @@ export default {
   },
   mounted() {
     this.$refs.nav.keepNavRender()
-    // eslint-disable-next-line no-undef
   },
   methods: {
+    //  'font-family: ' + '"' + 'Cabin Sketch' + '"' + ', cursive',
     logSth() {
       const styles = [
         'color: green',
-        'background: black',
-        'font-size: 30px',
-        'border: 2px dashed red',
+        'font-size: 20px',
+        'font-family: 华文仿宋',
         'text-shadow: 2px 2px black',
-        'padding: 100px'
+        'padding: 10px'
       ].join(';')
       // 传入样式
-      console.log('%cHello There,www.baidu.com This is Vanilla', styles)
+      console.log('%cHello There, This is Vanilla', styles)
 
       // 屏蔽后面的console
       const logDebug = true

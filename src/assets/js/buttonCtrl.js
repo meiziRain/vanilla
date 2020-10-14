@@ -3,6 +3,7 @@ import { EventEmitter } from 'events'
 import { lerp, getMousePos, calcWinsize, distance } from './utils'
 
 // Calculate the viewport size
+// eslint-disable-next-line no-unused-vars
 let winsize = calcWinsize()
 window.addEventListener('resize', () => { winsize = calcWinsize() })
 

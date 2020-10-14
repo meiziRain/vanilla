@@ -133,11 +133,12 @@ export default {
 }
 
 .nav--shamso .nav__item::before {
+	opacity: 0.8;
 	top: 25%;
 	left: 25%;
 	width: 50%;
 	height: 50%;
-	background: #5e798b;
+	background: var(--background-color);
 	-webkit-transition: -webkit-transform 0.5s;
 	transition: transform 0.5s;
 	-webkit-transition-timing-function: cubic-bezier(0.2,1,0.3,1);
@@ -156,12 +157,13 @@ export default {
 }
 
 .nav--shamso .nav__item::after {
+	opacity: 0.8;
 	top: 10%;
 	left: 10%;
 	width: 80%;
 	height: 80%;
 	opacity: 0;
-	box-shadow: inset 0 0 0 3px #5e798b;
+	box-shadow: inset 0 0 0 3px var(--background-color);
 	-webkit-transform: scale3d(0.35,0.35,1);
 	transform: scale3d(0.35,0.35,1);
 	-webkit-transition: -webkit-transform 0.5s, box-shadow 0.5s, opacity 0.5s;

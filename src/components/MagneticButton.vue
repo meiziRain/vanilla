@@ -55,6 +55,7 @@ export default {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  display: inline-block;
 }
 .magnetic-button {
   cursor: pointer;

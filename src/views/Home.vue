@@ -6,7 +6,11 @@
         class="flashWord"
         :mode="dark"
       />
-      <MagneticButton />
+    </div>
+    <div id="magnetic-btn">
+      <router-link to="/blog">
+        <MagneticButton />
+      </router-link>
     </div>
   </div>
 </template>
@@ -33,6 +37,12 @@ export default {
       this.refreshKey = new Date().getTime()
       this.dark = data
     })
+  },
+  methods: {
+    discover() {
+      console.log('discover')
+      this.$router.push('blog')
+    }
   }
 }
 </script>
@@ -42,18 +52,13 @@ export default {
   width:100vw;
   height: 100vh;
   background: var(--background-color);
+  overflow: hidden;
 }
 
 #word {
-  position: absolute;
+  margin-top: 50vh;
+  transform: translateY(-50%);
   font-size: 5vw;
-  width: 100vw;
-  height: 20rem;
-  margin: auto;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   text-align: center;
   opacity: 0.9;
   z-index: 999;
@@ -61,5 +66,18 @@ export default {
 
 .flashWord{
   transform: translateY(-20%);
+}
+
+#magnetic-btn{
+  display: flex;
+  align-items:center;
+  justify-content:center;
+  transform: translateY(-50%);
+}
+
+@media (min-width: 1360px) {
+  #magnetic-btn{
+    transform: scale(2);
+  }
 }
 </style>

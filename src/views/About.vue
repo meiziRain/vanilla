@@ -4,26 +4,72 @@
       <div id="about-scroll-content">
         <div id="avatar-wrapper">
           <div id="avatar" />
+          <div
+            id="name"
+            class="animate__animated animate__fadeInUp animate__delay-1s"
+          >Title</div>
+          <div
+            id="introduce"
+            class="animate__animated animate__fadeInUp animate__delay-2s"
+          >INTRODUCE, eg: A beautiful tiny girl</div>
         </div>
-        <css-doodle>
-          :doodle {
-          @grid: 18 / 100vmax;
-          background: #0a0c27;
-          }
-          --hue: calc(180 + 1.5 * @row * @col);
-          background: hsl(var(--hue), 50%, 70%);
-          margin: -.5px;
-          transition: @r(.5s) ease;
-          clip-path: polygon(@pick(
-          '0 0, 100% 0, 100% 100%',
-          '0 0, 100% 0, 0 100%',
-          '0 0, 100% 100%, 0 100%',
-          '100% 0, 100% 100%, 0 100%'
-          ));
-        </css-doodle>
-        <div class="spine spine--plans" />
-        <div class="spinelabel spinelabel--plans">
-          <a class="spinelabel__inner" data-router-link="" style="will-change: transform; transform-origin: 50% 50%; transform: translate3d(0.1548vw, 0px, 0px);">Planes</a>
+        <div id="waterfall">
+          <div id="plans">
+            <div class="spine-wrapper">
+              <div class="spine spine--routes" />
+              <div class="spinelabel spinelabel--routes">
+                <a class="spinelabel__inner">Rutas</a>
+              </div>
+            </div>
+            <div class="plans-big">
+              <picture class=" pri">
+                <source media="(max-width: 1280px)" data-srcset="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv2-600x780.jpg" srcset="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv2-600x780.jpg">
+                <source media="(max-width: 1920px)" data-srcset="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv2-800x1040.jpg" srcset="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv2-800x1040.jpg">
+                <img data-src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv2.jpg" alt="Kesy Shoes - Adv Campaign Sezine Adv 1" src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv2.jpg">
+              </picture>
+              <div class="plans-small">
+                <picture class="sub">
+                  <source media="(max-width: 1920px)" data-srcset="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv3.jpg" srcset="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv3.jpg">
+                  <img data-src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv3.jpg" alt="Kesy Shoes - Adv Campaign Sezine Adv 2" src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv3.jpg">
+                </picture>
+              </div>
+              <article id="plans-article">
+                <div class="philosophy__title container-stagger-text-inview viewed">
+                  <div class="row top overflow-stagger-text">
+                    <h2 class="small-title stagger-text-inview">ADV CAMPAIGN</h2>
+                  </div>
+                  <div class="row bottom overflow-stagger-text">
+                    <h2 class="small-title cindie verde stagger-text-inview">SS 2020</h2>
+                  </div>
+                </div>
+                <div class="philosophy__content container-stagger-item-inview viewed">
+                  <p
+                    class="stagger-item-inview"
+                  >Keys si racconta in una campagna pubblicitaria, che celebra la straordinarietà dell'ordinario, attraverso i momenti quotidiani di due donne dinamiche. Lo shooting è stato ambientato a Miami, metropoli che offre scenari urbani decisamente iconici, fondendo stile metropolitano e glamour d'antan.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+          <div id="bottom">
+            <div id="css-doodle">
+              <css-doodle>
+                :doodle {
+                @grid: 18 / 100vmax;
+                background: var(--background-color);
+                }
+                --hue: calc(180 + 1.5 * @row * @col);
+                background: hsl(var(--hue), 50%, 70%);
+                margin: -.5px;
+                transition: @r(.5s) ease;
+                clip-path: polygon(@pick(
+                '0 0, 100% 0, 100% 100%',
+                '0 0, 100% 0, 0 100%',
+                '0 0, 100% 100%, 0 100%',
+                '100% 0, 100% 100%, 0 100%'
+                ));
+              </css-doodle>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -34,8 +80,8 @@
 import { gsap } from 'gsap'
 import Scrollbar from 'smooth-scrollbar'
 import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
-import HorizontalScrollPlugin from '@/assets/gooey-hover/js/utils/HorizontalScrollPlugin'
-Scrollbar.use(HorizontalScrollPlugin, OverscrollPlugin)
+Scrollbar.use(OverscrollPlugin)
+
 export default {
   data() {
     return {
@@ -44,21 +90,22 @@ export default {
     }
   },
   mounted() {
-    // gsap.delayedCall(1, () => { this.gotoNextSlide() })
     this.initScroll()
   },
   methods: {
     initScroll() {
       this.about_Scroll = Scrollbar.init(document.querySelector('#about-scroll-viewport'), {
-        delegateTo: document,
+        delegateTo: document.querySelector('#about'),
         continuousScrolling: false,
-        overscrollEffect: 'bounce',
         damping: 0.05
       })
 
       this.about_Scroll.track.xAxis.element.remove()
       this.about_Scroll.track.yAxis.element.remove()
       Scrollbar.detachStyle()
+      this.about_Scroll.updatePluginOptions('overscroll', {
+        effect: false
+      })
       this.about_Scroll.addListener((s) => { this.onScroll(s) })
     },
     /* Handlers
@@ -98,20 +145,22 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+img{
+  width: 100%;
+  display: block;
+}
+
 #about{
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
   background: var(--background-color);
-
 }
 
-// #first{
-//   transform: translateX(-30%);
-// }
 #about-scroll-viewport{
   width:100%;
   height: 100%;
-  background-color: bisque;
+  background-color: white;
   overflow:scroll;
 }
 
@@ -120,84 +169,104 @@ export default {
   width: 100vw;
 }
 
-.sliders {
-    position: relative;
-    top: 50%;
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
-    margin: auto;
-    width: 80vw;
-    height: 30vw;
-}
-
-.sliders__backgrounds {
-  position: absolute;
-  width: 70vw;
-  height: 100vh;
-  top: 50%;
-  left: -10vw;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.sliders__backgrounds .background {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.background__bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
+#avatar{
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  background-image: url(https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg);
+  background-repeat:no-repeat;
   background-size: cover;
-  background-position: 50%;
-  background-color: var(--bg-grey);
+  transform: translateY(40%);
+  margin: 0 auto;
+}
+
+#name{
+  position: absolute;
+  font-family: 'Cabin Sketch', cursive;
+  left: 50%;
+  font-size: 5vw;
+  translate: -100%;
+  // margin-left: -200px;
+}
+
+#introduce{
+  position: absolute;
+  left: 50%;
+  translate: -100%;
+  margin-top: 12vh;
+  font-size: 2.5vw;
+}
+
+#bottom{
+  width:100vw;
+  height:30vh;
+  margin-top: 200px;
+  overflow: hidden;
+}
+
+#plans{
+  height: 100vh;
+  width: 100vw;
+}
+
+#plans-article{
+  position: absolute;
+  left: 63vw;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.plans-big{
+  position: relative;
+  width: 38vw;
+  height: calc(38vw * 1.3);
+  order: 2;
+}
+
+.plans-small{
+  position: absolute;
+  width: 15vw;
+  left: 100%;
+  top: 0;
+  transform: translate(-5vw,5vw);
+}
+
+.stagger-item-inview{
+  font-family: "Poiret One", cursive;
+  font-size: 2vw;
+  color: #4a473c;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.spine-wrapper{
+  position: absolute;
+  z-index: 10;
+  height: 100vh;
+  width: 100vw;
 }
 
 .spine {
   position: absolute;
   width: 1px;
   height: 100%;
+  background-color: #a5d3ee;
   top: 0;
   left: 50%;
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
-  &--plans {
-    background-color: #a5d3ee;
-  }
 }
 
-.spinelabel {
-  z-index: 1;
-}
-
-.spinelabel {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: rotate(-90deg);
-    transform: rotate(-90deg) translateX(-50%) translateY(-50%);
-    -webkit-transform-origin: 0 0;
-    transform-origin: 0 0;
-
-    &__inner {
-    will-change: transform;
-    transform-origin: 50% 50%;
-    transform: translate3d(0.1548vw, 0px, 0px);
-
+.spinelabel{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: rotate(-90deg);
+  transform: rotate(-90deg) translateX(-50%) translateY(-50%);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+  &__inner{
     font-size: 2.42em;
-    font-weight: 400;
     display: inline-block;
     font-style: italic;
     font-weight: 700;

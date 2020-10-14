@@ -1,6 +1,6 @@
 <template>
   <div id="flashword">
-    <div class="flashword-content">
+    <div>
       <h2 class="content__title">V a n i l l a</h2>
       <p class="content__subtitle">Say something...</p>
     </div>
@@ -122,37 +122,25 @@ export default {
 
 <style>
 .content__title {
-    font-size: 2em;
-    margin: 0;
+  font-size: 10vw;
+  margin: 0 auto;
 }
 
 .content__title span {
-    display: inline-block;
-    white-space: pre;
-    transform-origin: 50% -50%;
-}
-
-.flashword-content {
-    width: 100%;
-    height: 20rem;
+  display: inline-block;
+  white-space: pre;
+  transform-origin: 50% -50%;
 }
 
 .content__title {
-    font-family: 'Cabin Sketch', cursive;
-    height: 15rem;
-    line-height: 15rem;
+  font-family: 'Cabin Sketch', cursive;
 }
 
 .content__subtitle {
     font-family: 'Cabin Sketch', cursive;
-    width: 100%;
-    height: 4rem;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
     color: wheat;
-    font-size: 0.4em;
+    margin-top: 3vw;
+    font-size: 2vw;
 }
 
 @media screen and (max-width: 600px) {

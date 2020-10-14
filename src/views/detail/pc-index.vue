@@ -6,13 +6,40 @@
     <full-page id="fullpage" ref="fullpage" :options="options" :skip-init="true">
       <div class="section active">
         <div class="section-content section-content-offset">
-          <h2 class="section-one-title">
+          <h2 class="section-one-text section-one-title">
             Rocks & <span class="title__offset title__offset--medium">Mountains</span>
           </h2>
+          <p id="section-one-paragraph" class="section-one-text">
+            <RoughNotation
+              :is-show="title_line"
+              type="underline"
+            >
+              <span>Rough Notation is awesome</span>
+            </RoughNotation>
+            A small JavaScript library to create and animate annotations on a web page
+
+            Rough Notation uses RoughJS to create a hand-drawn look and feel. Elements can be annotated in a number of different styles. Animation duration and delay can be configured, or just turned off.
+
+            Rough Notation is 3.8kb in size when gzipped, and the code is available on GitHub.
+          </p>
         </div>
       </div>
       <div id="second-section" class="section">
-        Second section ...
+        <div class="section-content">
+          <p>
+            A strange idea, Tiny , Big, Break, Cure <br>
+            such a touching scene. <br>
+            I was just wondering. <br>
+            A period of wanting to be accepted. <br>
+            Close to.<br><br>
+
+            Pride, Coward, Despise, Jealous. <br>
+            Something has happened. <br>
+            Hidden anger. <br>
+            Run away.
+          </p>
+        </div>
+
       </div>
       <div class="section">
         Third section ...
@@ -26,7 +53,7 @@
 
 <script>
 // eslint-disable-next-line no-unused-vars
-import { TweenMax as GSAP, Power1, Power2, Power4, Sine, Expo, gsap } from 'gsap'
+import { Power1, Power2, Power4, Sine, Expo, gsap as GSAP } from 'gsap'
 import Closer from '@/components/Closer.vue'
 import NavIndicator from '@/components/NavIndicator.vue'
 import { getWindowWidth } from '@/assets/js/utils'
@@ -38,7 +65,6 @@ export default {
   data() {
     return {
       options: {
-        // fullpage.js afterLoad 回调 index 取值有问题, 这里使用anchor标记滚动到了which section
         lockAnchors: true,
         anchors: ['firstPage', 'secondPage', 'thirdPage'],
         licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
@@ -47,8 +73,11 @@ export default {
       },
       offsetTitle: 100,
       progress: 0,
-      margin: 27
+      margin: 27,
+      title_line: false
     }
+  },
+  mounted() {
   },
   methods: {
     onNavClick(index) {
@@ -114,8 +143,8 @@ export default {
         force3D: true
       })
 
-      // 详情页section 1 标题进场
-      const section_one_title = document.querySelector('.section-one-title')
+      // 详情页section content 进场
+      const section_one_title = document.querySelector('.section-content')
       GSAP.fromTo(section_one_title, 1, {
         y: 600,
         alpha: 0,
@@ -125,13 +154,16 @@ export default {
         y: 0,
         alpha: 1,
         ease: Power2.easeInOut,
-        force3D: true
+        force3D: true,
+        onComplete: () => {
+          this.title_line = true
+        }
       })
     },
     // Animate all the bg images out and animate the new menu item's in
     toggleMenuItems(upcomingItem, direction = 'up') {
       const dir = direction === 'up' ? 1 : -1
-      gsap.timeline({
+      GSAP.timeline({
         defaults: {
           duration: 1,
           ease: 'expo.inOut'
@@ -150,8 +182,8 @@ export default {
         }, 0.5)
     },
     closePage() {
+      this.$refs.fullpage.api.setAllowScrolling(false) // 点击关闭后快速滚动滑轮, el重新入场的bug
       document.querySelector('.daisies_closer').classList.add('non-clickable')
-      this.$refs.fullpage.api.setAllowScrolling(false) // 点击关闭快速滚动滑轮, el重新入场的bug
       // wrapper退场
       GSAP.fromTo(document.querySelector('#daisies-detail-pc'), 0.8, {
         alpha: 1
@@ -163,6 +195,18 @@ export default {
             this.$parent.closeDaisiesDetailPage()
           })
         }
+      })
+
+      // section-content退场
+      const section_content = document.querySelector('.section-content')
+      GSAP.fromTo(section_content, 0.4, {
+        y: 0,
+        alpha: 1
+      }, {
+        y: 400,
+        alpha: 0,
+        ease: Power2.easeIn,
+        force3D: true
       })
 
       // closer 退场
@@ -270,10 +314,24 @@ export default {
   text-align: center;
 }
 
+.section-one-text{
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.section-content>p{
+  text-align: center;
+  font-size: 2vw;
+  padding: 10vh 10vw 0vh 10vw;
+  font-family: 'Courier New', Courier, monospace;
+  line-height: 1.2;
+}
+
 .section-one-title{
   font-size: 5vw;
   color: var(--color-text1);
   padding-top: 10vh;
+  text-align: center;
 }
 
 .section-content-offset{

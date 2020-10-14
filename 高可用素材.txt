@@ -61,3 +61,6 @@ https://tympanus.net/Development/NavigationIndicators/#Hagos
 
 21. 把这个滚动页效果给偷了 优先级 高 FIXME:
 https://www.bien-fonde.com/en/
+
+22. console.log 打印图片 优先级 高 FIXME:
+https://github.com/workeffortwaste/consoleimg/
