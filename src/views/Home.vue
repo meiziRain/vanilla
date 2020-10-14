@@ -72,12 +72,12 @@ export default {
   display: flex;
   align-items:center;
   justify-content:center;
-  transform: translateY(-50%);
+  transform: translateY(-60%);
 }
 
 @media (min-width: 1360px) {
   #magnetic-btn{
-    transform: scale(2);
+    transform: translateY(-60%) scale(2);
   }
 }
 </style>

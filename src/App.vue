@@ -14,6 +14,9 @@
           <router-link to="/blog">
             Blog
           </router-link>
+          <router-link to="/about">
+            About
+          </router-link>
         </div>
       </div>
     </div>
@@ -76,16 +79,16 @@ export default {
     },
     jump() {
       const nav = this.$refs.mobile_nav
-      nav.style.animation = 'headerShrink 500ms forwards'
+      nav.style.animation = 'headerShrink 500ms forwards ease'
       nav.classList.toggle('active')
       this.$refs.ham.toggle()
     },
     onHamClick() {
       const nav = this.$refs.mobile_nav
       if (nav.classList.contains('active')) {
-        nav.style.animation = 'headerShrink 500ms forwards'
+        nav.style.animation = 'headerShrink 500ms forwards ease'
       } else {
-        nav.style.animation = 'headerExpand 500ms forwards'
+        nav.style.animation = 'headerExpand 500ms forwards ease'
       }
       nav.classList.toggle('active')
     },
@@ -207,13 +210,13 @@ export default {
     }
 
     to {
-        height: 90px;
+        height: 130px; // 增加路由时需要增加此值
     }
 }
 
 @keyframes headerShrink {
     from {
-        height: 90px;
+        height: 130px;
     }
 
     to {
