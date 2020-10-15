@@ -27,7 +27,7 @@
       <div id="second-section" class="section">
         <div class="section-content section-two-text section-font">
           <span>A strange idea,</span>
-          <div class="rw-words">
+          <div class="rw-words rw-words-1">
             <span class="rw-word">Tiny,</span>
             <span class="rw-word">Big, </span>
             <span class="rw-word">Break, </span>
@@ -38,7 +38,7 @@
           A period of wanting to be accepted. <br>
           Close to.
           <br><br>
-          <div class="rw-words">
+          <div class="rw-words rw-words-2">
             <span class="rw-word">Pride,</span>
             <span class="rw-word">Coward,</span>
             <span class="rw-word">Despise,</span>
