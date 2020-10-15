@@ -291,8 +291,6 @@ export default {
           ease: Power2.easeInOut,
           force3D: true
         })
-
-
       }
     },
     pageOnLeave(origin, destination, direction) {

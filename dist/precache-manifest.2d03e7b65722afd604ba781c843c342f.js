@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "850c8666a4bba9efa112",
+    "revision": "8216997e50e2559c1474",
     "url": "css/app.09cfb51e.css"
   },
   {
-    "revision": "5c596da280f8e3187d79",
-    "url": "css/blog.d92035ef.css"
+    "revision": "5025f96b9e8073ba1c4a",
+    "url": "css/blog.96ef2596.css"
   },
   {
     "revision": "85cf10fae26ab70ab102",
@@ -24,16 +24,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/miao1.0a938cc4.jpg"
   },
   {
-    "revision": "b085635a111786ce86e8922fb98107c0",
+    "revision": "614f5e1eb7847cf2e27a11343633b5e9",
     "url": "index.html"
   },
   {
-    "revision": "850c8666a4bba9efa112",
-    "url": "js/app.1d8e0fff.js"
+    "revision": "8216997e50e2559c1474",
+    "url": "js/app.869f76c2.js"
   },
   {
-    "revision": "5c596da280f8e3187d79",
-    "url": "js/blog.8f4bfff4.js"
+    "revision": "5025f96b9e8073ba1c4a",
+    "url": "js/blog.12813977.js"
   },
   {
     "revision": "85cf10fae26ab70ab102",
