@@ -9,7 +9,7 @@
           <h2 class="section-one-text section-one-title">
             Rocks & <span class="title__offset title__offset--medium">Mountains</span>
           </h2>
-          <p id="section-one-paragraph" class="section-one-text">
+          <p id="section-one-paragraph" class="section-one-text section-font">
             <RoughNotation
               :is-show="title_line"
               type="underline"
@@ -25,24 +25,49 @@
         </div>
       </div>
       <div id="second-section" class="section">
-        <div class="section-content">
-          <p>
-            A strange idea, Tiny , Big, Break, Cure <br>
-            such a touching scene. <br>
-            I was just wondering. <br>
-            A period of wanting to be accepted. <br>
-            Close to.<br><br>
-
-            Pride, Coward, Despise, Jealous. <br>
-            Something has happened. <br>
-            Hidden anger. <br>
-            Run away.
-          </p>
+        <div class="section-content section-two-text section-font">
+          <span>A strange idea,</span>
+          <div class="rw-words">
+            <span class="rw-word">Tiny,</span>
+            <span class="rw-word">Big, </span>
+            <span class="rw-word">Break, </span>
+            <span class="rw-word">Cure</span>
+          </div>
+          such a touching scene. <br>
+          I was just wondering. <br>
+          A period of wanting to be accepted. <br>
+          Close to.
+          <br><br>
+          <div class="rw-words">
+            <span class="rw-word">Pride,</span>
+            <span class="rw-word">Coward,</span>
+            <span class="rw-word">Despise,</span>
+            <span class="rw-word">Jealous.</span>
+          </div>
+          Something has happened. <br>
+          Hidden anger. <br>
+          Run away.
         </div>
 
       </div>
       <div class="section">
-        Third section ...
+        <section class="rw-wrapper">
+          <h2 class="rw-sentence">
+            <span>Real poetry is like</span>
+            <br>
+            <span>creating beautiful butterflies</span>
+            <br>
+            <span>with a silent touch of</span>
+            <div class="rw-words">
+              <span>spice</span>
+              <span>colors</span>
+              <span>happiness</span>
+              <span>wonder</span>
+              <span>sugar</span>
+              <span>happiness</span>
+            </div>
+          </h2>
+        </section>
       </div>
       <div class="section">
         Fourth section ...
@@ -266,6 +291,8 @@ export default {
           ease: Power2.easeInOut,
           force3D: true
         })
+
+
       }
     },
     pageOnLeave(origin, destination, direction) {
@@ -319,7 +346,11 @@ export default {
   margin: 0 auto;
 }
 
-.section-content>p{
+.section-two-text{
+  text-align: left !important;
+}
+
+.section-font{
   text-align: center;
   font-size: 2vw;
   padding: 10vh 10vw 0vh 10vw;
@@ -337,4 +368,5 @@ export default {
 .section-content-offset{
   transform: translateX(-100px);
 }
+
 </style>

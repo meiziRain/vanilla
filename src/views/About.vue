@@ -45,10 +45,13 @@
                 <div class="philosophy__content container-stagger-item-inview viewed">
                   <p
                     class="stagger-item-inview"
-                  >Keys si racconta in una campagna pubblicitaria, che celebra la straordinarietà dell'ordinario, attraverso i momenti quotidiani di due donne dinamiche. Lo shooting è stato ambientato a Miami, metropoli che offre scenari urbani decisamente iconici, fondendo stile metropolitano e glamour d'antan.</p>
+                  >Keys si racconta in una campagna pubblicitaria, che celebra la straordinarietà dell'ordinario, attraverso i momenti quotidiani di due donne dinamiche. Lo shooting è stato ambientato a Miami, metropoli che offre scenari urbani decisamente iconici</p>
                 </div>
               </article>
             </div>
+          </div>
+          <div class="else">
+            Something else...
           </div>
           <div id="bottom">
             <div id="css-doodle">
@@ -205,8 +208,9 @@ img{
 }
 
 #plans{
-  height: 100vh;
+  // height: 100vh;
   width: 100vw;
+  // overflow: hidden;
 }
 
 #plans-article{
@@ -237,6 +241,14 @@ img{
   color: #4a473c;
   font-weight: 800;
   line-height: 1.2;
+}
+
+.else{
+  width: 100vw;
+  height: 20vh;
+  font-size: 2vw;
+  align-items: center;
+  vertical-align: baseline;
 }
 
 .spine-wrapper{
