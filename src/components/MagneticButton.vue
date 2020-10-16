@@ -32,20 +32,13 @@ export default {
 <style lang="scss" scoped>
 #magnetic {
   --button-border-radius: 7px;
-  --button-bg: transparent;
   --button-stroke: #d8d4cf;
   --button-stroke-width: 0px;
-  --button-text: #000;
-  --button-bg-hover: #000;
-  --button-stroke-hover: #000;
   --button-stroke-width-hover: 0px;
-  --button-text-hover: #000;
   --button-text-focus: red;
   --cursor-stroke: red;
   --cursor-fill: red;
   --cursor-stroke-width: 0px;
-  --button-bg-text: #e0d9d2;
-  --color-bg: #d6ccc1;
   grid-area: content;
   display: flex;
   flex-direction: column;
@@ -57,6 +50,7 @@ export default {
   user-select: none;
   display: inline-block;
 }
+
 .magnetic-button {
   cursor: pointer;
   -moz-appearance: none;
@@ -64,8 +58,8 @@ export default {
   border-width: var(--button-stroke-width);
   border-color: var(--button-stroke);
   border-style: solid;
-  color: var(--button-text);
-  background: var(--button-bg);
+  color: var(--el-text-color);
+  background: var(--background-color);
   border-radius: var(--button-border-radius);
   min-width: 12rem;
   height: 5rem;
@@ -83,8 +77,8 @@ export default {
 .button--hover {
   outline: none;
   border-width: var(--button-stroke-width-hover);
-  border-color: var(--button-stroke-hover);
-  color: var(--button-text-hover);
+  border-color: var(--el-text-color);
+  color: var(--el-text-color);
 }
 
 .magnetic-button:focus {
@@ -115,7 +109,7 @@ export default {
 
 .magnetic-button__text {
   flex: none;
-  background: var(--button-bg-text);
+  background: var(--text-color);
   width: 100%;
   height: 5rem;
   border-radius: var(--button-border-radius);

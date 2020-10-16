@@ -31,6 +31,8 @@
     --color-text-light:#0c0f13;
     --background-dark:#0c0f13;
     --color-text-dark:#fff;
+    --color-text-el-drak-bg:#fff;
+    --color-text-el-light-bg:#0c0f13;
 
     // border-radius
     --main-border-radius:8px;
@@ -39,12 +41,14 @@
 [data-user-color-scheme='light'] {
     --color-mode: 'light';
     --text-color: var(--color-text-light);
+    --el-text-color: var(--color-text-el-drak-bg);
     --background-color: var(--background-light);
     --border-color: var(--border-light);
 }
 [data-user-color-scheme='dark'] {
     --color-mode: 'dark';
     --text-color: var(--color-text-dark);
+    --el-text-color: var(--color-text-el-light-bg);
     --background-color:var(--background-dark);
     --border-color: var(--border-dark);
 }
