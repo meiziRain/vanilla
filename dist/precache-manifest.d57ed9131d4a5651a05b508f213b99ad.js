@@ -188,7 +188,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/miao1.0a938cc4.jpg"
   },
   {
-    "revision": "62ae5d31920c654134c650ff2d98b4f0",
+    "revision": "2b93f068c641f74599a92d5444cb021d",
     "url": "index.html"
   },
   {
