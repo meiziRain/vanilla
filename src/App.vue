@@ -21,6 +21,7 @@
       </div>
     </div>
     <div id="pc">
+      <LightSwitch id="pc-light-switch" />
       <Iris id="pc-nav" ref="nav" />
     </div>
     <keep-alive>
@@ -162,9 +163,8 @@ export default {
   background-color: red;
 }
 
-#light-switch {
-  height: 60px;
-  width: 80px;
+#pc-light-switch{
+  position: fixed;
 }
 
 #mobile-nav {

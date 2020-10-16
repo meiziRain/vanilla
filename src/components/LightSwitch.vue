@@ -35,6 +35,13 @@ export default {
   },
   mounted() {
     window.localStorage.getItem('dark') === 'true' ? this.initTheme(true) : this.initTheme(false)
+
+    // PC, Mobile如果切换调整窗口大小回调
+    this.$eventHub.$on('darkListener', (data) => {
+      // 利用修改key的属性值，重新加载子组件，触发create事件
+      this.refreshKey = new Date().getTime()
+      this.dark = data
+    })
   },
   methods: {
     initTheme(dark) {
@@ -60,7 +67,7 @@ export default {
 <style>
 #light-switch-wrapper {
   position: relative;
-  width: 80px;
+  width: 60px;
   height: 60px;
 }
 .lightswitch__icon {
