@@ -67,7 +67,7 @@
 
 <script>
 // eslint-disable-next-line no-unused-vars
-import { TweenMax as TM, Power1, Power2, Power4, Sine, Expo } from 'gsap'
+import { Power1, Power2, Power4, Sine, Expo } from 'gsap'
 import { map } from '@/assets/gooey-hover/js/utils/utils'
 // 滚动
 import Scrollbar from 'smooth-scrollbar'
@@ -84,7 +84,6 @@ export default {
   data() {
     return {
       options: {
-        // fullpage.js afterLoad 回调 index 取值有问题, 这里使用anchor标记滚动到了which section
         lockAnchors: true,
         anchors: ['firstPage', 'secondPage', 'thirdPage'],
         licenseKey: 'OPEN-SOURCE-GPLV3-LICENSE',
@@ -98,10 +97,18 @@ export default {
     }
   },
   created() {},
+  activated() {
+    console.log('Blog activated')
+    this.initAnim()
+  },
   mounted() {
     this.initScroller()
   },
   methods: {
+    initAnim() {
+      // this.$GSAP.fromTo('.slideshow-list__el', 1,
+      //   { opacity: 0, y: 200 }, { opacity: 1, y: 0 }, 0.2)
+    },
     articleDaisiesHover(color) {
       this.$refs.blog.style.setProperty('background-color', color)
     },
@@ -128,13 +135,13 @@ export default {
       this.$refs.daisies.classList.toggle('trigger')
       this.initScroller()
       const progress = document.querySelector('.slideshow__progress-ctn')
-      TM.to(progress, 0.3, {
+      this.$GSAP.to(progress, 0.3, {
         alpha: 1,
         ease: Expo.easeIn
       })
       // iris
       const pcNav = document.querySelector('#pc-nav')
-      TM.to(pcNav, 0.5, {
+      this.$GSAP.to(pcNav, 0.5, {
         x: 0,
         alpha: 1,
         ease: Expo.easeOut
@@ -143,12 +150,13 @@ export default {
     showDaisiesDetail() {
       // list页滚动条退场
       const progress = document.querySelector('.slideshow__progress-ctn')
-      TM.to(progress, 0.5, {
+      console.log(this.$GSAP)
+      this.$GSAP.to(progress, 0.5, {
         alpha: 0,
         ease: Expo.easeIn
       })
       const pcNav = document.querySelector('#pc-nav')
-      TM.to(pcNav, 0.5, {
+      this.$GSAP.to(pcNav, 0.5, {
         x: 800,
         alpha: 0,
         ease: Expo.easeIn
@@ -170,14 +178,14 @@ export default {
     --------------------------------------------------------- */
     onScroll({ limit, offset }) {
       this.progress = offset.x / limit.x
-      TM.to(this.$refs.bg_title, 0.3, { x: -this.progress * this.offsetTitle, force3D: true })
+      this.$GSAP.to(this.$refs.bg_title, 0.3, { x: -this.progress * this.offsetTitle, force3D: true })
       this.updateScrollBar()
     },
     /* Actions
     --------------------------------------------------------- */
     updateScrollBar() {
       const progress = map(this.progress * 100, 0, 100, 5, 100)
-      TM.to(this.$refs.progress, 0.3, { xPercent: progress, force3D: true })
+      this.$GSAP.to(this.$refs.progress, 0.3, { xPercent: progress, force3D: true })
     }
   }
 }
@@ -301,15 +309,15 @@ img {
   transition: opacity .3s;
 }
 
-@media (min-width: 920px) {
-  .slideshow-list__el:nth-child(odd) {
-    transform: translateY(10%);
-  }
+// @media (min-width: 920px) {
+//   .slideshow-list__el:nth-child(odd) {
+//     transform: translateY(10%);
+//   }
 
-  .slideshow-list__el:nth-child(even) {
-    transform: translateY(-10%);
-  }
-}
+//   .slideshow-list__el:nth-child(even) {
+//     transform: translateY(-10%);
+//   }
+// }
 
 @media (max-width: 920px) {
   .cata {

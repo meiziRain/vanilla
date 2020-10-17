@@ -12,7 +12,7 @@ import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
 import HorizontalScrollPlugin from '@/assets/gooey-hover/js/utils/HorizontalScrollPlugin'
 Scrollbar.use(HorizontalScrollPlugin, OverscrollPlugin)
 import Closer from '@/components/Closer.vue'
-import { TweenMax as TM, Power2 } from 'gsap'
+import { Power2 } from 'gsap'
 export default {
   name: 'DetailView',
   components: {
@@ -36,8 +36,8 @@ export default {
       // this.Scroll.addListener((s) => { this.onScroll(s) })
     },
     open() {
-      // FIXME: 为什么第一个参数使用this.$refs.el取元素，TM无法渲染效果
-      TM.fromTo(document.querySelector('#detail-view'), 0.5, {
+      // FIXME: 为什么第一个参数使用this.$refs.el取元素，this.GSAP无法渲染效果
+      this.GSAP.fromTo(document.querySelector('#detail-view'), 0.5, {
         scale: 0,
         alpha: 0
       }, {
@@ -46,7 +46,7 @@ export default {
         ease: Power2.easeInOut,
         force3D: true
       })
-      TM.fromTo(document.querySelector('.closer'), 1, {
+      this.GSAP.fromTo(document.querySelector('.closer'), 1, {
         rotate: -45,
         scale: 0,
         alpha: 0
@@ -61,7 +61,7 @@ export default {
     closePage() {
       this.$emit('close', '')
       Scrollbar.destroy(document.querySelector('#detail-view'))
-      TM.to(document.querySelector('.closer'), 0.5, {
+      this.GSAP.to(document.querySelector('.closer'), 0.5, {
         rotate: -45,
         scale: 0,
         alpha: 0,

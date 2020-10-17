@@ -19,6 +19,7 @@
 // @ is an alias to /src
 import MagneticButton from '@/components/MagneticButton.vue'
 import Flashword from '@/components/Flashword.vue'
+import { Expo } from 'gsap'
 export default {
   name: 'Home',
   components: {
@@ -31,6 +32,10 @@ export default {
       refreshKey: ''
     }
   },
+  activated() {
+    console.log('Home activated')
+    this.initAnim()
+  },
   mounted() {
     this.$eventHub.$on('darkListener', (data) => {
       // 利用修改key的属性值，重新加载子组件，触发create事件
@@ -39,8 +44,18 @@ export default {
     })
   },
   methods: {
+    initAnim() {
+      this.$GSAP.fromTo(document.querySelector('#magnetic-btn'), 1, {
+        y: 100,
+        scale: 0
+      }, {
+        y: 0,
+        scale: 1,
+        ease: Expo.easeOut,
+        force3D: true
+      })
+    },
     discover() {
-      console.log('discover')
       this.$router.push('blog')
     }
   }

@@ -92,6 +92,9 @@ export default {
       isAutoPlay: false
     }
   },
+  activated() {
+    console.log('About activated')
+  },
   mounted() {
     this.initScroll()
   },

@@ -39,6 +39,58 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 AOS.init()
 
+// global import gsap, Why can't add `{}` ?
+import GSAP from 'gsap'
+Vue.prototype.$GSAP = GSAP || new Vue()
+
+// 路由全局守卫
+// 当路由进入前
+const routerLogStyles = [
+  'color: red',
+  'padding: 10px'
+].join(';')
+router.beforeEach((to, from, next) => {
+  console.log('%cbeforeEach--' + 'to.name:' + to.name + ',' + 'from.name:' + from.name, routerLogStyles)
+  if (to.matched.length === 0) { // 如果未匹配到路由
+    console.log('stop')
+    from.name ? next({
+      name: from.name
+    }) : next('/') // 如果上级也未匹配到路由则跳转登录页面，如果上级能匹配到则转上级路由
+  } else {
+    next() // 如果匹配到正确跳转
+  }
+})
+// 当路由进入后：关闭进度条
+router.afterEach((to, from, next) => {
+  if (to.name === 'Home') {
+    console.log(123)
+  }
+  console.log('%cafterEach--' + 'to.name:' + to.name + ',' + 'from.name:' + from.name, routerLogStyles)
+})
+
+function logSth() {
+  const styles = [
+    'color: green',
+    'font-size: 20px',
+    'font-family: 华文仿宋',
+    'text-shadow: 2px 2px black',
+    'padding: 10px'
+  ].join(';')
+  // 传入样式
+  console.log('%cHello There, This is Vanilla', styles)
+
+  // 屏蔽后面的console
+  const logDebug = true
+  console.log = (function(oriLogFunc) {
+    return function() {
+      if (logDebug) {
+        oriLogFunc.apply(this, arguments)
+      }
+    }
+  })(console.log)
+}
+logSth()
+
 new Vue({
   router,
   store,

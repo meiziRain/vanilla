@@ -78,7 +78,7 @@
 
 <script>
 // eslint-disable-next-line no-unused-vars
-import { Power1, Power2, Power4, Sine, Expo, gsap as GSAP } from 'gsap'
+import { Power1, Power2, Power4, Sine, Expo } from 'gsap'
 import Closer from '@/components/Closer.vue'
 import NavIndicator from '@/components/NavIndicator.vue'
 import { getWindowWidth } from '@/assets/js/utils'
@@ -116,7 +116,7 @@ export default {
 
       // detail 进场
       const daisies = document.querySelectorAll('#daisies-detail-pc')
-      GSAP.fromTo(daisies, 0.5, {
+      this.$GSAP.fromTo(daisies, 0.5, {
         alpha: 0
       }, {
         alpha: 1,
@@ -127,7 +127,7 @@ export default {
       const els = document.querySelectorAll('.slideshow-list__el')
       els.forEach(it => {
         if (!it.classList.contains('trigger')) {
-          GSAP.to(it, 0.2, {
+          this.$GSAP.to(it, 0.2, {
             alpha: 0,
             ease: Expo.easeInOut
           })
@@ -135,7 +135,7 @@ export default {
       })
 
       // closer进场
-      GSAP.fromTo(document.querySelector('.daisies_closer'), 1, {
+      this.$GSAP.fromTo(document.querySelector('.daisies_closer'), 1, {
         rotate: -45,
         scale: 0,
         alpha: 0
@@ -151,7 +151,7 @@ export default {
       const trigger = document.querySelector('.trigger')
       // TODO: Find a way to resolve the distance problem
       const offset = getWindowWidth() - getWindowWidth() * 13 / 100 - trigger.clientWidth - trigger.offsetWidth
-      GSAP.to(trigger, 0.9, {
+      this.$GSAP.to(trigger, 0.9, {
         x: offset,
         scale: 1.3,
         ease: Power2.easeInOut,
@@ -161,7 +161,7 @@ export default {
       // 点击el标题y轴退场
       const content = document.querySelector('.tile__content')
       const direction = 'up'
-      GSAP.to(content, 0.6, {
+      this.$GSAP.to(content, 0.6, {
         y: direction === 'up' ? -200 : 200,
         alpha: 0,
         ease: Power2.easeInOut,
@@ -170,16 +170,11 @@ export default {
 
       // 详情页section content 进场
       const section_one_title = document.querySelector('.section-content')
-      GSAP.fromTo(section_one_title, 1, {
-        y: 600,
-        alpha: 0,
-        ease: Power2.easeInOut,
-        force3D: true
+      this.$GSAP.fromTo(section_one_title, 1, {
+        alpha: 0
       }, {
-        y: 0,
         alpha: 1,
         ease: Power2.easeInOut,
-        force3D: true,
         onComplete: () => {
           this.title_line = true
         }
@@ -188,7 +183,7 @@ export default {
     // Animate all the bg images out and animate the new menu item's in
     toggleMenuItems(upcomingItem, direction = 'up') {
       const dir = direction === 'up' ? 1 : -1
-      GSAP.timeline({
+      this.$GSAP.timeline({
         defaults: {
           duration: 1,
           ease: 'expo.inOut'
@@ -210,7 +205,7 @@ export default {
       this.$refs.fullpage.api.setAllowScrolling(false) // 点击关闭后快速滚动滑轮, el重新入场的bug
       document.querySelector('.daisies_closer').classList.add('non-clickable')
       // wrapper退场
-      GSAP.fromTo(document.querySelector('#daisies-detail-pc'), 0.8, {
+      this.$GSAP.fromTo(document.querySelector('#daisies-detail-pc'), 0.8, {
         alpha: 1
       }, {
         alpha: 0,
@@ -224,18 +219,15 @@ export default {
 
       // section-content退场
       const section_content = document.querySelector('.section-content')
-      GSAP.fromTo(section_content, 0.4, {
-        y: 0,
+      this.$GSAP.fromTo(section_content, 0.4, {
         alpha: 1
       }, {
-        y: 400,
         alpha: 0,
-        ease: Power2.easeIn,
-        force3D: true
+        ease: Power2.easeIn
       })
 
       // closer 退场
-      GSAP.fromTo(document.querySelector('.daisies_closer'), 0.8, {
+      this.$GSAP.fromTo(document.querySelector('.daisies_closer'), 0.8, {
         rotate: 0,
         scale: 1,
         alpha: 1
@@ -252,7 +244,7 @@ export default {
 
       // 点击el退场复原
       const trigger = document.querySelector('.trigger')
-      GSAP.to(trigger, 0.8, {
+      this.$GSAP.to(trigger, 0.8, {
         x: 0,
         scale: 1,
         ease: Power2.easeInOut,
@@ -260,7 +252,7 @@ export default {
       })
 
       // 点击el标题复原
-      GSAP.to(document.querySelector('.tile__content'), 0.5, {
+      this.$GSAP.to(document.querySelector('.tile__content'), 0.5, {
         alpha: 1,
         y: 0,
         ease: Power2.easeInOut,
@@ -270,7 +262,7 @@ export default {
       // 点击el标题外其他el恢复可视
       const els = document.querySelectorAll('.slideshow-list__el')
       els.forEach(it => {
-        GSAP.to(it, 0.7, {
+        this.$GSAP.to(it, 0.7, {
           alpha: 1,
           ease: Power4.easeInOut
         })
@@ -285,7 +277,7 @@ export default {
       if (destination.index === 1) {
         const trigger = document.querySelector('.trigger')
         const offset = getWindowWidth() - getWindowWidth() * 13 / 100 - trigger.clientWidth - trigger.offsetWidth
-        GSAP.to(trigger, 1, {
+        this.$GSAP.to(trigger, 1, {
           x: offset - 10,
           scale: 1.1,
           ease: Power2.easeInOut,
@@ -297,7 +289,7 @@ export default {
       if (origin.index === 1) {
         const trigger = document.querySelector('.trigger')
         const offset = getWindowWidth() - getWindowWidth() * 13 / 100 - trigger.clientWidth - trigger.offsetWidth
-        GSAP.to(trigger, 1, {
+        this.$GSAP.to(trigger, 1, {
           x: offset - 10,
           scale: 1.3,
           ease: Power2.easeInOut,
@@ -311,8 +303,9 @@ export default {
 
 <style lang="scss" scoped>
 #daisies-detail-pc{
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .daisies_closer{

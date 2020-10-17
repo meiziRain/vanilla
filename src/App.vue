@@ -24,9 +24,11 @@
       <LightSwitch id="pc-light-switch" />
       <Iris id="pc-nav" ref="nav" />
     </div>
+
     <keep-alive>
       <router-view />
     </keep-alive>
+
   </div>
 </template>
 
@@ -42,8 +44,6 @@ export default {
     LightSwitch
   },
   created() {
-    this.logSth()
-
     if (this._isMobile()) {
       console.log('Mobile')
       this.$store.state.isMobile = true
@@ -57,27 +57,6 @@ export default {
   },
   methods: {
     //  'font-family: ' + '"' + 'Cabin Sketch' + '"' + ', cursive',
-    logSth() {
-      const styles = [
-        'color: green',
-        'font-size: 20px',
-        'font-family: 华文仿宋',
-        'text-shadow: 2px 2px black',
-        'padding: 10px'
-      ].join(';')
-      // 传入样式
-      console.log('%cHello There, This is Vanilla', styles)
-
-      // 屏蔽后面的console
-      const logDebug = true
-      console.log = (function(oriLogFunc) {
-        return function() {
-          if (logDebug) {
-            oriLogFunc.apply(this, arguments)
-          }
-        }
-      })(console.log)
-    },
     jump() {
       const nav = this.$refs.mobile_nav
       nav.style.animation = 'headerShrink 500ms forwards ease'
@@ -106,22 +85,6 @@ export default {
 <style lang="scss">
 @import "@/assets/css/_reset.scss";
 @import "@/assets/css/_base.scss";
-
-// default vue router transition
-/* 可以设置不同的进入和离开动画 */
-/* 设置持续时间和动画函数 */
-.slide-fade-enter-active {
-  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
-}
-.slide-fade-leave-active {
-  transition: all .3s ease;
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
-  // transform: translateX(10px); maybe this property will influenced the feeling of dark style.
-  // opacity: 0;
-}
-
 .disable{
   pointer-events: none;
 }
