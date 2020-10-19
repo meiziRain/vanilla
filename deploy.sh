@@ -14,3 +14,5 @@ git commit -m 'deploy'
 
 # 部署到 https://<USERNAME>.github.io/<REPO>
 git push gitee master
+
+git push gitHub master

@@ -164,8 +164,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/fonts/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2"
   },
   {
-    "revision": "6db01312661bc5f99a7a",
-    "url": "css/app.8cec4c3a.css"
+    "revision": "ca0d7bfae950b6d21e40",
+    "url": "css/app.bc872df7.css"
   },
   {
     "revision": "386efc4b19eae9382d9a",
@@ -188,12 +188,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/miao1.0a938cc4.jpg"
   },
   {
-    "revision": "6c68b93fd2e56d45aab7c6d84fea287c",
+    "revision": "b5890ca3cea5c269cbd25cf65e3a4fbc",
     "url": "index.html"
   },
   {
-    "revision": "6db01312661bc5f99a7a",
-    "url": "js/app.d1b5e4a6.js"
+    "revision": "ca0d7bfae950b6d21e40",
+    "url": "js/app.e3f63aa8.js"
   },
   {
     "revision": "386efc4b19eae9382d9a",

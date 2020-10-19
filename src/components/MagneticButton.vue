@@ -94,8 +94,8 @@ export default {
 }
 
 .magnetic-button__text {
-  width: 100%;
-  height: 100%;
+  width: 10vw;
+  height: 4vw;
   flex: none;
   background: var(--text-color);
   border-radius: 0.4vw;
@@ -109,7 +109,9 @@ export default {
   }
 
     .magnetic-button__text {
-    border-radius: 6px;
+      width: 12vw;
+      height: 5vw;
+      border-radius: 6px;
   }
 }
 
@@ -121,6 +123,8 @@ export default {
   }
 
   .magnetic-button__text {
+    width: 10rem;
+    height: 4rem;
     border-radius: 4px;
   }
 }
