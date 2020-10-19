@@ -60,7 +60,7 @@ export default {
   padding: 0;
   font-family: "Poiret One", cursive;
   font-weight: bold;
-  font-size: 1vw;
+  font-size: 1.3vw;
   display: flex;
   align-items: center;
   justify-content: center;
