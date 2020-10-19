@@ -309,16 +309,6 @@ img {
   transition: opacity .3s;
 }
 
-// @media (min-width: 920px) {
-//   .slideshow-list__el:nth-child(odd) {
-//     transform: translateY(10%);
-//   }
-
-//   .slideshow-list__el:nth-child(even) {
-//     transform: translateY(-10%);
-//   }
-// }
-
 @media (max-width: 920px) {
   .cata {
     height: calc(100vh - 60px);

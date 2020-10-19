@@ -31,10 +31,6 @@ export default {
 
 <style lang="scss" scoped>
 #magnetic {
-  --button-border-radius: 7px;
-  --button-stroke: #d8d4cf;
-  --button-stroke-width: 0px;
-  --button-stroke-width-hover: 0px;
   --button-text-focus: red;
   --cursor-stroke: red;
   --cursor-fill: red;
@@ -55,19 +51,16 @@ export default {
   cursor: pointer;
   -moz-appearance: none;
   -webkit-appearance: none;
-  border-width: var(--button-stroke-width);
-  border-color: var(--button-stroke);
+  border-width: 0px;
   border-style: solid;
   color: var(--el-text-color);
   background: var(--background-color);
-  border-radius: var(--button-border-radius);
-  min-width: 12rem;
-  height: 5rem;
+  width: 10vw;
+  height: 4vw;
   padding: 0;
-  margin: 1rem;
   font-family: "Poiret One", cursive;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 1vw;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -76,13 +69,7 @@ export default {
 .magnetic-button:focus,
 .button--hover {
   outline: none;
-  border-width: var(--button-stroke-width-hover);
-  border-color: var(--el-text-color);
   color: var(--el-text-color);
-}
-
-.magnetic-button:focus {
-  color: var(--button-text-focus);
 }
 
 .magnetic-button::before {
@@ -94,7 +81,6 @@ export default {
   height: calc(100% - 10px);
   background: rgba(0, 0, 0, 0.3);
   filter: blur(13px);
-  border-radius: var(--button-border-radius);
 }
 
 .magnetic-button__text,
@@ -108,10 +94,34 @@ export default {
 }
 
 .magnetic-button__text {
+  width: 100%;
+  height: 100%;
   flex: none;
   background: var(--text-color);
-  width: 100%;
-  height: 5rem;
-  border-radius: var(--button-border-radius);
+  border-radius: 0.4vw;
+}
+
+@media (max-width: 800px){
+  .magnetic-button{
+    width: 12vw;
+    height: 5vw;
+    font-size: 1vw;
+  }
+
+    .magnetic-button__text {
+    border-radius: 6px;
+  }
+}
+
+@media (max-width: 600px){
+  .magnetic-button{
+    width: 10rem;
+    height: 4rem;
+    font-size: 1rem;
+  }
+
+  .magnetic-button__text {
+    border-radius: 4px;
+  }
 }
 </style>

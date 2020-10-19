@@ -89,10 +89,4 @@ export default {
   justify-content:center;
   transform: translateY(-50%);
 }
-
-@media (min-width: 1360px) {
-  #magnetic-btn{
-    transform: translateY(-60%) scale(1.8);
-  }
-}
 </style>
