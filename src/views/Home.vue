@@ -7,6 +7,9 @@
         :mode="dark"
       />
     </div>
+    <a v-show="false" href="https://hitcount.io" target="__blank" style="position:absolute;">
+      <img alt="Hit counter" src="https://hitcount.io/api/_gAVzrOcg">
+    </a>
     <div id="magnetic-btn">
       <router-link to="/blog">
         <MagneticButton />
@@ -66,7 +69,7 @@ export default {
 #home{
   width:100vw;
   height: 100vh;
-  background: var(--background-color);
+  background-color: var(--background-color);
   overflow: hidden;
 }
 

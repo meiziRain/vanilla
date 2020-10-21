@@ -1,5 +1,5 @@
 <template>
-  <div id="blog" ref="blog">
+  <div id="blog" ref="blog" :style="{backgroundImage: 'url('+bgImage+')'}">
     <h1 ref="bg_title" class="page-title | title">What's your next <span class="slideshow__title__offset | title__offset">destination?</span></h1>
     <section class="cata">
       <div class="scroll-content">
@@ -23,6 +23,7 @@
           </div>
         </article>
         <article
+          ref="gardenias"
           class="slideshow-list__el"
           @mouseenter="articleDaisiesHover('rgb(136, 114, 103)')"
         >
@@ -83,6 +84,7 @@ export default {
   },
   data() {
     return {
+      bgImage: require('@/assets/imgs/egg-shell.png'),
       options: {
         lockAnchors: true,
         anchors: ['firstPage', 'secondPage', 'thirdPage'],
@@ -106,8 +108,33 @@ export default {
   },
   methods: {
     initAnim() {
-      // this.$GSAP.fromTo('.slideshow-list__el', 1,
-      //   { opacity: 0, y: 200 }, { opacity: 1, y: 0 }, 0.2)
+      const blogActivatedTimeline = this.$GSAP.timeline({ repeat: 0, repeatDelay: 0 })
+      blogActivatedTimeline.fromTo(document.querySelectorAll('.slideshow-list__el'), {
+        alpha: 0,
+        y: 200
+      }, {
+        alpha: 1,
+        y: 0,
+        ease: Expo.easeOut,
+        duration: 1.5
+      })
+      blogActivatedTimeline.fromTo(
+        document.querySelectorAll('.slideshow-list__el:nth-child(odd)'), {
+          y: 0
+        }, {
+          y: 40,
+          ease: Expo.easeInOut,
+          duration: 1.5
+        }, 1.5)
+      blogActivatedTimeline.fromTo(
+        document.querySelectorAll('.slideshow-list__el:nth-child(even)'), {
+          y: 0
+        }, {
+          y: -40,
+          alpha: 1,
+          ease: Expo.easeInOut,
+          duration: 1.5
+        }, 1.5)
     },
     articleDaisiesHover(color) {
       this.$refs.blog.style.setProperty('background-color', color)
@@ -151,6 +178,7 @@ export default {
       // list页滚动条退场
       const progress = document.querySelector('.slideshow__progress-ctn')
       console.log(this.$GSAP)
+      this.$GSAP.killTweensOf((document.querySelectorAll('.slideshow-list__el')))
       this.$GSAP.to(progress, 0.5, {
         alpha: 0,
         ease: Expo.easeIn
@@ -195,10 +223,8 @@ export default {
 #blog {
   width: 100vw;
   height: 100vh;
-  background-color: #cc8800;
-  background-image: url("https://www.transparenttextures.com/patterns/egg-shell.png");
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-  background-color: rgb(207, 130, 125);
+  background-color: var(--background-color);
   transition-property: background-color;
   -webkit-transition-property: background-color;
   transition-duration: 0.8s;
