@@ -202,6 +202,7 @@ export default {
         }, 0.5)
     },
     closePage() {
+      console.log('click')
       this.$refs.fullpage.api.setAllowScrolling(false) // 点击关闭后快速滚动滑轮, el重新入场的bug
       document.querySelector('.daisies_closer').classList.add('non-clickable')
       // wrapper退场
@@ -277,15 +278,20 @@ export default {
       if (destination.index === 1) {
         const trigger = document.querySelector('.trigger')
         const offset = getWindowWidth() - getWindowWidth() * 13 / 100 - trigger.clientWidth - trigger.offsetWidth
-        this.$GSAP.to(trigger, 1, {
+        this.$GSAP.to(trigger, 0.8, {
           x: offset - 10,
           scale: 1.1,
           ease: Power2.easeInOut,
-          force3D: true
+          force3D: true,
+          onComplete: () => {
+            document.querySelector('.daisies_closer').classList.remove('non-clickable')
+          }
         })
       }
     },
     pageOnLeave(origin, destination, direction) {
+      // 这种位移动画演示完毕才可以关闭, 否则会停留在
+      document.querySelector('.daisies_closer').classList.add('non-clickable')
       if (origin.index === 1) {
         const trigger = document.querySelector('.trigger')
         const offset = getWindowWidth() - getWindowWidth() * 13 / 100 - trigger.clientWidth - trigger.offsetWidth

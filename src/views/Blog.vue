@@ -117,7 +117,7 @@ export default {
       }, {
         alpha: 1,
         y: 0,
-        ease: Expo.easeIn,
+        ease: Expo.easeOut,
         duration: 1.5
       })
       blogActivatedTimeline.fromTo(
@@ -251,7 +251,6 @@ export default {
   font-size: calc(4vw + 8rem);
   line-height: .975;
   color: var(--textColor);
-  opacity: .1;
   transition-property: color;
   -webkit-transition-property: color;
   transition-duration: 0.8s;
