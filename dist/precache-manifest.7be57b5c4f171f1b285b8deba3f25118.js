@@ -164,12 +164,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/fonts/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2"
   },
   {
-    "revision": "8988e04efac6643e8d14",
+    "revision": "a825f287dfd0eeec82e9",
     "url": "css/app.8d06a929.css"
   },
   {
-    "revision": "5d1aa9e8bb325a55efc3",
-    "url": "css/blog.bca0fa0b.css"
+    "revision": "b509f80fce31cb448e3b",
+    "url": "css/blog.5beab158.css"
   },
   {
     "revision": "8dcad5d603d3b05b48c0",
@@ -192,16 +192,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/miao1.0a938cc4.jpg"
   },
   {
-    "revision": "6224553121abd75f81a94073f3773ab8",
+    "revision": "a5bfce1a22118007a17b3422006fdb8f",
     "url": "index.html"
   },
   {
-    "revision": "8988e04efac6643e8d14",
-    "url": "js/app.c26f6852.js"
+    "revision": "a825f287dfd0eeec82e9",
+    "url": "js/app.15b0d8f1.js"
   },
   {
-    "revision": "5d1aa9e8bb325a55efc3",
-    "url": "js/blog.54af996a.js"
+    "revision": "b509f80fce31cb448e3b",
+    "url": "js/blog.06cf0f14.js"
   },
   {
     "revision": "8dcad5d603d3b05b48c0",

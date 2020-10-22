@@ -1,5 +1,6 @@
 <template>
-  <div id="blog" ref="blog" :style="{backgroundImage: 'url('+bgImage+')'}">
+  <!-- :style="{backgroundImage: 'url('+bgImage+')'}" !-->
+  <div id="blog" ref="blog">
     <h1 ref="bg_title" class="page-title | title">What's your next <span class="slideshow__title__offset | title__offset">destination?</span></h1>
     <section class="cata">
       <div class="scroll-content">
@@ -108,6 +109,7 @@ export default {
   },
   methods: {
     initAnim() {
+      this.$GSAP.killTweensOf((document.querySelectorAll('.slideshow-list__el')))
       const blogActivatedTimeline = this.$GSAP.timeline({ repeat: 0, repeatDelay: 0 })
       blogActivatedTimeline.fromTo(document.querySelectorAll('.slideshow-list__el'), {
         alpha: 0,
@@ -115,29 +117,34 @@ export default {
       }, {
         alpha: 1,
         y: 0,
-        ease: Expo.easeOut,
+        ease: Expo.easeIn,
         duration: 1.5
       })
       blogActivatedTimeline.fromTo(
         document.querySelectorAll('.slideshow-list__el:nth-child(odd)'), {
-          y: 0
+          y: 0,
+          boxShadow: ''
         }, {
           y: 40,
-          ease: Expo.easeInOut,
+          boxShadow: '5px 5px 10px  2px rgba(0,0,0,0.6)',
+          ease: Expo.easeOut,
           duration: 1.5
         }, 1.5)
       blogActivatedTimeline.fromTo(
         document.querySelectorAll('.slideshow-list__el:nth-child(even)'), {
-          y: 0
+          y: 0,
+          boxShadow: ''
         }, {
           y: -40,
+          boxShadow: '5px 5px 10px  2px rgba(0,0,0,0.6)',
           alpha: 1,
-          ease: Expo.easeInOut,
+          ease: Expo.easeOut,
           duration: 1.5
         }, 1.5)
     },
     articleDaisiesHover(color) {
-      this.$refs.blog.style.setProperty('background-color', color)
+      // this.$refs.blog.style.setProperty('background-color', color)
+      this.$refs.bg_title.style.setProperty('color', color)
     },
     initScroller() {
       this.Scroll = Scrollbar.init(document.querySelector('.cata'), {
@@ -235,6 +242,7 @@ export default {
 }
 
 .page-title {
+  font-family: 'Cabin Sketch', cursive;
   position: fixed;
   top: 9rem;
   left: 5vw;
@@ -244,6 +252,12 @@ export default {
   line-height: .975;
   color: var(--textColor);
   opacity: .1;
+  transition-property: color;
+  -webkit-transition-property: color;
+  transition-duration: 0.8s;
+  -webkit-transition-duration: 0.8s;
+  transition-timing-function: ease;
+  -webkit-transition-timing-function: ease;
   // transform: rotate(8deg);
 }
 
@@ -280,7 +294,7 @@ export default {
   border-radius: var(--main-border-radius);
   max-width: 40vmin;
   margin-left: 15vw;
-  box-shadow: 0 10px 20px -4px rgba(0,0,0,0.6);
+  // box-shadow: 5px 5px 10px  2px rgba(0,0,0,0.6);
 }
 
 .closer{
