@@ -99,7 +99,8 @@ export default {
       offsetTitle: 100,
       progress: 0,
       margin: 27,
-      title_line: false
+      title_line: false,
+      scroll: {}
     }
   },
   mounted() {
@@ -109,6 +110,7 @@ export default {
       this.$refs.fullpage.api.moveTo(index + 1)
     },
     showDetail(scroll) {
+      this.scroll = scroll
       // 初始化fullpage全屏滚动
       this.$nextTick(() => {
         this.$refs.fullpage.init()
@@ -149,12 +151,11 @@ export default {
 
       // 点击el进场
       const trigger = document.querySelector('.trigger')
-      console.log(scroll)
       // TODO: Find a way to resolve the distance problem
       const offset = getWindowWidth() - getWindowWidth() * 13 / 100 -
       trigger.clientWidth -
       trigger.offsetWidth +
-      scroll.offset.x
+      this.scroll.offset.x
       this.$GSAP.to(trigger, 0.9, {
         x: offset,
         scale: 1.3,
@@ -286,7 +287,7 @@ export default {
         const offset = getWindowWidth() - getWindowWidth() * 13 / 100 -
         trigger.clientWidth -
         trigger.offsetWidth +
-        scroll.offset.x
+        this.scroll.offset.x
         this.$GSAP.to(trigger, 0.8, {
           x: offset - 10,
           scale: 1.1,
@@ -304,7 +305,7 @@ export default {
         const offset = getWindowWidth() - getWindowWidth() * 13 / 100 -
         trigger.clientWidth -
         trigger.offsetWidth +
-        scroll.offset.x
+        this.scroll.offset.x
         this.$GSAP.to(trigger, 1, {
           x: offset - 10,
           scale: 1.3,
