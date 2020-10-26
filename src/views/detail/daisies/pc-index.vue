@@ -108,7 +108,7 @@ export default {
     onNavClick(index) {
       this.$refs.fullpage.api.moveTo(index + 1)
     },
-    showDetail() {
+    showDetail(scroll) {
       // 初始化fullpage全屏滚动
       this.$nextTick(() => {
         this.$refs.fullpage.init()
@@ -149,8 +149,12 @@ export default {
 
       // 点击el进场
       const trigger = document.querySelector('.trigger')
+      console.log(scroll)
       // TODO: Find a way to resolve the distance problem
-      const offset = getWindowWidth() - getWindowWidth() * 13 / 100 - trigger.clientWidth - trigger.offsetWidth
+      const offset = getWindowWidth() - getWindowWidth() * 13 / 100 -
+      trigger.clientWidth -
+      trigger.offsetWidth +
+      scroll.offset.x
       this.$GSAP.to(trigger, 0.9, {
         x: offset,
         scale: 1.3,
@@ -263,10 +267,12 @@ export default {
       // 点击el标题外其他el恢复可视
       const els = document.querySelectorAll('.slideshow-list__el')
       els.forEach(it => {
-        this.$GSAP.to(it, 0.7, {
-          alpha: 1,
-          ease: Power4.easeInOut
-        })
+        this.$GSAP.fromTo(it, 0.2,
+          { alpha: 0 },
+          {
+            alpha: 1,
+            ease: Expo.easeInOut
+          })
       })
     },
     // origin, destination, direction 这三者的含义要清楚
@@ -277,24 +283,28 @@ export default {
       }
       if (destination.index === 1) {
         const trigger = document.querySelector('.trigger')
-        const offset = getWindowWidth() - getWindowWidth() * 13 / 100 - trigger.clientWidth - trigger.offsetWidth
+        const offset = getWindowWidth() - getWindowWidth() * 13 / 100 -
+        trigger.clientWidth -
+        trigger.offsetWidth +
+        scroll.offset.x
         this.$GSAP.to(trigger, 0.8, {
           x: offset - 10,
           scale: 1.1,
           ease: Power2.easeInOut,
           force3D: true,
           onComplete: () => {
-            document.querySelector('.daisies_closer').classList.remove('non-clickable')
           }
         })
       }
     },
     pageOnLeave(origin, destination, direction) {
       // 这种位移动画演示完毕才可以关闭, 否则会停留在
-      document.querySelector('.daisies_closer').classList.add('non-clickable')
       if (origin.index === 1) {
         const trigger = document.querySelector('.trigger')
-        const offset = getWindowWidth() - getWindowWidth() * 13 / 100 - trigger.clientWidth - trigger.offsetWidth
+        const offset = getWindowWidth() - getWindowWidth() * 13 / 100 -
+        trigger.clientWidth -
+        trigger.offsetWidth +
+        scroll.offset.x
         this.$GSAP.to(trigger, 1, {
           x: offset - 10,
           scale: 1.3,

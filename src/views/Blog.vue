@@ -76,8 +76,8 @@ import Scrollbar from 'smooth-scrollbar'
 import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
 import HorizontalScrollPlugin from '@/assets/gooey-hover/js/utils/HorizontalScrollPlugin'
 Scrollbar.use(HorizontalScrollPlugin, OverscrollPlugin)
-import DetailView from '@/views/detail/index.vue'
-import PcDetailView from '@/views/detail/pc-index.vue'
+import DetailView from '@/views/detail/daisies/index.vue'
+import PcDetailView from '@/views/detail/daisies/pc-index.vue'
 export default {
   components: {
     DetailView,
@@ -96,7 +96,14 @@ export default {
       offsetTitle: 100,
       progress: 0,
       margin: 27,
-      isMobile: this.$store.state.isMobile
+      isMobile: this.$store.state.isMobile,
+      scroll: {
+        limit: 0,
+        offset: {
+          x: 0
+        }
+      },
+      cataScroll: {}
     }
   },
   created() {},
@@ -147,9 +154,8 @@ export default {
       this.$refs.bg_title.style.setProperty('color', color)
     },
     initScroller() {
-      this.Scroll = Scrollbar.init(document.querySelector('.cata'), {
+      this.cataScroll = Scrollbar.init(document.querySelector('.cata'), {
         delegateTo: document.querySelector('#blog'), // 必须有这个属性,而且需要设置 blog overflow hidden, 否则会出现fullpage的el元素
-        continuousScrolling: false,
         overscrollEffect: 'bounce',
         damping: 0.05,
         plugins: {
@@ -158,16 +164,18 @@ export default {
           }
         }
       })
-      this.Scroll.track.xAxis.element.remove()
-      this.Scroll.track.yAxis.element.remove()
       Scrollbar.detachStyle()
-      this.Scroll.addListener((s) => { this.onScroll(s) })
+      this.cataScroll.track.xAxis.element.remove()
+      this.cataScroll.addListener((s) => { this.onScroll(s) })
     },
     closeDaisiesDetailPage() {
       this.$refs.pc_dv.$refs.fullpage.destroy()
       this.$refs.daisies_dv.classList.toggle('visible')
       this.$refs.daisies.classList.toggle('trigger')
-      this.initScroller()
+      this.cataScroll.updatePluginOptions('horizontalScroll', {
+        events: [/wheel/]
+      })
+      this.cataScroll.setPosition(this.scroll.x, 0)
       const progress = document.querySelector('.slideshow__progress-ctn')
       this.$GSAP.to(progress, 0.3, {
         alpha: 1,
@@ -184,36 +192,38 @@ export default {
     showDaisiesDetail() {
       // list页滚动条退场
       const progress = document.querySelector('.slideshow__progress-ctn')
-      console.log(this.$GSAP)
       this.$GSAP.killTweensOf((document.querySelectorAll('.slideshow-list__el')))
+
       this.$GSAP.to(progress, 0.5, {
         alpha: 0,
         ease: Expo.easeIn
       })
+
       const pcNav = document.querySelector('#pc-nav')
       this.$GSAP.to(pcNav, 0.5, {
         x: 800,
         alpha: 0,
         ease: Expo.easeIn
       })
-
+      this.cataScroll.updatePluginOptions('horizontalScroll', {
+        events: []
+      })
       if (this.$store.state.isMobile) {
         this.$refs.mobile_dv.open()
-        Scrollbar.destroy(document.querySelector('.cata'))
         this.$refs.daisies_dv.classList.toggle('visible')
         this.$refs.daisies.classList.toggle('trigger')
       } else {
-        Scrollbar.destroy(document.querySelector('.cata'))
         this.$refs.daisies_dv.classList.toggle('visible')
         this.$refs.daisies.classList.toggle('trigger')
-        this.$refs.pc_dv.showDetail()
+        this.$refs.pc_dv.showDetail(this.scroll)
       }
     },
     /* Handlers
     --------------------------------------------------------- */
     onScroll({ limit, offset }) {
+      this.scroll = { limit, offset }
       this.progress = offset.x / limit.x
-      this.$GSAP.to(this.$refs.bg_title, 0.3, { x: -this.progress * this.offsetTitle, force3D: true })
+      // this.$GSAP.to(this.$refs.bg_title, 0.3, { x: -this.progress * this.offsetTitle, force3D: true })
       this.updateScrollBar()
     },
     /* Actions

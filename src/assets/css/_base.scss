@@ -17,13 +17,7 @@
     --color-text3: #b9e6e3;
     --color-text4: #e1d0a1;
     --color-text5: #ccd3f6;
-    --color-bg1: #3f4849;
-    --color-bg2: #493f46;
-    --color-bg3: #2b3242;
-    --color-bg4: #3b3232;
-    --color-bg5: #2d3a40;
     --color-text: var(--color-text1);
-    --color-bg: var(--color-bg1);
     --color-link: var(--color-text);
     --color-link-hover: #fff;
 
@@ -36,6 +30,10 @@
 
     // border-radius
     --main-border-radius:8px;
+
+    // z-index
+    --top-index: 99999;
+    --the-top: 100000;
 }
 
 [data-user-color-scheme='light'] {

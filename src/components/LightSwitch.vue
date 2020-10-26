@@ -2,6 +2,7 @@
   <div>
     <div
       id="light-switch-wrapper"
+      ref="switch"
       @click="switchLightMode"
     >
       <svg
@@ -48,9 +49,11 @@ export default {
       if (dark) {
         this.dark = true
         document.body.setAttribute('data-user-color-scheme', 'dark')
+        this.$refs.switch.style.color = 'white'
       } else {
         this.dark = false
         document.body.setAttribute('data-user-color-scheme', 'light')
+        this.$refs.switch.style.color = 'black'
       }
     },
     switchLightMode() {
@@ -66,10 +69,12 @@ export default {
 
 <style>
 #light-switch-wrapper {
+  cursor: pointer;
   position: relative;
   width: 60px;
   height: 60px;
 }
+
 .lightswitch__icon {
   display: block;
   width: 24px;

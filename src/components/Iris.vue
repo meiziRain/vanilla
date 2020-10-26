@@ -5,13 +5,13 @@
       class="menu menu--iris"
     >
       <ul class="menu__list">
-        <li :class="0==currentindex ? 'menu__item menu__item--current':'menu__item'">
+        <li v-if="false" :class="0==currentindex ? 'menu__item menu__item--current':'menu__item'">
           <a
             class="menu__link"
             @click="toHome"
           >Home</a>
         </li>
-        <li :class="1==currentindex ? 'menu__item menu__item--current':'menu__item'">
+        <li v-if="false" :class="1==currentindex ? 'menu__item menu__item--current':'menu__item'">
           <a
             class="menu__link"
             @click="toBlog"
