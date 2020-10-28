@@ -28,6 +28,9 @@ const options = {
 import VueRoughNotation from 'vue-rough-notation'
 Vue.use(VueRoughNotation, options)
 
+import imagesloaded from 'imagesloaded'
+Vue.prototype.$imagesLoaded = imagesloaded || new Vue()
+
 import VueFullPage from 'vue-fullpage.js'
 Vue.use(VueFullPage)
 Vue.prototype.$eventHub = Vue.prototype.$eventHub || new Vue() // 广播

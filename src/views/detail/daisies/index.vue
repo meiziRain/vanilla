@@ -9,7 +9,7 @@
 <script>
 import Scrollbar from 'smooth-scrollbar'
 import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
-import HorizontalScrollPlugin from '@/assets/gooey-hover/js/utils/HorizontalScrollPlugin'
+import HorizontalScrollPlugin from '@/assets/js/HorizontalScrollPlugin'
 Scrollbar.use(HorizontalScrollPlugin, OverscrollPlugin)
 import Closer from '@/components/Closer.vue'
 import { Power2 } from 'gsap'

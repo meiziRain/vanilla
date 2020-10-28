@@ -8,7 +8,7 @@
           ref="daisies"
           class="slideshow-list__el"
           @click="showDaisiesDetail"
-          @mouseenter="articleDaisiesHover('rgb(207, 130, 125)')"
+          @mouseenter="articleHover('rgb(207, 130, 125)')"
         >
           <img
             src="@/assets/imgs/miao1.jpg"
@@ -26,10 +26,11 @@
         <article
           ref="gardenias"
           class="slideshow-list__el"
-          @mouseenter="articleDaisiesHover('rgb(136, 114, 103)')"
+          @mouseenter="articleHover('rgb(136, 114, 103)')"
         >
           <img
-            src="@/assets/gooey-hover/img/tiles/deserts/base.jpg"
+            id="gardeniasImg"
+            src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg"
             data-hover="@/assets/gooey-hover/img/tiles/woods/hover.jpg"
             alt="Woods & Forests"
           >
@@ -70,11 +71,11 @@
 <script>
 // eslint-disable-next-line no-unused-vars
 import { Power1, Power2, Power4, Sine, Expo } from 'gsap'
-import { map } from '@/assets/gooey-hover/js/utils/utils'
+import { map } from '@/assets/js/utils'
 // 滚动
 import Scrollbar from 'smooth-scrollbar'
 import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
-import HorizontalScrollPlugin from '@/assets/gooey-hover/js/utils/HorizontalScrollPlugin'
+import HorizontalScrollPlugin from '@/assets/js/HorizontalScrollPlugin'
 Scrollbar.use(HorizontalScrollPlugin, OverscrollPlugin)
 import DetailView from '@/views/detail/daisies/index.vue'
 import PcDetailView from '@/views/detail/daisies/pc-index.vue'
@@ -106,7 +107,8 @@ export default {
       cataScroll: {}
     }
   },
-  created() {},
+  created() {
+  },
   activated() {
     console.log('Blog activated')
     this.initAnim()
@@ -149,7 +151,7 @@ export default {
           duration: 1.5
         }, 1.5)
     },
-    articleDaisiesHover(color) {
+    articleHover(color) {
       // this.$refs.blog.style.setProperty('background-color', color)
       this.$refs.bg_title.style.setProperty('color', color)
     },

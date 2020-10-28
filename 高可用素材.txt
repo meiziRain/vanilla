@@ -64,3 +64,5 @@ https://www.bien-fonde.com/en/
 
 22. console.log 打印图片 优先级 高 FIXME:
 https://github.com/workeffortwaste/consoleimg/
+
+23. StickyImageEffect

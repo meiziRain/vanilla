@@ -1,10 +1,11 @@
 <template>
-  <div id="logo" @click="goHome">
-  </div>
+  <div id="logo" @click="goHome" />
 </template>
 
 <script>
 export default {
+  created() {
+  },
   methods: {
     goHome() {
       const me = this

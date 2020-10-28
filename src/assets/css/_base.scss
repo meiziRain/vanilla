@@ -4,36 +4,37 @@
 *,
 *::after,
 *::before {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  cursor: none;
 }
 
 .non-clickable{
-    pointer-events: none !important;
+  pointer-events: none !important;
 }
 
 :root {
-    --color-text1: #deedcf;
-    --color-text2: #ffcbcc;
-    --color-text3: #b9e6e3;
-    --color-text4: #e1d0a1;
-    --color-text5: #ccd3f6;
-    --color-text: var(--color-text1);
-    --color-link: var(--color-text);
-    --color-link-hover: #fff;
+  --color-text1: #deedcf;
+  --color-text2: #ffcbcc;
+  --color-text3: #b9e6e3;
+  --color-text4: #e1d0a1;
+  --color-text5: #ccd3f6;
+  --color-text: var(--color-text1);
+  --color-link: var(--color-text);
+  --color-link-hover: #fff;
 
-    --background-light: #fff;
-    --color-text-light:#0c0f13;
-    --background-dark:#0c0f13;
-    --color-text-dark:#fff;
-    --color-text-el-drak-bg:#fff;
-    --color-text-el-light-bg:#0c0f13;
+  --background-light: #fff;
+  --color-text-light:#0c0f13;
+  --background-dark:#0c0f13;
+  --color-text-dark:#fff;
+  --color-text-el-drak-bg:#fff;
+  --color-text-el-light-bg:#0c0f13;
 
-    // border-radius
-    --main-border-radius:8px;
+  // border-radius
+  --main-border-radius:8px;
 
-    // z-index
-    --top-index: 99999;
-    --the-top: 100000;
+  // z-index
+  --top-index: 99999;
+  --the-top: 100000;
 }
 
 [data-user-color-scheme='light'] {
