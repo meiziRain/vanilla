@@ -64,12 +64,11 @@ export default {
       console.log('PC')
       this.$store.state.isMobile = false
     }
-
-    this.initCursor()
   },
   mounted() {
-    this.$refs.nav.keepNavRender()
+    this.initCursor()
     this.initMouse()
+    this.$refs.nav.keepNavRender()
   },
   methods: {
     initCursor() {
@@ -137,39 +136,6 @@ export default {
       }
       this.cursor = new Cursor(document.querySelector('.cursor'))
     },
-    // onPointerDown() {
-    //   // Scale up the cursor
-    //   this.cursor.renderedStyles['scale'].current = 1.5
-    //   // And show the "drag mode" arrows
-    //   this.showArrows()
-    // },
-    // onPointerUp() {
-    //   // Scale down the cursor (reset)
-    //   this.cursor.renderedStyles['scale'].current = 1
-    //   // And hide the "drag mode" arrows
-    //   this.hideArrows()
-    // },
-    // showArrows() {
-    //   this.$GSAP.to(Object.values({
-    //     right: document.querySelector('.cursor__side--right'),
-    //     left: document.querySelector('.cursor__side--left')
-    //   }), 1, {
-    //     ease: Expo.easeOut,
-    //     startAt: { x: i => i ? 10 : -10 },
-    //     opacity: 1,
-    //     x: 0
-    //   })
-    // },
-    // hideArrows() {
-    //   this.$GSAP.to(Object.values({
-    //     right: document.querySelector('.cursor__side--right'),
-    //     left: document.querySelector('.cursor__side--left')
-    //   }), 1, {
-    //     ease: Expo.easeOut,
-    //     x: i => i ? 10 : -10,
-    //     opacity: 0
-    //   })
-    // },
 
     //  'font-family: ' + '"' + 'Cabin Sketch' + '"' + ', cursive',
     jump() {
@@ -315,11 +281,11 @@ export default {
     -webkit-animation: cursor-scale 2.6s ease-in-out infinite;
     animation: cursor-scale 2.6s ease-in-out infinite;
     mix-blend-mode: difference;
+    pointer-events: none !important;
   }
 
 	.cursor__inner--circle {
     z-index: var(--the-top);
-		pointer-events: none;
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -329,6 +295,7 @@ export default {
     border: 3px solid var(--background-color);
     // 这个属性会让此元素与父元素颜色混合&
     mix-blend-mode: difference;
+    pointer-events: none !important;
 	}
 
   .cursor__inner--circle::before{
