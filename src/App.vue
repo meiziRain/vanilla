@@ -128,7 +128,7 @@ export default {
           this.elm = elm
           this.path = elm.querySelectorAll('path')
           this.numPoints = 4
-          this.duration = 800
+          this.duration = 1200
           this.delayPointsArray = []
           this.delayPointsMax = 180
           this.delayPerPath = 70
@@ -480,10 +480,10 @@ export default {
 }
 
 .shape-overlays {
-	--path-fill-1: #dce3f1;
+	--path-fill-1: white;
 	--path-fill-2: #869ccc;
-	--path-fill-3: #30436f;
-	--path-fill-4: #0d1831;
+	--path-fill-3: black;
+	--path-fill-4: white;
   z-index: 1000000;
 	width: 100vw;
 	height: 100vh;
