@@ -114,6 +114,7 @@ export default {
     this.initAnim()
   },
   mounted() {
+    console.log('Blog mounted')
     this.initScroller()
   },
   methods: {

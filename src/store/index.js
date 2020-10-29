@@ -5,9 +5,13 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    isMobile: false
+    isMobile: false,
+    overlay: {}
   },
   mutations: {
+    toggleOverlay(state) {
+      state.overlay.toggle()
+    }
   },
   actions: {
   },

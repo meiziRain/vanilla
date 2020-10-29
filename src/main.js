@@ -46,31 +46,6 @@ AOS.init()
 import GSAP from 'gsap'
 Vue.prototype.$GSAP = GSAP || new Vue()
 
-// 路由全局守卫
-// 当路由进入前
-const routerLogStyles = [
-  'color: red',
-  'padding: 10px'
-].join(';')
-router.beforeEach((to, from, next) => {
-  console.log('%cbeforeEach--' + 'to.name:' + to.name + ',' + 'from.name:' + from.name, routerLogStyles)
-  if (to.matched.length === 0) { // 如果未匹配到路由
-    console.log('stop')
-    from.name ? next({
-      name: from.name
-    }) : next('/') // 如果上级也未匹配到路由则跳转登录页面，如果上级能匹配到则转上级路由
-  } else {
-    next() // 如果匹配到正确跳转
-  }
-})
-// 当路由进入后：关闭进度条
-router.afterEach((to, from, next) => {
-  if (to.name === 'Home') {
-    console.log(123)
-  }
-  console.log('%cafterEach--' + 'to.name:' + to.name + ',' + 'from.name:' + from.name, routerLogStyles)
-})
-
 function logSth() {
   const styles = [
     'color: green',
@@ -99,3 +74,33 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+// 路由全局守卫
+// 当路由进入前
+// 最好放在new Vue下面，刷新和第一次进入不会触发beforeEach,
+const routerLogStyles = [
+  'color: red',
+  'padding: 10px'
+].join(';')
+router.beforeEach((to, from, next) => {
+  console.log('%cbeforeEach--' + 'to.name:' + to.name + ',' + 'from.name:' + from.name, routerLogStyles)
+  if (to.matched.length === 0) { // 如果未匹配到路由
+    console.log('stop')
+    from.name ? next({
+      name: from.name
+    }) : next('/') // 如果上级也未匹配到路由则跳转登录页面，如果上级能匹配到则转上级路由
+  } else {
+    store.commit('toggleOverlay')
+    next() // 如果匹配到正确跳转
+  }
+})
+
+router.afterEach((to, from) => {
+  if (from.name !== null) {
+    store.commit('toggleOverlay')
+  }
+  if (to.name === 'Home') {
+    console.log(123)
+  }
+  console.log('%cafterEach--' + 'to.name:' + to.name + ',' + 'from.name:' + from.name, routerLogStyles)
+})

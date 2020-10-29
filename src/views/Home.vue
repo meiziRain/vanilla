@@ -36,10 +36,10 @@ export default {
     }
   },
   activated() {
-    console.log('Home activated')
     this.initAnim()
   },
   mounted() {
+    console.log('Home mounted')
     this.$eventHub.$on('darkListener', (data) => {
       // 利用修改key的属性值，重新加载子组件，触发create事件
       this.refreshKey = new Date().getTime()

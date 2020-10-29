@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <svg class="shape-overlays" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <path class="shape-overlays__path" />
+      <path class="shape-overlays__path" />
+      <path class="shape-overlays__path" />
+      <path class="shape-overlays__path" />
+    </svg>
     <div class="cursor">
       <div class="cursor-point" />
       <div class="cursor__inner--circle" />
@@ -66,24 +72,147 @@ export default {
     }
   },
   mounted() {
-    this.initCursor()
+    console.log('APP mounted')
+    this.initCursorPoint()
     this.initMouse()
     this.$refs.nav.keepNavRender()
+    this.initOverlay()
   },
   methods: {
-    initCursor() {
-      window.onload = () => {
-        const oDiv = document.querySelector('.cursor-point')
-        window.onmousemove = function(event) {
-          const ev = event || window.event
-          const ofLeft = document.documentElement.offsetLeft || document.body.offsetLeft
-          const ofTop = document.documentElement.offsetTop || document.body.offsetTop
-          const oLeft = ev.clientX + ofLeft
-          const oTop = ev.clientY + ofTop
-          oDiv.style.display = 'block'
-          oDiv.style.left = oLeft + 'px'
-          oDiv.style.top = oTop + 'px'
+    initOverlay() {
+      console.log('initOverlay')
+      const ease = {
+        exponentialIn: (t) => {
+          return t === 0.0 ? t : Math.pow(2.0, 10.0 * (t - 1.0))
+        },
+        exponentialOut: (t) => {
+          return t === 1.0 ? t : 1.0 - Math.pow(2.0, -10.0 * t)
+        },
+        exponentialInOut: (t) => {
+          return t === 0.0 || t === 1.0
+            ? t
+            : t < 0.5
+              ? +0.5 * Math.pow(2.0, (20.0 * t) - 10.0)
+              : -0.5 * Math.pow(2.0, 10.0 - (t * 20.0)) + 1.0
+        },
+        sineOut: (t) => {
+          const HALF_PI = 1.5707963267948966
+          return Math.sin(t * HALF_PI)
+        },
+        circularInOut: (t) => {
+          return t < 0.5
+            ? 0.5 * (1.0 - Math.sqrt(1.0 - 4.0 * t * t))
+            : 0.5 * (Math.sqrt((3.0 - 2.0 * t) * (2.0 * t - 1.0)) + 1.0)
+        },
+        cubicIn: (t) => {
+          return t * t * t
+        },
+        cubicOut: (t) => {
+          const f = t - 1.0
+          return f * f * f + 1.0
+        },
+        cubicInOut: (t) => {
+          return t < 0.5
+            ? 4.0 * t * t * t
+            : 0.5 * Math.pow(2.0 * t - 2.0, 3.0) + 1.0
+        },
+        quadraticOut: (t) => {
+          return -t * (t - 2.0)
+        },
+        quarticOut: (t) => {
+          return Math.pow(t - 1.0, 3.0) * (1.0 - t) + 1.0
         }
+      }
+      class ShapeOverlays {
+        constructor(elm) {
+          this.elm = elm
+          this.path = elm.querySelectorAll('path')
+          this.numPoints = 4
+          this.duration = 800
+          this.delayPointsArray = []
+          this.delayPointsMax = 180
+          this.delayPerPath = 70
+          this.timeStart = Date.now()
+          this.isOpened = false
+          this.isAnimating = false
+        }
+        toggle() {
+          this.isAnimating = true
+          const range = Math.random() * Math.PI * 2
+          for (let i = 0; i < this.numPoints; i++) {
+            const radian = (i / (this.numPoints - 1)) * Math.PI * 2
+            this.delayPointsArray[i] = (Math.sin(radian + range) + 1) / 2 * this.delayPointsMax
+          }
+          if (this.isOpened === false) {
+            this.open()
+          } else {
+            this.close()
+          }
+        }
+        open() {
+          this.isOpened = true
+          this.elm.classList.add('is-opened')
+          this.timeStart = Date.now()
+          this.renderLoop()
+        }
+        close() {
+          this.isOpened = false
+          this.elm.classList.remove('is-opened')
+          this.timeStart = Date.now()
+          this.renderLoop()
+        }
+        updatePath(time) {
+          const points = []
+          for (let i = 0; i < this.numPoints; i++) {
+            points[i] = ease.cubicInOut(Math.min(Math.max(time - this.delayPointsArray[i], 0) / this.duration, 1)) * 100
+          }
+
+          let str = ''
+          str += (this.isOpened) ? `M 0 0 V ${points[0]} ` : `M 0 ${points[0]} `
+          for (let i = 0; i < this.numPoints - 1; i++) {
+            const p = (i + 1) / (this.numPoints - 1) * 100
+            const cp = p - (1 / (this.numPoints - 1) * 100) / 2
+            str += `C ${cp} ${points[i]} ${cp} ${points[i + 1]} ${p} ${points[i + 1]} `
+          }
+          str += (this.isOpened) ? `V 0 H 0` : `V 100 H 0`
+          return str
+        }
+        render() {
+          if (this.isOpened) {
+            for (let i = 0; i < this.path.length; i++) {
+              this.path[i].setAttribute('d', this.updatePath(Date.now() - (this.timeStart + this.delayPerPath * i)))
+            }
+          } else {
+            for (let i = 0; i < this.path.length; i++) {
+              this.path[i].setAttribute('d', this.updatePath(Date.now() - (this.timeStart + this.delayPerPath * (this.path.length - i - 1))))
+            }
+          }
+        }
+        renderLoop() {
+          this.render()
+          if (Date.now() - this.timeStart < this.duration + this.delayPerPath * (this.path.length - 1) + this.delayPointsMax) {
+            requestAnimationFrame(() => {
+              this.renderLoop()
+            })
+          } else {
+            this.isAnimating = false
+          }
+        }
+      }
+      const elmOverlay = document.querySelector('.shape-overlays')
+      this.$store.state.overlay = new ShapeOverlays(elmOverlay)
+    },
+    initCursorPoint() {
+      const oDiv = document.querySelector('.cursor-point')
+      window.onmousemove = (event) => {
+        const ev = event || window.event
+        const ofLeft = document.documentElement.offsetLeft || document.body.offsetLeft
+        const ofTop = document.documentElement.offsetTop || document.body.offsetTop
+        const oLeft = ev.clientX + ofLeft
+        const oTop = ev.clientY + ofTop
+        oDiv.style.display = 'block'
+        oDiv.style.left = oLeft + 'px'
+        oDiv.style.top = oTop + 'px'
       }
     },
     initMouse() {
@@ -136,7 +265,6 @@ export default {
       }
       this.cursor = new Cursor(document.querySelector('.cursor'))
     },
-
     //  'font-family: ' + '"' + 'Cabin Sketch' + '"' + ', cursive',
     jump() {
       const nav = this.$refs.mobile_nav
@@ -349,5 +477,39 @@ export default {
     -webkit-transform: translate(-50%,-50%) scale(.9);
     transform: translate(-50%,-50%) scale(.9);
   }
+}
+
+.shape-overlays {
+	--path-fill-1: #dce3f1;
+	--path-fill-2: #869ccc;
+	--path-fill-3: #30436f;
+	--path-fill-4: #0d1831;
+  z-index: 1000000;
+	width: 100vw;
+	height: 100vh;
+	pointer-events: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.shape-overlays.is-opened {
+	pointer-events: auto;
+}
+
+.shape-overlays__path:nth-of-type(1) {
+	fill: var(--path-fill-1);
+}
+
+.shape-overlays__path:nth-of-type(2) {
+	fill: var(--path-fill-2);
+}
+
+.shape-overlays__path:nth-of-type(3) {
+	fill: var(--path-fill-3);
+}
+
+.shape-overlays__path:nth-of-type(4) {
+	fill: var(--path-fill-4);
 }
 </style>
