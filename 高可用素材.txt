@@ -66,3 +66,9 @@ https://www.bien-fonde.com/en/
 https://github.com/workeffortwaste/consoleimg/
 
 23. StickyImageEffect
+
+24. 懂SVG和绘画后的应用  优先级 高 FIXME:
+https://tympanus.net/codrops/2019/04/12/pulling-apart-svgs-with-reusable-webgl-components-using-react-three-fiber/
+
+25. 图片hover效果 优先级 高 FIXME:
+https://tympanus.net/Development/DiagonalSlideshow/

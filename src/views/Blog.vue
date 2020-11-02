@@ -329,20 +329,19 @@ export default {
   width: 100vw;
   height: 100vh;
   opacity: 0;
-  z-index: -999;
+  z-index: -1;
   transition: opacity .4s ease-in-out;
 }
 
 .section{
   width: 100%;
-  // height: calc(100vh - 60px);
   height: 100%;
-  // padding: 60px 2vw 2vh 2vw;
 }
 // ID选择器 优先级大于 类选择器
+// detail最开始在blog cata下面，点击el后才改变z-index上升为可点击
 .visible{
   opacity: 1 !important;
-  z-index: 99 !important;
+  z-index: var(--top-index) !important;
 }
 
 .slideshow-list__el{
