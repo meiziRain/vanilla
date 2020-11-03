@@ -2,25 +2,30 @@
   <div id="about">
     <div id="about-scroll-viewport">
       <div id="about-scroll-content">
-        <div class="holder-slider-wrapper">
-          <Slider width="60" height="100" :duration="4" />
-        </div>
-        <div class="image-slider-wrapper">
-          <Slider id="image-slider" :duration="4" :animation-time="1.2" width="55" height="55" :image="true" :backgrounds="['https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv3.jpg','https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv3.jpg', 'https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv3.jpg']" />
-        </div>
-        <div id="avatar-wrapper">
-          <div
-            id="name"
-            class="animate__animated animate__fadeInUp animate__delay-1s"
-          >Title</div>
-          <div
-            id="introduce"
-            class="animate__animated animate__fadeInUp animate__delay-2s"
-          >INTRODUCE, eg: A beautiful tiny girl
+        <div>
+          <div id="avatar-wrapper">
+            <div class="holder-slider-wrapper">
+              <Slider width="60" height="100" :duration="4" />
+            </div>
+            <div class="image-slider-wrapper">
+              <Slider id="image-slider" :duration="4" :animation-time="1.2" width="55" height="55" :image="true" :backgrounds="sliderImages" />
+            </div>
+            <div id="avatar-text">
+              <div
+                id="name"
+                class="animate__animated animate__fadeInUp animate__delay-1s"
+              >Title</div>
+              <div
+                id="introduce"
+                class="animate__animated animate__fadeInUp animate__delay-2s"
+              >Rubén de Eguía,
+                <br> modernizar a los clásicos
+              </div>
+            </div>
+
           </div>
         </div>
-        <div style="height: 100vh">
-        </div>
+        <div style="height: 100vh" />
       </div>
     </div>
   </div>
@@ -28,7 +33,7 @@
 
 <script>
 import Slider from '@/components/Slider.vue'
-import { gsap } from 'gsap'
+// import { gsap } from 'gsap'
 import Scrollbar from 'smooth-scrollbar'
 import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
 Scrollbar.use(OverscrollPlugin)
@@ -40,7 +45,9 @@ export default {
   data() {
     return {
       currentSlideID: 0,
-      isAutoPlay: false
+      isAutoPlay: false,
+      sliderImages: ['https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg', 'https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg', 'https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg']
+      // sliderImages: [require('@/assets/imgs/tree.jpg'), require('@/assets/imgs/tree.jpg'), require('@/assets/imgs/tree.jpg')]
     }
   },
   activated() {
@@ -58,7 +65,6 @@ export default {
         continuousScrolling: false,
         damping: 0.05
       })
-
       this.about_Scroll.track.xAxis.element.remove()
       this.about_Scroll.track.yAxis.element.remove()
       Scrollbar.detachStyle()
@@ -76,28 +82,6 @@ export default {
     --------------------------------------------------------- */
     updateScrollBar() {
 
-    },
-    // next
-    gotoNextSlide() {
-      var slideToGo = this.currentSlideID + 1
-      if (slideToGo >= document.querySelectorAll('.slider__item').length) {
-        slideToGo = 0
-      }
-      this.gotoSlide(slideToGo, 0.7, 'next')
-    },
-    gotoSlide(slideID, _time, _direction) {
-      const prevSlideID = this.currentSlideID
-      this.currentSlideID = slideID
-      gsap.to(document.querySelectorAll('.slider__item')[prevSlideID].children, 1, { left: '100%' })
-      gsap.fromTo(document.querySelectorAll('.slider__item')[this.currentSlideID].children, 1,
-        { left: '-100%' },
-        {
-          left: '0',
-          onComplete: () => {
-            gsap.delayedCall(1, () => { this.gotoNextSlide() })
-          }
-        }
-      )
     }
   }
 }
@@ -137,18 +121,18 @@ img{
   width: 100vw;
 }
 
-#name{
-  position: absolute;
-  font-family: 'Cabin Sketch', cursive;
+#avatar-text{
   left: 50%;
+  position: absolute;
+  margin-top: 20vh;
+}
+
+#name{
+  font-family: 'Cabin Sketch', cursive;
   font-size: 5vw;
-  translate: -100%;
 }
 
 #introduce{
-  position: absolute;
-  left: 50%;
-  translate: -100%;
   margin-top: 12vh;
   font-size: 2.5vw;
 }

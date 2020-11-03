@@ -106,9 +106,9 @@ export default {
           ease: Power4.easeIn
         })
         this.$GSAP.fromTo(this.currentSlide, time, {
-          left: '-99.9%', // 处理 translate 过程中可能出现微小间隙
+          left: '-100%',
           ease: Power4.easeIn
-        }, { left: '0', ease: Power4.easeIn })
+        }, { left: '1px' }) // FIXME: 处理 translate 过程中可能出现微小间隙 FIXED: 不要在fromTo中✍两个ease属性
       }
       this.$GSAP.delayedCall(time, () => {
         this.isAnimating = false
@@ -135,10 +135,9 @@ export default {
     -webkit-transform: translateZ(0px);
     transform: translateZ(0px);
     height: 50vh;
-    background-color: black;
     will-change: transform;
     background-repeat:no-repeat;
-    background-size: cover;
+    background-size: auto;
 }
 
 </style>

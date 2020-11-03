@@ -99,8 +99,5 @@ router.afterEach((to, from) => {
   if (from.name !== null) {
     store.commit('toggleOverlay')
   }
-  if (to.name === 'Home') {
-    console.log(123)
-  }
   console.log('%cafterEach--' + 'to.name:' + to.name + ',' + 'from.name:' + from.name, routerLogStyles)
 })
