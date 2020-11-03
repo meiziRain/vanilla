@@ -106,7 +106,7 @@ export default {
           ease: Power4.easeIn
         })
         this.$GSAP.fromTo(this.currentSlide, time, {
-          left: '-100%',
+          left: '-99.9%', // 处理 translate 过程中可能出现微小间隙
           ease: Power4.easeIn
         }, { left: '0', ease: Power4.easeIn })
       }
@@ -125,15 +125,15 @@ export default {
     outline: none;
     height: 50vh;
     overflow: hidden;
-    // -webkit-transform: translateZ(0px);
-    // transform: translateZ(0px)
+    -webkit-transform: translateZ(0px);
+    transform: translateZ(0px)
 }
 .slide-item{
     position: absolute;
     outline: none;
     width: 50vw;
-    // -webkit-transform: translateZ(0px);
-    // transform: translateZ(0px);
+    -webkit-transform: translateZ(0px);
+    transform: translateZ(0px);
     height: 50vh;
     background-color: black;
     will-change: transform;
