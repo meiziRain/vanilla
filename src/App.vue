@@ -33,7 +33,7 @@
     <div id="pc">
       <LightSwitch id="pc-light-switch" />
       <Iris id="pc-nav" ref="nav" />
-      <Logo />
+      <Logo id="pc-logo" />
     </div>
 
     <keep-alive>
@@ -365,7 +365,7 @@ export default {
 }
 
 @media (max-width: 920px) {
-  #pc-nav {
+  #pc-nav, #pc-logo, #pc-light-switch {
     display: none;
   }
 }

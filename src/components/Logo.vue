@@ -1,5 +1,7 @@
 <template>
-  <div id="logo" @click="goHome" />
+  <div>
+    <div id="logo" @click="goHome" />
+  </div>
 </template>
 
 <script>
