@@ -164,12 +164,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/fonts/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2"
   },
   {
-    "revision": "4c4ed3c08d7b473d8c06",
+    "revision": "3fa25754b958eaedc579",
     "url": "css/app.6b063f02.css"
   },
   {
-    "revision": "f8ed9cd7694f76c58c1e",
-    "url": "css/blog.4cd15dd9.css"
+    "revision": "85447650f94209df07f0",
+    "url": "css/blog.2092c157.css"
   },
   {
     "revision": "5f1295d5698ba955da57",
@@ -192,15 +192,15 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/miao1.0a938cc4.jpg"
   },
   {
-    "revision": "8aa73d95fcd48cbc398d86aaca1e5740",
+    "revision": "623187424c39b4eecf5e98c8ed3955bd",
     "url": "index.html"
   },
   {
-    "revision": "4c4ed3c08d7b473d8c06",
-    "url": "js/app.9d482943.js"
+    "revision": "3fa25754b958eaedc579",
+    "url": "js/app.f6a4d5e4.js"
   },
   {
-    "revision": "f8ed9cd7694f76c58c1e",
+    "revision": "85447650f94209df07f0",
     "url": "js/blog.9873dd60.js"
   },
   {
