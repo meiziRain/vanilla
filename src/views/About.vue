@@ -3,10 +3,10 @@
     <div id="about-scroll-viewport">
       <div id="about-scroll-content">
         <div class="holder-slider-wrapper">
-          <Slider width="60" height="100" />
+          <Slider width="60" height="100" :duration="4" />
         </div>
         <div class="image-slider-wrapper">
-          <Slider id="image-slider" :animation-time="1.2" width="55" height="55" :image="true" :backgrounds="['https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv3.jpg','https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv3.jpg', 'https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv3.jpg']" />
+          <Slider id="image-slider" :duration="4" :animation-time="1.2" width="55" height="55" :image="true" :backgrounds="['https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv3.jpg','https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv3.jpg', 'https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv3.jpg']" />
         </div>
         <div id="avatar-wrapper">
           <div
@@ -129,7 +129,7 @@ img{
 
 .image-slider-wrapper{
   left: 20%;
-  top: 20%;
+  transform: translateY(50%);
 }
 
 #avatar-wrapper{

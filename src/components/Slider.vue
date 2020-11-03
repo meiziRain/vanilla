@@ -125,11 +125,15 @@ export default {
     outline: none;
     height: 50vh;
     overflow: hidden;
+    // -webkit-transform: translateZ(0px);
+    // transform: translateZ(0px)
 }
 .slide-item{
     position: absolute;
     outline: none;
     width: 50vw;
+    // -webkit-transform: translateZ(0px);
+    // transform: translateZ(0px);
     height: 50vh;
     background-color: black;
     will-change: transform;
