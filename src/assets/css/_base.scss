@@ -1,18 +1,3 @@
-@import './dark';
-
-
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-  cursor: none;
-}
-
-// 图片自带3px缝隙, 去除
-img{font-size:0 !important}
-img{display:block !important}
-img{vertical-align:top/middle !important};
-
 .non-clickable{
   pointer-events: none !important;
 }
@@ -34,12 +19,16 @@ img{vertical-align:top/middle !important};
   --color-text-el-drak-bg:#fff;
   --color-text-el-light-bg:#0c0f13;
 
+  // cursor颜色, FIXME: 为什么不需要根据dark/light调整？
+  --cursor-color: white;
+
   // border-radius
   --main-border-radius:8px;
 
   // z-index
   --top-index: 99999;
   --the-top: 100000;
+
 }
 
 [data-user-color-scheme='light'] {
@@ -62,7 +51,6 @@ body {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     background-color: var(--background-color);
-    // font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
     transition: background-color .5s;
     font-family: 'source-sans-pro', sans-serif;
     font-size: 1.4rem;

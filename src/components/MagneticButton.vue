@@ -1,10 +1,10 @@
 <template>
   <div id="magnetic">
-    <button class="magnetic-button">
+    <div class="magnetic-button">
       <span class="magnetic-button__text">
         <span class="magnetic-button__text-inner">Discover</span>
       </span>
-    </button>
+    </div>
   </div>
 </template>
 
@@ -54,7 +54,6 @@ export default {
   border-width: 0px;
   border-style: solid;
   color: var(--el-text-color);
-  background: var(--background-color);
   width: 10vw;
   height: 4vw;
   padding: 0;

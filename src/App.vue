@@ -390,9 +390,11 @@ export default {
   }
 }
 
+$cursor-color: var(--cursor-color);  //mix-blend-mode 元素颜色必须设置和背景相同
 @media (any-pointer: fine) {
 	.cursor {
 		display: block;
+    // mix-blend-mode: difference; FIXME: // 这个属性与z-index
 	}
 
   .cursor-point {
@@ -405,7 +407,7 @@ export default {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    background-color: var(--background-color);
+    background-color: $cursor-color;
     -webkit-animation: cursor-scale 2.6s ease-in-out infinite;
     animation: cursor-scale 2.6s ease-in-out infinite;
     mix-blend-mode: difference;
@@ -420,7 +422,7 @@ export default {
 		border-radius: 50%;
 		width: 40px;
 		height: 40px;
-    border: 3px solid var(--background-color);
+    border: 3px solid $cursor-color;
     // 这个属性会让此元素与父元素颜色混合&
     mix-blend-mode: difference;
     pointer-events: none !important;
@@ -434,12 +436,12 @@ export default {
     transform: translate(-50%,-50%);
     width: 60px;
     height: 60px;
-    border: 1px solid var(--background-color);
+    border: 1px solid $cursor-color;
     border-radius: 50%;
     opacity: .45;
     -webkit-animation: cursor-circle-outer-scale 3s ease-in-out .4s infinite;
     animation: cursor-circle-outer-scale 3s ease-in-out .4s infinite;
-    // FIXME: 为什么设置mix-blend-mode: difference;后边界会超出
+    // FIXME: 为什么设置mix-blend-mode: difference后 边界会超出
   }
 }
 

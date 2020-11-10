@@ -1,8 +1,8 @@
 <template>
   <div id="flashword">
-    <div>
+    <div class="text">
       <h2 class="content__title">V a n i l l a</h2>
-      <p class="content__subtitle">Say something...</p>
+      <div class="content__subtitle">Do... Do not be weak...</div>
     </div>
     <div class="overlay" />
   </div>
@@ -30,6 +30,9 @@ export default {
   },
   mounted() {
     this.mode ? this.animateTitles(true) : this.animateTitles(false) // true -> 白色 #fff
+    this.$eventHub.$on('darkListener', (data) => {
+      !data ? this.animateTitles(true) : this.animateTitles(false) // true -> 白色 #fff
+    })
   },
   methods: {
     getRandomColor() {
@@ -120,6 +123,12 @@ export default {
 }
 </script>
 
+<style lang="scss" scoped>
+.text{
+  color:var(--text-color);
+}
+</style>
+
 <style>
 .content__title {
   font-size: 10vw;
@@ -137,19 +146,19 @@ export default {
 }
 
 .content__subtitle {
-    font-family: 'Cabin Sketch', cursive;
-    color: wheat;
-    margin-top: 3vw;
-    font-size: 2vw;
+  font-family: 'Cabin Sketch', cursive;
+  color: wheat;
+  margin-top: 3vw;
+  font-size: 2vw;
 }
 
 @media screen and (max-width: 600px) {
-    .content__title {
-        font-size: 4em;
-    }
+  .content__title {
+    font-size: 4em;
+  }
 
-    .content__subtitle {
-        font-size: 0.8em;
-    }
+  .content__subtitle {
+    font-size: 0.8em;
+  }
 }
 </style>

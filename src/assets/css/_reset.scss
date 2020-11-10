@@ -2,6 +2,19 @@
 /* RESET
 ---------------------------------------------------------------------------------------------------- */
 
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  cursor: none;
+}
+
+// 图片自带3px缝隙, 去除
+img{font-size:0 !important}
+img{display:block !important}
+img{vertical-align:top/middle !important};
+
 html, body, div, span, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code,

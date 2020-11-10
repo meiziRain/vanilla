@@ -164,12 +164,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/fonts/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2"
   },
   {
-    "revision": "3fa25754b958eaedc579",
-    "url": "css/app.6b063f02.css"
+    "revision": "f5c6122869868830bd7d",
+    "url": "css/app.670721af.css"
   },
   {
-    "revision": "85447650f94209df07f0",
-    "url": "css/blog.2092c157.css"
+    "revision": "fce80f47ac94b75759d5",
+    "url": "css/blog.208810ba.css"
   },
   {
     "revision": "5f1295d5698ba955da57",
@@ -188,20 +188,24 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/egg-shell.75a7a84a.png"
   },
   {
+    "revision": "8580f4a4316719b784c059948210aee5",
+    "url": "img/girl-illu.8580f4a4.jpg"
+  },
+  {
     "revision": "0a938cc4c3f98415dfbe423bf5f7bacc",
     "url": "img/miao1.0a938cc4.jpg"
   },
   {
-    "revision": "623187424c39b4eecf5e98c8ed3955bd",
+    "revision": "6346ad151c592edf362ebcde26f0a716",
     "url": "index.html"
   },
   {
-    "revision": "3fa25754b958eaedc579",
-    "url": "js/app.f6a4d5e4.js"
+    "revision": "f5c6122869868830bd7d",
+    "url": "js/app.d5bd831b.js"
   },
   {
-    "revision": "85447650f94209df07f0",
-    "url": "js/blog.9873dd60.js"
+    "revision": "fce80f47ac94b75759d5",
+    "url": "js/blog.719e19e0.js"
   },
   {
     "revision": "5f1295d5698ba955da57",

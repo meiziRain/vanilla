@@ -1,19 +1,23 @@
 <template>
   <div id="home">
-    <div id="word">
-      <Flashword
-        :key="refreshKey"
-        class="flashWord"
-        :mode="dark"
-      />
-    </div>
-    <a v-show="false" href="https://hitcount.io" target="__blank" style="position:absolute;">
-      <img alt="Hit counter" src="https://hitcount.io/api/_gAVzrOcg">
-    </a>
-    <div id="magnetic-btn">
-      <router-link to="/blog">
-        <MagneticButton />
-      </router-link>
+    <div id="triangle" :style="{backgroundImage: 'url('+bgImage+')'}" />
+    <div>
+      <div id="word">
+        <Flashword
+          :key="refreshKey"
+          class="flashWord"
+          :mode="dark"
+        />
+      </div>
+      <a v-if="false" href="https://hitcount.io" target="__blank" style="position:absolute;">
+        <img alt="Hit counter" src="https://hitcount.io/api/_gAVzrOcg">
+      </a>
+      <div id="corner" />
+      <div id="magnetic-btn">
+        <router-link to="/blog">
+          <MagneticButton />
+        </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -32,7 +36,8 @@ export default {
   data() {
     return {
       dark: false,
-      refreshKey: ''
+      refreshKey: '',
+      bgImage: require('@/assets/imgs/girl-illu.jpg')
     }
   },
   activated() {
@@ -79,10 +84,10 @@ export default {
   font-size: 5vw;
   text-align: center;
   opacity: 0.9;
-  z-index: 999;
 }
 
 .flashWord{
+  color: white;
   transform: translateY(-20%);
 }
 
@@ -92,4 +97,48 @@ export default {
   justify-content:center;
   transform: translateY(-50%);
 }
+
+#corner{
+  position: absolute;
+  bottom: 3vw;
+  right:3vw;
+  width: 10vw;
+  height: 10vh;
+  background-color: var(--text-color);
+
+  &::before{
+    content: '';
+    position: absolute;
+    width: 10vw;
+    height: 10vh;
+    background-color: var(--background-color);
+    bottom: 4px;
+    right: 4px;
+  }
+}
+
+#triangle{
+  position: absolute;
+  z-index:0;
+  width: 99.9vh;
+  height: 86.6vh;
+  left:50%;
+  top:50%;
+  padding: -1px -1px -1px -1px;
+  transform: translate(-50%,-50%);
+  background-size: cover;
+  // background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
+
+  &::after{
+    position: absolute;
+    content: '';
+    left:50%;
+    top:50%;
+    transform: translate(-50%,-50%);
+    border-left: 50vh dashed var(--background-color);
+    border-right: 50.1vh dashed var(--background-color);
+    border-bottom: 86.7vh dashed transparent;
+  }
+}
+
 </style>
