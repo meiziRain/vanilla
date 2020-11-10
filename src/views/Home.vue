@@ -57,7 +57,7 @@ export default {
         y: 100,
         scale: 0
       }, {
-        y: 0,
+        y: '-50%',
         scale: 1,
         ease: Expo.easeOut,
         force3D: true
@@ -95,7 +95,6 @@ export default {
   display: flex;
   align-items:center;
   justify-content:center;
-  transform: translateY(-50%);
 }
 
 #corner{

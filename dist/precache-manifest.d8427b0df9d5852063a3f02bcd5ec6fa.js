@@ -164,12 +164,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/fonts/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2"
   },
   {
-    "revision": "f5c6122869868830bd7d",
+    "revision": "88d6c1ec8b440f368085",
     "url": "css/app.670721af.css"
   },
   {
-    "revision": "fce80f47ac94b75759d5",
-    "url": "css/blog.208810ba.css"
+    "revision": "8c0eb4b4e9825ba799c2",
+    "url": "css/blog.36d9ea08.css"
   },
   {
     "revision": "5f1295d5698ba955da57",
@@ -196,16 +196,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/miao1.0a938cc4.jpg"
   },
   {
-    "revision": "6346ad151c592edf362ebcde26f0a716",
+    "revision": "191503ac56acced53b5939b628f4e582",
     "url": "index.html"
   },
   {
-    "revision": "f5c6122869868830bd7d",
-    "url": "js/app.d5bd831b.js"
+    "revision": "88d6c1ec8b440f368085",
+    "url": "js/app.bc27a39b.js"
   },
   {
-    "revision": "fce80f47ac94b75759d5",
-    "url": "js/blog.719e19e0.js"
+    "revision": "8c0eb4b4e9825ba799c2",
+    "url": "js/blog.e8f82f94.js"
   },
   {
     "revision": "5f1295d5698ba955da57",
