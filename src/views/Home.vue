@@ -99,8 +99,8 @@ export default {
 
 #corner{
   position: absolute;
-  bottom: 3vw;
-  right:3vw;
+  bottom: 3vh;
+  right: 3vh;
   width: 10vw;
   height: 10vh;
   background-color: var(--text-color);

@@ -103,7 +103,6 @@ img{
 #about-scroll-viewport{
   width:100%;
   height: 100%;
-  background-color: white;
   overflow:scroll;
 }
 
@@ -122,9 +121,11 @@ img{
 }
 
 #avatar-text{
+  color: white;
   left: 50%;
   position: absolute;
   margin-top: 20vh;
+  mix-blend-mode: difference;
 }
 
 #name{

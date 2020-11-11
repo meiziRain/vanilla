@@ -34,8 +34,8 @@
       <LightSwitch id="pc-light-switch" />
       <Iris id="pc-nav" ref="nav" />
       <Logo id="pc-logo" />
+      <Circlee id="logo-circle" size="10vw" />
     </div>
-
     <keep-alive>
       <router-view />
     </keep-alive>
@@ -45,6 +45,7 @@
 
 <script>
 // import { Expo } from 'gsap'
+import Circlee from '@/components/Circlee.vue'
 import Logo from '@/components/Logo.vue'
 import Ham from '@/components/Ham.vue'
 import Iris from '@/components/Iris.vue'
@@ -52,6 +53,7 @@ import LightSwitch from '@/components/LightSwitch.vue'
 import { getMousePos, lerp } from '@/assets/js/utils.js'
 export default {
   components: {
+    Circlee,
     Logo,
     Ham,
     Iris,
@@ -332,6 +334,7 @@ export default {
 #pc-light-switch{
   position: fixed;
   bottom: 0;
+  z-index: var(--top-index);
 }
 
 #mobile-nav {
@@ -355,6 +358,13 @@ export default {
   transition: color 100ms;
   cursor: pointer;
   text-decoration: none;
+}
+
+#logo-circle{
+  z-index:1;
+  position: absolute;
+  top: 1vw;
+  left: 1vw;
 }
 
 @media (min-width: 920px) {
