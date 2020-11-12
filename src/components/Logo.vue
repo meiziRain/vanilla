@@ -1,11 +1,17 @@
 <template>
   <div>
-    <div id="logo" @click="goHome" />
+    <div id="logo" @click="goHome" :style="{backgroundImage: 'url('+bgImage+')'}" />
   </div>
 </template>
 
 <script>
 export default {
+  name: 'Logo',
+  data() {
+    return {
+      bgImage: require('@/assets/imgs/Logo-2.png')
+    }
+  },
   created() {
   },
   methods: {
@@ -25,7 +31,6 @@ export default {
   border-radius: 50%;
   position: fixed;
   left: 2vw;
-  background-image: url(https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg);
   background-repeat:no-repeat;
   background-size: cover;
   top: 2vw;
