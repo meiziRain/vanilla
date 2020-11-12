@@ -103,17 +103,9 @@ export default {
   right: 3vh;
   width: 10vw;
   height: 10vh;
-  background-color: var(--text-color);
-
-  &::before{
-    content: '';
-    position: absolute;
-    width: 10vw;
-    height: 10vh;
-    background-color: var(--background-color);
-    bottom: 4px;
-    right: 4px;
-  }
+  border: 5px solid var(--text-color);
+  border-top: none; border-left: none;
+  background-color: transparent;
 }
 
 #triangle{
