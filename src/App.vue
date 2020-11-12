@@ -363,8 +363,8 @@ export default {
 #logo-circle{
   z-index:1;
   position: absolute;
-  top: 1vw;
-  left: 1vw;
+  top: 1.5vw;
+  left: 1.5vw;
 }
 
 @media (min-width: 920px) {

@@ -3,8 +3,6 @@
     <div id="circles" ref="circle" class="circles">
       <div class="circle" />
       <div class="circle" />
-      <div class="circle" />
-      <div class="circle" />
     </div>
   </div>
 </template>
@@ -35,7 +33,7 @@ export default {
 $spin-time: 5.5s;
 $circle-size: 55vmin;
 $circle-stroke: 2px;
-$displacement: 0%;
+$displacement: 5%;
 
 .circles {
     height: $circle-size;
@@ -56,7 +54,7 @@ $displacement: 0%;
         animation: spin1 $spin-time linear infinite;
     }
     &:nth-child(2) {
-        border-color: #F4B400;
+        border-color: rgb(247, 138, 117);
         transform-origin: 50% 50%+$displacement;
         animation: spin2 $spin-time linear infinite;
     }
