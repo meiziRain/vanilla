@@ -32,8 +32,8 @@ export default {
 <style lang="scss" scoped>
 $spin-time: 5.5s;
 $circle-size: 55vmin;
-$circle-stroke: 2px;
-$displacement: 5%;
+$circle-stroke: 1px;
+$displacement: 1%;
 
 .circles {
     height: $circle-size;
@@ -45,7 +45,7 @@ $displacement: 5%;
     position: absolute;
     width: 100%;
     height: 100%;
-    border: $circle-stroke solid transparent;
+    border: $circle-stroke dashed transparent;
     border-radius: 115% 140% 145% 110%/125% 140% 110% 125%;
     mix-blend-mode: screen;
     &:nth-child(1) {
