@@ -116,6 +116,10 @@ export default {
   mounted() {
     console.log('Blog mounted')
     this.initScroller()
+
+    // this.$imagesLoaded('#blog', function(imgLoad) {
+    //   console.log(imgLoad.images.length + ' images loaded checking .box backgrounds')
+    // })
   },
   methods: {
     initAnim() {

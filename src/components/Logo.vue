@@ -30,10 +30,29 @@ export default {
   height: 8vw;
   border-radius: 50%;
   position: fixed;
-  left: 2vw;
   background-repeat:no-repeat;
   background-size: cover;
-  top: 2vw;
-  z-index: var(--top-index);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: var(--the-top);
+}
+</style>
+
+<style>
+.logo-anim{
+  animation:1s ease 0s 1 normal forwards logoAnim;
+  transform: translate(0%, 0%) !important;
+}
+
+@keyframes logoAnim{
+  from{
+    left: 50%;
+    top: 50%;
+  }
+  to{
+    left: 2vw;
+    top: 2vw;
+  }
 }
 </style>

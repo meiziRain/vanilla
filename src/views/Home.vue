@@ -41,10 +41,13 @@ export default {
     }
   },
   activated() {
-    this.initAnim()
+    // this.initAnim()
   },
   mounted() {
     console.log('Home mounted')
+    this.$eventHub.$on('initAnimations', () => {
+      this.initAnim()
+    })
     this.$eventHub.$on('darkListener', (data) => {
       // 利用修改key的属性值，重新加载子组件，触发create事件
       this.refreshKey = new Date().getTime()

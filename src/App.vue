@@ -1,45 +1,54 @@
 <template>
   <div id="app">
-    <svg class="shape-overlays" viewBox="0 0 100 100" preserveAspectRatio="none">
-      <path class="shape-overlays__path" />
-      <path class="shape-overlays__path" />
-      <path class="shape-overlays__path" />
-      <path class="shape-overlays__path" />
-    </svg>
-    <div class="cursor">
-      <div class="cursor-point" />
-      <div class="cursor__inner--circle" />
-    </div>
-    <div id="mobile-header-wrapper">
-      <div id="mobile" ref="mobile">
-        <div id="mobile-header">
-          <Ham id="hamburger" ref="ham" @click.native="onHamClick()" />
-          <LightSwitch id="light-switch" />
-        </div>
-
-        <div id="mobile-nav" ref="mobile_nav" @click="jump">
-          <router-link to="/">
-            Home
-          </router-link>
-          <router-link to="/blog">
-            Blog
-          </router-link>
-          <router-link to="/about">
-            Me！
-          </router-link>
+    <div v-if="loader" id="loader" />
+    <div id="container">
+      <div v-show="false" id="img-factory" style="width:0;height:0">
+        <img src="@/assets/imgs/girl-illu.jpg" alt="">
+        <img src="@/assets/imgs/miao1.jpg">
+        <img src="@/assets/imgs/Logo-2.png">
+        <img src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg">
+        <img src="@/assets/gooey-hover/img/tiles/deserts/base.jpg">
+      </div>
+      <!-- 正文 -->
+      <svg class="shape-overlays" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path class="shape-overlays__path" />
+        <path class="shape-overlays__path" />
+        <path class="shape-overlays__path" />
+        <path class="shape-overlays__path" />
+      </svg>
+      <div class="cursor" style="visibility:hidden">
+        <div class="cursor-point" />
+        <div class="cursor__inner--circle" />
+      </div>
+      <div id="mobile-header-wrapper">
+        <div id="mobile" ref="mobile">
+          <div id="mobile-header">
+            <Ham id="hamburger" ref="ham" @click.native="onHamClick()" />
+            <LightSwitch id="light-switch" />
+          </div>
+          <div id="mobile-nav" ref="mobile_nav" @click="jump">
+            <router-link to="/">
+              Home
+            </router-link>
+            <router-link to="/blog">
+              Blog
+            </router-link>
+            <router-link to="/about">
+              Me！
+            </router-link>
+          </div>
         </div>
       </div>
+      <div id="pc">
+        <LightSwitch id="pc-light-switch" />
+        <Iris id="pc-nav" ref="nav" />
+        <Logo />
+        <Circlee id="logo-circle" size="10vw" />
+      </div>
+      <keep-alive>
+        <router-view />
+      </keep-alive>
     </div>
-    <div id="pc">
-      <LightSwitch id="pc-light-switch" />
-      <Iris id="pc-nav" ref="nav" />
-      <Logo id="pc-logo" />
-      <Circlee id="logo-circle" size="10vw" />
-    </div>
-    <keep-alive>
-      <router-view />
-    </keep-alive>
-
   </div>
 </template>
 
@@ -61,7 +70,8 @@ export default {
   },
   data() {
     return {
-      cursor: {}
+      cursor: {},
+      loader: true
     }
   },
   created() {
@@ -75,10 +85,17 @@ export default {
   },
   mounted() {
     console.log('APP mounted')
-    this.initCursorPoint()
-    this.initMouse()
-    this.$refs.nav.keepNavRender()
-    this.initOverlay()
+    this.$imagesLoaded('#img-factory', (imgLoad) => {
+      this.loader = false
+      this.initCursor()
+      this.$refs.nav.keepNavRender()
+      this.initOverlay()
+
+      document.querySelector('.cursor').style.visibility = 'visible'
+      document.querySelector('#logo').classList.add('logo-anim')
+
+      this.$eventHub.$emit('initAnimations')
+    })
   },
   methods: {
     initOverlay() {
@@ -204,7 +221,7 @@ export default {
       const elmOverlay = document.querySelector('.shape-overlays')
       this.$store.state.overlay = new ShapeOverlays(elmOverlay)
     },
-    initCursorPoint() {
+    initCursor() {
       const oDiv = document.querySelector('.cursor-point')
       window.onmousemove = (event) => {
         const ev = event || window.event
@@ -216,6 +233,7 @@ export default {
         oDiv.style.left = oLeft + 'px'
         oDiv.style.top = oTop + 'px'
       }
+      this.initMouse()
     },
     initMouse() {
       // Calculate the viewport size
@@ -298,6 +316,19 @@ export default {
 @import "@/assets/css/_base.scss";
 .disable{
   pointer-events: none;
+}
+
+#loader{
+  position: absolute;
+  background-color: var(--background-color);
+  width: 100vw;
+  height: 100vh;
+  z-index: var(--top-index);
+}
+
+#container{
+  width: 100vw;
+  height: 100vh;
 }
 
 #app{
