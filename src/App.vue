@@ -3,9 +3,9 @@
     <div v-if="loader" id="loader" />
     <div id="container">
       <div v-show="false" id="img-factory" style="width:0;height:0">
+        <img src="@/assets/imgs/Logo-2.png">
         <img src="@/assets/imgs/girl-illu.jpg" alt="">
         <img src="@/assets/imgs/miao1.jpg">
-        <img src="@/assets/imgs/Logo-2.png">
         <img src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg">
         <img src="@/assets/gooey-hover/img/tiles/deserts/base.jpg">
       </div>
@@ -42,7 +42,7 @@
       <div id="pc">
         <LightSwitch id="pc-light-switch" />
         <Iris id="pc-nav" ref="nav" />
-        <Logo />
+        <Logo id="pc-logo" />
         <Circlee id="logo-circle" size="10vw" />
       </div>
       <keep-alive>
@@ -92,7 +92,8 @@ export default {
       this.initOverlay()
 
       document.querySelector('.cursor').style.visibility = 'visible'
-      document.querySelector('#logo').classList.add('logo-anim')
+      document.querySelector('#pc-logo').classList.add('logo-translate-anim')
+      document.querySelector('#pc-logo > span').classList.remove('logo-rotate-anim')
 
       this.$eventHub.$emit('initAnimations')
     })
@@ -396,6 +397,14 @@ export default {
   position: absolute;
   top: 1vw;
   left: 1vw;
+}
+
+#pc-logo{
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: var(--the-top);
 }
 
 @media (min-width: 920px) {

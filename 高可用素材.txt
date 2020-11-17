@@ -72,3 +72,6 @@ https://tympanus.net/codrops/2019/04/12/pulling-apart-svgs-with-reusable-webgl-c
 
 25. 图片hover效果 优先级 高 FIXME:
 https://tympanus.net/Development/DiagonalSlideshow/
+
+26. 图片生成svg
+https://www.jianshu.com/p/d30bc9e83e00
