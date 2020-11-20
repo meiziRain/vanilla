@@ -77,6 +77,7 @@ export default {
   to{
     left: 2vw;
     top: 2vw;
+    z-index: var(--top-index);
   }
 }
 </style>

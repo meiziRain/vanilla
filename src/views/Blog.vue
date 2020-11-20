@@ -7,7 +7,7 @@
         <article
           ref="daisies"
           class="slideshow-list__el"
-          @click="showDaisiesDetail"
+          @click="showDetail('Daisies')"
           @mouseenter="articleHover('rgb(207, 130, 125)')"
         >
           <img
@@ -62,7 +62,7 @@
       <!-- eslint-disable-next-line vue/valid-v-else -->
       <DetailView v-if="isMobile" ref="mobile_dv" @close="closeDaisiesDetailPage" />
       <!-- eslint-disable-next-line vue/valid-v-else -->
-      <PcDetailView v-else ref="pc_dv" />
+      <PcDetailView v-else ref="pc_daisies_dv" />
     </div>
     <div ref="progress_ctn" class="slideshow__progress-ctn"><span ref="progress" class="slideshow__progress" /></div>
   </div>
@@ -108,6 +108,8 @@ export default {
     }
   },
   created() {
+    // 让slide-el动画完成再可点击
+    document.body.classList.add('non-clickable')
   },
   activated() {
     console.log('Blog activated')
@@ -116,10 +118,6 @@ export default {
   mounted() {
     console.log('Blog mounted')
     this.initScroller()
-
-    // this.$imagesLoaded('#blog', function(imgLoad) {
-    //   console.log(imgLoad.images.length + ' images loaded checking .box backgrounds')
-    // })
   },
   methods: {
     initAnim() {
@@ -155,6 +153,9 @@ export default {
           ease: Expo.easeOut,
           duration: 1.5
         }, 1.5)
+      blogActivatedTimeline.eventCallback('onComplete', () => {
+        document.body.classList.remove('non-clickable')
+      })
     },
     articleHover(color) {
       // this.$refs.blog.style.setProperty('background-color', color)
@@ -176,7 +177,7 @@ export default {
       this.cataScroll.addListener((s) => { this.onScroll(s) })
     },
     closeDaisiesDetailPage() {
-      this.$refs.pc_dv.$refs.fullpage.destroy()
+      this.$refs.pc_daisies_dv.$refs.fullpage.destroy()
       this.$refs.daisies_dv.classList.toggle('visible')
       this.$refs.daisies.classList.toggle('trigger')
       this.cataScroll.updatePluginOptions('horizontalScroll', {
@@ -196,8 +197,7 @@ export default {
         ease: Expo.easeOut
       })
     },
-    showDaisiesDetail() {
-      // list页滚动条退场
+    showDetail(item) {
       const progress = document.querySelector('.slideshow__progress-ctn')
       this.$GSAP.killTweensOf((document.querySelectorAll('.slideshow-list__el')))
 
@@ -205,7 +205,12 @@ export default {
         alpha: 0,
         ease: Expo.easeIn
       })
-
+      if (item === 'Daisies') {
+        this.showDaisiesDetail()
+      }
+    },
+    showDaisiesDetail() {
+      // list页滚动条退场
       const pcNav = document.querySelector('#pc-nav')
       this.$GSAP.to(pcNav, 0.5, {
         x: 800,
@@ -215,6 +220,7 @@ export default {
       this.cataScroll.updatePluginOptions('horizontalScroll', {
         events: []
       })
+
       if (this.$store.state.isMobile) {
         this.$refs.mobile_dv.open()
         this.$refs.daisies_dv.classList.toggle('visible')
@@ -222,7 +228,7 @@ export default {
       } else {
         this.$refs.daisies_dv.classList.toggle('visible')
         this.$refs.daisies.classList.toggle('trigger')
-        this.$refs.pc_dv.showDetail(this.scroll)
+        this.$refs.pc_daisies_dv.showDetail(this.scroll)
       }
     },
     /* Handlers
