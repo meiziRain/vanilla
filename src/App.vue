@@ -2,7 +2,8 @@
   <div id="app">
     <div v-show="false" id="img-factory" style="width:0;height:0">
       <img src="@/assets/imgs/Logo-2.png">
-      <img src="@/assets/imgs/girl-illu.jpg" alt="">
+      <img src="@/assets/imgs/Logo.png">
+      <img src="@/assets/imgs/girl-illu-triangle.png">
       <img src="@/assets/imgs/miao1.jpg">
       <img src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg">
       <img src="@/assets/gooey-hover/img/tiles/deserts/base.jpg">
@@ -107,9 +108,9 @@ export default {
       this.$refs.nav.keepNavRender()
       this.initOverlay()
       this.$refs.zip.zip()
-      setTimeout(() => {
+      this.$GSAP.delayedCall(1, () => {
         this.$refs.gates.openGates()
-      }, 1000)
+      })
       document.querySelector('.cursor').style.visibility = 'visible'
 
       this.$eventHub.$emit('initAnimations')
