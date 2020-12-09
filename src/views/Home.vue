@@ -1,11 +1,11 @@
 <template>
   <div id="home">
     <div id="triangle" :style="{backgroundImage: 'url('+bgImage+')'}" />
+    <Soul v-if="false" id="soul" />
     <div>
       <div id="word">
         <Flashword
           :key="refreshKey"
-          class="flashWord"
           :mode="dark"
         />
       </div>
@@ -24,6 +24,7 @@
 
 <script>
 // @ is an alias to /src
+import Soul from '@/components/Soul.vue'
 import MagneticButton from '@/components/MagneticButton.vue'
 import Flashword from '@/components/Flashword.vue'
 import { Expo } from 'gsap'
@@ -31,13 +32,15 @@ export default {
   name: 'Home',
   components: {
     Flashword,
-    MagneticButton
+    MagneticButton,
+    Soul
   },
   data() {
     return {
       dark: false,
       refreshKey: '',
-      bgImage: require('@/assets/imgs/girl-illu.jpg')
+      homeBgImage: require('@/assets/imgs/egg-shell.png'),
+      bgImage: require('@/assets/imgs/girl-illu-triangle.png')
     }
   },
   activated() {
@@ -81,23 +84,38 @@ export default {
   overflow: hidden;
 }
 
+#soul{
+  position:absolute;
+}
+
 #word {
+  width: 100vw;
   margin-top: 50vh;
   transform: translateY(-50%);
   font-size: 5vw;
   text-align: center;
-  opacity: 0.9;
-}
-
-.flashWord{
-  color: white;
-  transform: translateY(-20%);
+  position: absolute;
 }
 
 #magnetic-btn{
-  display: flex;
-  align-items:center;
-  justify-content:center;
+  position: absolute;
+  margin-top: 80vh;
+  width: 40vw;
+  z-index: 999;
+  left: 50%;
+  text-align: center;
+  transform: translateX(-50%);
+}
+
+#scene{
+  width: 100px;
+  height: 100px;
+  position: relative;
+  perspective: 1000px;
+  position: absolute;
+  transform-style: preserve-3d;
+	transform: rotateY(0deg) rotateX(20deg);
+	animation: rotate 20s infinite linear;
 }
 
 #corner{
@@ -111,28 +129,14 @@ export default {
   background-color: transparent;
 }
 
-#triangle{
+#triangle {
   position: absolute;
   z-index:0;
-  width: 99.9vh;
-  height: 86.6vh;
+  width: 88.6vh;
+  height: 76.9vh;
   left:50%;
   top:50%;
-  padding: -1px -1px -1px -1px;
   transform: translate(-50%,-50%);
   background-size: cover;
-  // background-image: linear-gradient(to right top, #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec, #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);
-
-  &::after{
-    position: absolute;
-    content: '';
-    left:50%;
-    top:50%;
-    transform: translate(-50%,-50%);
-    border-left: 50vh dashed var(--background-color);
-    border-right: 50.1vh dashed var(--background-color);
-    border-bottom: 86.7vh dashed transparent;
-  }
 }
-
 </style>

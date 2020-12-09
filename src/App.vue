@@ -1,14 +1,16 @@
 <template>
   <div id="app">
+    <div v-show="false" id="img-factory" style="width:0;height:0">
+      <img src="@/assets/imgs/Logo-2.png">
+      <img src="@/assets/imgs/girl-illu.jpg" alt="">
+      <img src="@/assets/imgs/miao1.jpg">
+      <img src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg">
+      <img src="@/assets/gooey-hover/img/tiles/deserts/base.jpg">
+    </div>
     <div v-if="loader" id="loader" />
-    <div id="container">
-      <div v-show="false" id="img-factory" style="width:0;height:0">
-        <img src="@/assets/imgs/Logo-2.png">
-        <img src="@/assets/imgs/girl-illu.jpg" alt="">
-        <img src="@/assets/imgs/miao1.jpg">
-        <img src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg">
-        <img src="@/assets/gooey-hover/img/tiles/deserts/base.jpg">
-      </div>
+    <div v-else id="container">
+      <Zip ref="zip" />
+      <Gates ref="gates" />
       <!-- 正文 -->
       <svg class="shape-overlays" viewBox="0 0 100 100" preserveAspectRatio="none">
         <path class="shape-overlays__path" />
@@ -24,7 +26,7 @@
         <div id="mobile" ref="mobile">
           <div id="mobile-header">
             <Ham id="hamburger" ref="ham" @click.native="onHamClick()" />
-            <LightSwitch id="light-switch" />
+            <LightSwitch v-if="false" id="light-switch" />
           </div>
           <div id="mobile-nav" ref="mobile_nav" @click="jump">
             <router-link to="/">
@@ -40,10 +42,10 @@
         </div>
       </div>
       <div id="pc">
-        <LightSwitch id="pc-light-switch" />
+        <LightSwitch v-if="false" id="pc-light-switch" />
         <Iris id="pc-nav" ref="nav" />
         <Logo id="pc-logo" />
-        <Circlee id="logo-circle" size="10vw" />
+        <Circlee id="logo-circle" size="8vw" />
       </div>
       <keep-alive>
         <router-view />
@@ -54,6 +56,8 @@
 
 <script>
 // import { Expo } from 'gsap'
+import Zip from '@/components/Zip.vue'
+import Gates from '@/components/Gates.vue'
 import Circlee from '@/components/Circlee.vue'
 import Logo from '@/components/Logo.vue'
 import Ham from '@/components/Ham.vue'
@@ -66,7 +70,9 @@ export default {
     Logo,
     Ham,
     Iris,
-    LightSwitch
+    LightSwitch,
+    Gates,
+    Zip
   },
   data() {
     return {
@@ -85,20 +91,29 @@ export default {
   },
   mounted() {
     console.log('APP mounted')
-    this.$imagesLoaded('#img-factory', (imgLoad) => {
+
+    const imgLoad = this.$imagesLoaded('#img-factory')
+    imgLoad.on('done', (imgs) => {
+      console.log('imagesLoaded', imgs)
       this.loader = false
-      this.initCursor()
-      this.$refs.nav.keepNavRender()
-      this.initOverlay()
-
-      document.querySelector('.cursor').style.visibility = 'visible'
-      document.querySelector('#pc-logo').classList.add('logo-translate-anim')
-      document.querySelector('#pc-logo > span').classList.remove('logo-rotate-anim')
-
-      this.$eventHub.$emit('initAnimations')
+      this.$nextTick(() => {
+        this.init()
+      })
     })
   },
   methods: {
+    init() {
+      this.initCursor()
+      this.$refs.nav.keepNavRender()
+      this.initOverlay()
+      this.$refs.zip.zip()
+      setTimeout(() => {
+        this.$refs.gates.openGates()
+      }, 1000)
+      document.querySelector('.cursor').style.visibility = 'visible'
+
+      this.$eventHub.$emit('initAnimations')
+    },
     initOverlay() {
       console.log('initOverlay')
       const ease = {
@@ -401,9 +416,8 @@ export default {
 
 #pc-logo{
   position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  top: 2vw;
+  left: 2vw;
   z-index: var(--the-top);
 }
 

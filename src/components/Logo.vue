@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="logo-wrapper logo-rotate-anim">
+    <span class="logo-wrapper">
       <div id="logo" :style="{backgroundImage: 'url('+bgImage+')'}" @click="goHome" />
     </span>
   </div>
@@ -11,7 +11,7 @@ export default {
   name: 'Logo',
   data() {
     return {
-      bgImage: require('@/assets/imgs/Logo-2.png')
+      bgImage: require('@/assets/imgs/Logo.png')
     }
   },
   created() {
@@ -27,6 +27,7 @@ export default {
 
 <style lang="scss" scoped>
 #logo{
+  color:white;
   cursor: pointer;
   border-radius: 50%;
   background-repeat:no-repeat;
@@ -37,20 +38,14 @@ export default {
 <style>
 #logo {
   position: fixed;
-  width: 8vw;
-  height: 8vw;
-  z-index: var(--the-top);
+  width: 6vw;
+  height: 6vw;
 }
 
 .logo-wrapper{
   display: inline-block;
-  width: 8vw;
-  height: 8vw;
-}
-
-.logo-translate-anim{
-  animation:1s cubic-bezier(.87,0,.13,1) 0s 1 normal forwards logoTranslateAnim;
-  transform: translate(0%, 0%) !important;
+  width: 6vw;
+  height: 6vw;
 }
 
 .logo-rotate-anim{
@@ -66,18 +61,6 @@ export default {
   }
   100%{
     transform: rotate(360deg);
-  }
-}
-
-@keyframes logoTranslateAnim{
-  from{
-    left: 50%;
-    top: 50%;
-  }
-  to{
-    left: 2vw;
-    top: 2vw;
-    z-index: var(--top-index);
   }
 }
 </style>

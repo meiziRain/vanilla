@@ -1,8 +1,8 @@
 <template>
   <div id="flashword">
     <div class="text">
-      <h2 class="content__title">V a n i l l a</h2>
-      <div class="content__subtitle">Do... Do not be weak...</div>
+      <h2 class="content__title">V A N I L L A</h2>
+      <div class="content__subtitle">Click following button, Dive into me</div>
     </div>
     <div class="overlay" />
   </div>
@@ -142,7 +142,8 @@ export default {
 }
 
 .content__title {
-  font-family: 'Cabin Sketch', cursive;
+  font-family: 'Bungee Inline';
+  /* font-family: 'Cabin Sketch', cursive; */
 }
 
 .content__subtitle {

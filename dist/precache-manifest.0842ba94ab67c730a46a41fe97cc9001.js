@@ -164,12 +164,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/fonts/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2"
   },
   {
-    "revision": "a661a8794d051c099da3",
-    "url": "css/app.cceee398.css"
+    "revision": "3b40785248c0527c612a",
+    "url": "css/app.91050c01.css"
   },
   {
-    "revision": "c79fc4d2a548ccfed469",
-    "url": "css/blog.f233c32b.css"
+    "revision": "dc4ac07c2993cbf62014",
+    "url": "css/blog.96a6f870.css"
   },
   {
     "revision": "5f1295d5698ba955da57",
@@ -188,6 +188,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/Logo-2.png"
   },
   {
+    "revision": "9f019711bedbf8887d52aa7b4ce6abfd",
+    "url": "img/Logo.9f019711.png"
+  },
+  {
     "revision": "da56b871c2b6fd21ce2bd003864d6897",
     "url": "img/back.da56b871.svg"
   },
@@ -200,6 +204,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/egg-shell.75a7a84a.png"
   },
   {
+    "revision": "291dd036ce0250a821cedf5cc244d9e0",
+    "url": "img/girl-illu-triangle.291dd036.png"
+  },
+  {
     "revision": "8580f4a4316719b784c059948210aee5",
     "url": "img/girl-illu.8580f4a4.jpg"
   },
@@ -208,16 +216,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/miao1.0a938cc4.jpg"
   },
   {
-    "revision": "3702b4688f0a262dac5d88ea9a1fa765",
+    "revision": "4e3de305601dfee81a3eea2569536fd6",
     "url": "index.html"
   },
   {
-    "revision": "a661a8794d051c099da3",
-    "url": "js/app.9d31f11b.js"
+    "revision": "3b40785248c0527c612a",
+    "url": "js/app.41821dad.js"
   },
   {
-    "revision": "c79fc4d2a548ccfed469",
-    "url": "js/blog.6c750d5f.js"
+    "revision": "dc4ac07c2993cbf62014",
+    "url": "js/blog.68c92c70.js"
   },
   {
     "revision": "5f1295d5698ba955da57",

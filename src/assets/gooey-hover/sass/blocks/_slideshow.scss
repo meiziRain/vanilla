@@ -43,6 +43,7 @@
     min-width: 25rem;
     max-width: 40vmin;
     margin-left: 15vw;
+    will-change: transform;        
 
     &:last-child {
         margin-right: 10vw;

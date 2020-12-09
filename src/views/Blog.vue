@@ -18,9 +18,6 @@
           <div class="tile__content">
             <h2 class="tile__title | title title--medium ">
               Rocks & <span class="title__offset title__offset--medium">Mountains</span></h2>
-            <div class="tile__cta">
-              <span class="btn-inline">See more</span>
-            </div>
           </div>
         </article>
         <article
@@ -37,9 +34,6 @@
           <div class="tile__content">
             <h2 class="tile__title | title title--medium ">
               Rocks & <span class="title__offset title__offset--medium">Mountains</span></h2>
-            <div class="tile__cta">
-              <span class="btn-inline">See more</span>
-            </div>
           </div>
         </article>
         <article class="slideshow-list__el">
@@ -51,9 +45,6 @@
           <div class="tile__content">
             <h2 class="tile__title | title title--medium ">
               Rocks & <span class="title__offset title__offset--medium">Mountains</span></h2>
-            <div class="tile__cta">
-              <span class="btn-inline">See more</span>
-            </div>
           </div>
         </article>
       </div>
@@ -86,7 +77,6 @@ export default {
   },
   data() {
     return {
-      bgImage: require('@/assets/imgs/egg-shell.png'),
       options: {
         lockAnchors: true,
         anchors: ['firstPage', 'secondPage', 'thirdPage'],
@@ -138,7 +128,7 @@ export default {
           boxShadow: ''
         }, {
           y: 40,
-          boxShadow: '5px 5px 10px  2px rgba(0,0,0,0.6)',
+          boxShadow: '0 2px 4px rgba(0,0,0,.1)',
           ease: Expo.easeOut,
           duration: 1.5
         }, 1.5)
@@ -148,7 +138,7 @@ export default {
           boxShadow: ''
         }, {
           y: -40,
-          boxShadow: '5px 5px 10px  2px rgba(0,0,0,0.6)',
+          boxShadow: '0 2px 4px rgba(0,0,0,.1)',
           alpha: 1,
           ease: Expo.easeOut,
           duration: 1.5
@@ -184,8 +174,8 @@ export default {
         events: [/wheel/]
       })
       this.cataScroll.setPosition(this.scroll.x, 0)
-      const progress = document.querySelector('.slideshow__progress-ctn')
-      this.$GSAP.to(progress, 0.3, {
+      const fade_ele = document.querySelectorAll('#pc-logo, #logo-circle, .slideshow__progress-ctn')
+      this.$GSAP.to(fade_ele, 0.3, {
         alpha: 1,
         ease: Expo.easeIn
       })
@@ -198,13 +188,13 @@ export default {
       })
     },
     showDetail(item) {
-      const progress = document.querySelector('.slideshow__progress-ctn')
       this.$GSAP.killTweensOf((document.querySelectorAll('.slideshow-list__el')))
-
-      this.$GSAP.to(progress, 0.5, {
+      const fade_ele = document.querySelectorAll('#pc-logo, #logo-circle, .slideshow__progress-ctn')
+      this.$GSAP.to(fade_ele, 0.5, {
         alpha: 0,
         ease: Expo.easeIn
       })
+
       if (item === 'Daisies') {
         this.showDaisiesDetail()
       }
