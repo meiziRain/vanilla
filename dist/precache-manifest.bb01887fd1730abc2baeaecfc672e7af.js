@@ -164,12 +164,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/fonts/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2"
   },
   {
-    "revision": "fc622f7e79328a325642",
-    "url": "css/app.91050c01.css"
+    "revision": "63747e9279cecff5aae2",
+    "url": "css/app.68237164.css"
   },
   {
-    "revision": "22bca2765767c92023ac",
-    "url": "css/blog.96a6f870.css"
+    "revision": "d1efd303053b6a37a903",
+    "url": "css/blog.e3d74396.css"
   },
   {
     "revision": "5f1295d5698ba955da57",
@@ -200,8 +200,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/base.44f75545.jpg"
   },
   {
-    "revision": "75a7a84a76f0b6679b46fc53ab761149",
-    "url": "img/egg-shell.75a7a84a.png"
+    "revision": "1c8176d0113d78cf8dee9f7a7160114a",
+    "url": "img/food.1c8176d0.png"
   },
   {
     "revision": "291dd036ce0250a821cedf5cc244d9e0",
@@ -216,16 +216,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/miao1.0a938cc4.jpg"
   },
   {
-    "revision": "a9db23e1b16586a85e367f2d4a1ce1d6",
+    "revision": "4445567501c4da3ca4311aae6c4b42db",
     "url": "index.html"
   },
   {
-    "revision": "fc622f7e79328a325642",
-    "url": "js/app.01eb0c7c.js"
+    "revision": "63747e9279cecff5aae2",
+    "url": "js/app.a5b7c6f0.js"
   },
   {
-    "revision": "22bca2765767c92023ac",
-    "url": "js/blog.bafb5aed.js"
+    "revision": "d1efd303053b6a37a903",
+    "url": "js/blog.c73b641c.js"
   },
   {
     "revision": "5f1295d5698ba955da57",

@@ -87,6 +87,7 @@ $mainColor:#000000;
 /*----------------------------------------------- */
 /* Common styles for all menus */
 #menu {
+  color: var(--text-color);
   font-family: "Poiret One", cursive;
   font-size: 1.5vw;
 }
@@ -136,7 +137,6 @@ $mainColor:#000000;
 .menu--iris .menu__link {
   position: relative;
   text-align: center;
-  color: #b5b5b5;
   -webkit-transition: color 0.3s;
   transition: color 0.3s;
 }

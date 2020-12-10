@@ -56,9 +56,11 @@ export default {
   created() {
   },
   mounted() {
+    this.$store.state.about = this
     this.initScroll()
   },
   methods: {
+    initAnim() {},
     initScroll() {
       this.about_Scroll = Scrollbar.init(document.querySelector('#about-scroll-viewport'), {
         delegateTo: document.querySelector('#about'),

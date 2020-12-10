@@ -1,10 +1,12 @@
 <template>
-  <div id="home">
+  <div id="home" :style="{backgroundImage: 'url('+homeBgImage+')'}">
     <div id="triangle" :style="{backgroundImage: 'url('+bgImage+')'}" />
     <Soul v-if="false" id="soul" />
+    <Marquee v-if="false" />
     <div>
       <div id="word">
         <Flashword
+          ref="words"
           :key="refreshKey"
           :mode="dark"
         />
@@ -24,6 +26,7 @@
 
 <script>
 // @ is an alias to /src
+import Marquee from '@/components/Marquee.vue'
 import Soul from '@/components/Soul.vue'
 import MagneticButton from '@/components/MagneticButton.vue'
 import Flashword from '@/components/Flashword.vue'
@@ -33,21 +36,28 @@ export default {
   components: {
     Flashword,
     MagneticButton,
-    Soul
+    Soul,
+    Marquee
   },
   data() {
     return {
       dark: false,
+      flashword: false,
       refreshKey: '',
-      homeBgImage: require('@/assets/imgs/egg-shell.png'),
+      homeBgImage: require('@/assets/imgs/food.png'),
       bgImage: require('@/assets/imgs/girl-illu-triangle.png')
     }
   },
   activated() {
-    // this.initAnim()
+    this.$GSAP.set(document.querySelector('#magnetic-btn'), {
+      y: 0,
+      scale: 0
+    })
   },
   mounted() {
     console.log('Home mounted')
+
+    this.$store.state.home = this
     this.$eventHub.$on('initAnimations', () => {
       this.initAnim()
     })
@@ -59,14 +69,16 @@ export default {
   },
   methods: {
     initAnim() {
-      this.$GSAP.fromTo(document.querySelector('#magnetic-btn'), 1, {
-        y: 100,
+      console.log('#magnetic-btn')
+      this.$GSAP.fromTo(document.querySelector('#magnetic-btn'), {
+        y: 0,
         scale: 0
       }, {
         y: '-50%',
         scale: 1,
         ease: Expo.easeOut,
-        force3D: true
+        force3D: true,
+        duration: 1
       })
     },
     discover() {
@@ -80,7 +92,8 @@ export default {
 #home{
   width:100vw;
   height: 100vh;
-  background-color: var(--background-color);
+  // background-color: var(--background-color);
+  background-color: #c6a7a4;
   overflow: hidden;
 }
 
@@ -100,11 +113,10 @@ export default {
 #magnetic-btn{
   position: absolute;
   margin-top: 80vh;
-  width: 40vw;
   z-index: 999;
   left: 50%;
   text-align: center;
-  transform: translateX(-50%);
+  transform: translateX(-50%) scale(0);
 }
 
 #scene{

@@ -103,11 +103,19 @@ export default {
   },
   activated() {
     console.log('Blog activated')
-    this.initAnim()
+    this.$GSAP.set(document.querySelectorAll('.slideshow-list__el'), {
+      alpha: 0,
+      y: 200
+    })
   },
   mounted() {
     console.log('Blog mounted')
+    this.$store.state.blog = this
     this.initScroller()
+    this.$eventHub.$on('initAnimations', () => {
+      // 使用v-if字体会来不及渲染
+      this.initAnim()
+    })
   },
   methods: {
     initAnim() {
@@ -120,7 +128,7 @@ export default {
         alpha: 1,
         y: 0,
         ease: Expo.easeOut,
-        duration: 1.5
+        duration: 1
       })
       blogActivatedTimeline.fromTo(
         document.querySelectorAll('.slideshow-list__el:nth-child(odd)'), {
@@ -131,7 +139,7 @@ export default {
           boxShadow: '0 2px 4px rgba(0,0,0,.1)',
           ease: Expo.easeOut,
           duration: 1.5
-        }, 1.5)
+        }, 1.2)
       blogActivatedTimeline.fromTo(
         document.querySelectorAll('.slideshow-list__el:nth-child(even)'), {
           y: 0,
@@ -142,7 +150,7 @@ export default {
           alpha: 1,
           ease: Expo.easeOut,
           duration: 1.5
-        }, 1.5)
+        }, 1.2)
       blogActivatedTimeline.eventCallback('onComplete', () => {
         document.body.classList.remove('non-clickable')
       })

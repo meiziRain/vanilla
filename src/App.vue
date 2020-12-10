@@ -5,7 +5,7 @@
       <img src="@/assets/imgs/Logo.png">
       <img src="@/assets/imgs/girl-illu-triangle.png">
       <img src="@/assets/imgs/miao1.jpg">
-      <img src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg">
+      <!-- <img src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg"> -->
       <img src="@/assets/gooey-hover/img/tiles/deserts/base.jpg">
     </div>
     <div v-if="loader" id="loader" />
@@ -108,12 +108,15 @@ export default {
       this.$refs.nav.keepNavRender()
       this.initOverlay()
       this.$refs.zip.zip()
-      this.$GSAP.delayedCall(1, () => {
+      this.$GSAP.delayedCall(1 /* zip 下拉动画过渡时间 */, () => {
         this.$refs.gates.openGates()
       })
       document.querySelector('.cursor').style.visibility = 'visible'
 
-      this.$eventHub.$emit('initAnimations')
+      this.$GSAP.delayedCall(2, () => {
+        console.log('initAnimations')
+        this.$eventHub.$emit('initAnimations')
+      })
     },
     initOverlay() {
       console.log('initOverlay')
@@ -163,7 +166,7 @@ export default {
         constructor(elm) {
           this.elm = elm
           this.path = elm.querySelectorAll('path')
-          this.numPoints = 4
+          this.numPoints = 2.5
           this.duration = 1200
           this.delayPointsArray = []
           this.delayPointsMax = 180

@@ -98,6 +98,15 @@ router.beforeEach((to, from, next) => {
 router.afterEach((to, from) => {
   if (from.name !== null) {
     store.commit('toggleOverlay')
+    if (to.name === 'Home') {
+      store.commit('initHomeAnim')
+    }
+    if (to.name === 'About') {
+      store.commit('initAboutAnim')
+    }
+    if (to.name === 'Blog') {
+      store.commit('initBlogAnim')
+    }
   }
   console.log('%cafterEach--' + 'to.name:' + to.name + ',' + 'from.name:' + from.name, routerLogStyles)
 })

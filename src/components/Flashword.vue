@@ -40,23 +40,17 @@ export default {
         '#' + ('00000' + ((Math.random() * 16777215 + 0.5) >> 0).toString(16)).slice(-6)
       )
     },
-    animateTitles(dark) {
-      const getRandomNumber = (min, max) => Math.random() * (max - min) + min
-      const overlay = document.querySelector('.overlay')
-      const title = document.querySelector('.content__title')
-      charming(title)
-      const titleLetters = Array.from(title.querySelectorAll('span'))
-
-      TweenMax.to(overlay, 2, {
+    staggerTo() {
+      TweenMax.to(document.querySelector('.overlay'), 2, {
         ease: Quad.easeOut,
         opacity: 0
       })
 
-      TweenMax.set(titleLetters, {
+      TweenMax.set(Array.from(document.querySelector('.content__title').querySelectorAll('span')), {
         opacity: 0
       })
       TweenMax.staggerTo(
-        titleLetters,
+        Array.from(document.querySelector('.content__title').querySelectorAll('span')),
         1.5, {
           ease: Expo.easeOut,
           startAt: {
@@ -69,6 +63,14 @@ export default {
         },
         0.1
       )
+    },
+    animateTitles(dark) {
+      const getRandomNumber = (min, max) => Math.random() * (max - min) + min
+      const title = document.querySelector('.content__title')
+      charming(title)
+      const titleLetters = Array.from(title.querySelectorAll('span'))
+
+      this.staggerTo()
 
       const subtitle = document.querySelector('.content__subtitle')
       TweenMax.set(subtitle, {
