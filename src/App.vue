@@ -5,10 +5,12 @@
       <img src="@/assets/imgs/Logo.png">
       <img src="@/assets/imgs/girl-illu-triangle.png">
       <img src="@/assets/imgs/miao1.jpg">
-      <!-- <img src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg"> -->
+      <img src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg">
       <img src="@/assets/gooey-hover/img/tiles/deserts/base.jpg">
     </div>
-    <div v-if="loader" id="loader" />
+    <div v-if="loader" id="loader" >
+      <Loader />
+    </div>
     <div v-else id="container">
       <Zip ref="zip" />
       <Gates ref="gates" />
@@ -57,6 +59,7 @@
 
 <script>
 // import { Expo } from 'gsap'
+import Loader from '@/components/Loader.vue'
 import Zip from '@/components/Zip.vue'
 import Gates from '@/components/Gates.vue'
 import Circlee from '@/components/Circlee.vue'
@@ -73,7 +76,8 @@ export default {
     Iris,
     LightSwitch,
     Gates,
-    Zip
+    Zip,
+    Loader
   },
   data() {
     return {
@@ -340,7 +344,8 @@ export default {
 
 #loader{
   position: absolute;
-  background-color: var(--background-color);
+  // background-color: var(--background-color);
+  background-color: black;
   width: 100vw;
   height: 100vh;
   z-index: var(--top-index);
