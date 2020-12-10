@@ -6,9 +6,8 @@
       <img src="@/assets/imgs/girl-illu-triangle.png">
       <img src="@/assets/imgs/miao1.jpg">
       <img src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg">
-      <img src="@/assets/gooey-hover/img/tiles/deserts/base.jpg">
     </div>
-    <div v-if="loader" id="loader" >
+    <div v-if="loader" id="loader">
       <Loader />
     </div>
     <div v-else id="container">

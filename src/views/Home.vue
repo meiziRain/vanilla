@@ -6,6 +6,7 @@
     <div>
       <div id="word">
         <Flashword
+          v-if="flashword"
           ref="words"
           :key="refreshKey"
           :mode="dark"
@@ -59,6 +60,7 @@ export default {
 
     this.$store.state.home = this
     this.$eventHub.$on('initAnimations', () => {
+      this.flashword = true
       this.initAnim()
     })
     this.$eventHub.$on('darkListener', (data) => {

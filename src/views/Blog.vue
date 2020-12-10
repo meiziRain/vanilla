@@ -12,12 +12,11 @@
         >
           <img
             src="@/assets/imgs/miao1.jpg"
-            data-hover="@/assets/gooey-hover/img/tiles/woods/hover.jpg"
             alt="Woods & Forests"
           >
           <div class="tile__content">
             <h2 class="tile__title | title title--medium ">
-              Rocks & <span class="title__offset title__offset--medium">Mountains</span></h2>
+              山 <span class="title__offset title__offset--medium">城</span></h2>
           </div>
         </article>
         <article
@@ -28,7 +27,6 @@
           <img
             id="gardeniasImg"
             src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg"
-            data-hover="@/assets/gooey-hover/img/tiles/woods/hover.jpg"
             alt="Woods & Forests"
           >
           <div class="tile__content">
@@ -38,8 +36,7 @@
         </article>
         <article class="slideshow-list__el">
           <img
-            src="@/assets/gooey-hover/img/tiles/deserts/base.jpg"
-            data-hover="@/assets/gooey-hover/img/tiles/woods/hover.jpg"
+            src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg"
             alt="Woods & Forests"
           >
           <div class="tile__content">
@@ -50,10 +47,8 @@
       </div>
     </section>
     <div id="detail-wrapper" ref="daisies_dv">
-      <!-- eslint-disable-next-line vue/valid-v-else -->
-      <DetailView v-if="isMobile" ref="mobile_dv" @close="closeDaisiesDetailPage" />
-      <!-- eslint-disable-next-line vue/valid-v-else -->
-      <PcDetailView v-else ref="pc_daisies_dv" />
+      <!-- FIXME: 为什么这里DaisiesPcDetailView不用v-if控制不占位会导致滚动条可以下拉？ -->
+      <DaisiesPcDetailView v-if="showDaisiesPcDetailView" ref="pc_daisies_dv" />
     </div>
     <div ref="progress_ctn" class="slideshow__progress-ctn"><span ref="progress" class="slideshow__progress" /></div>
   </div>
@@ -68,12 +63,11 @@ import Scrollbar from 'smooth-scrollbar'
 import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
 import HorizontalScrollPlugin from '@/assets/js/HorizontalScrollPlugin'
 Scrollbar.use(HorizontalScrollPlugin, OverscrollPlugin)
-import DetailView from '@/views/detail/daisies/index.vue'
-import PcDetailView from '@/views/detail/daisies/pc-index.vue'
+// import DetailView from '@/views/detail/daisies/index.vue'
+import DaisiesPcDetailView from '@/views/detail/daisies/pc-index.vue'
 export default {
   components: {
-    DetailView,
-    PcDetailView
+    DaisiesPcDetailView
   },
   data() {
     return {
@@ -94,7 +88,8 @@ export default {
           x: 0
         }
       },
-      cataScroll: {}
+      cataScroll: {},
+      showDaisiesPcDetailView: false
     }
   },
   created() {
@@ -110,10 +105,9 @@ export default {
   },
   mounted() {
     console.log('Blog mounted')
-    this.$store.state.blog = this
     this.initScroller()
+    this.$store.state.blog = this
     this.$eventHub.$on('initAnimations', () => {
-      // 使用v-if字体会来不及渲染
       this.initAnim()
     })
   },
@@ -176,6 +170,7 @@ export default {
     },
     closeDaisiesDetailPage() {
       this.$refs.pc_daisies_dv.$refs.fullpage.destroy()
+      this.showDaisiesPcDetailView = false
       this.$refs.daisies_dv.classList.toggle('visible')
       this.$refs.daisies.classList.toggle('trigger')
       this.cataScroll.updatePluginOptions('horizontalScroll', {
@@ -226,7 +221,10 @@ export default {
       } else {
         this.$refs.daisies_dv.classList.toggle('visible')
         this.$refs.daisies.classList.toggle('trigger')
-        this.$refs.pc_daisies_dv.showDetail(this.scroll)
+        this.showDaisiesPcDetailView = true
+        this.$nextTick(() => {
+          this.$refs.pc_daisies_dv.showDetail(this.scroll)
+        })
       }
     },
     /* Handlers
@@ -247,7 +245,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '@/assets/gooey-hover/sass/styles.scss';
 #blog {
   width: 100vw;
   height: 100vh;
@@ -304,6 +301,21 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
+}
+
+.tile__content {
+  position: relative;
+  bottom: 16vw;
+  left: 0;
+  width: 100%;
+  transition: color .3s;
+}
+
+.tile__title {
+    margin-left: -15%;
+    margin-top: 20%;
+    white-space: nowrap;
+    font-size: 3vw;
 }
 
 .slideshow-list__el {
