@@ -7,13 +7,10 @@
         <article
           ref="daisies"
           class="slideshow-list__el"
+          :style="{backgroundImage: 'url('+ require('@/assets/imgs/miao1.jpg') +')'}"
           @click="showDetail('Daisies')"
           @mouseenter="articleHover('rgb(207, 130, 125)')"
         >
-          <img
-            src="@/assets/imgs/miao1.jpg"
-            alt="Woods & Forests"
-          >
           <div class="tile__content">
             <h2 class="tile__title | title title--medium ">
               山 <span class="title__offset title__offset--medium">城</span></h2>
@@ -22,23 +19,18 @@
         <article
           ref="gardenias"
           class="slideshow-list__el"
+          :style="{backgroundImage: 'url('+ require('@/assets/imgs/miao1.jpg') +')'}"
           @mouseenter="articleHover('rgb(136, 114, 103)')"
         >
-          <img
-            id="gardeniasImg"
-            src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg"
-            alt="Woods & Forests"
-          >
           <div class="tile__content">
             <h2 class="tile__title | title title--medium ">
               Rocks & <span class="title__offset title__offset--medium">Mountains</span></h2>
           </div>
         </article>
-        <article class="slideshow-list__el">
-          <img
-            src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg"
-            alt="Woods & Forests"
-          >
+        <article
+          class="slideshow-list__el"
+          :style="{backgroundImage: 'url('+ require('@/assets/imgs/miao1.jpg') +')'}"
+        >
           <div class="tile__content">
             <h2 class="tile__title | title title--medium ">
               Rocks & <span class="title__offset title__offset--medium">Mountains</span></h2>
@@ -304,10 +296,6 @@ export default {
 }
 
 .tile__content {
-  position: relative;
-  bottom: 16vw;
-  left: 0;
-  width: 100%;
   transition: color .3s;
 }
 
@@ -323,10 +311,14 @@ export default {
   width: 40vw;
   height: 60vh;
   min-width: 25rem;
-  border-radius: var(--main-border-radius);
   max-width: 40vmin;
+  background-size: cover;
   margin-left: 15vw;
+  transition: opacity 1s;
   // box-shadow: 5px 5px 10px  2px rgba(0,0,0,0.6);
+  &:nth-child(1){
+    border-radius: 10px 100px / 120px;
+  }
 }
 
 .closer{
@@ -362,22 +354,6 @@ export default {
 .visible{
   opacity: 1 !important;
   z-index: var(--top-index) !important;
-}
-
-.slideshow-list__el{
-  transition: opacity 1s;
-}
-
-img {
-  // relative/absolute/fixed  z-index被激活，
-  // 如果不设置#mobile的z-index, nav的层级仍然小于这个，原因在于z-index取决于父级元素
-  position: relative;
-  border-radius: var(--main-border-radius);
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transition: opacity .3s;
 }
 
 @media (max-width: 920px) {
