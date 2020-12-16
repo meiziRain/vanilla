@@ -22,10 +22,11 @@
                 <br> modernizar a los clásicos
               </div>
             </div>
-
           </div>
         </div>
-        <div style="height: 100vh" />
+        <div style="height: 100vh">
+
+        </div>
       </div>
     </div>
   </div>
@@ -90,16 +91,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-img{
-  width: 100%;
-  display: block;
-}
-
 #about{
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  background: var(--background-color);
+  // background: var(--background-color);
+  background-color: rgb(253, 251, 243);
 }
 
 #about-scroll-viewport{

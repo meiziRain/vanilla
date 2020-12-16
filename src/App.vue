@@ -14,7 +14,7 @@
       <Zip ref="zip" />
       <Gates ref="gates" />
       <!-- 正文 -->
-      <svg class="shape-overlays" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <svg class="shape-overlays shape-overlays-home-to-others" viewBox="0 0 100 100" preserveAspectRatio="none">
         <path class="shape-overlays__path" />
         <path class="shape-overlays__path" />
         <path class="shape-overlays__path" />
@@ -44,7 +44,7 @@
         </div>
       </div>
       <div id="pc">
-        <LightSwitch v-if="false" id="pc-light-switch" />
+        <LightSwitch id="pc-light-switch" />
         <Iris id="pc-nav" ref="nav" />
         <Logo id="pc-logo" />
         <Circlee id="logo-circle" size="8vw" />
@@ -554,10 +554,20 @@ $cursor-color: var(--cursor-color);  //mix-blend-mode 元素颜色必须设置�
 }
 
 .shape-overlays {
-	--path-fill-1: white;
-	--path-fill-2: #869ccc;
-	--path-fill-3: black;
-	--path-fill-4: white;
+  &-home-to-others{
+    --path-fill-1: #fdfbf3;
+    --path-fill-2: #869ccc;
+    --path-fill-3: black;
+    --path-fill-4: #c6a7a4;
+  }
+
+  &-others-to-home{
+    --path-fill-1: #c6a7a4;
+    --path-fill-2: #869ccc;
+    --path-fill-3: black;
+    --path-fill-4: #fdfbf3;
+  }
+
   z-index: 1000000;
 	width: 100vw;
 	height: 100vh;

@@ -241,7 +241,8 @@ export default {
   width: 100vw;
   height: 100vh;
   /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
-  background-color: var(--background-color);
+  // background-color: var(--background-color);
+  background-color: rgb(253, 251, 243);
   transition-property: background-color;
   -webkit-transition-property: background-color;
   transition-duration: 0.8s;

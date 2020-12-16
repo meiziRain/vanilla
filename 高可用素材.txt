@@ -59,7 +59,7 @@ https://tympanus.net/Development/MorphingPageTransition/index2.html#
 20. 滚动块指示器， 优先级 中
 https://tympanus.net/Development/NavigationIndicators/#Hagos
 
-21. 把这个滚动页效果给偷了 优先级 高 FIXME:
+21. 把这个滚动页效果给偷了
 https://www.bien-fonde.com/en/
 
 22. console.log 打印图片 优先级 高 FIXME:

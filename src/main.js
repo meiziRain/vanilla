@@ -93,6 +93,14 @@ router.beforeEach((to, from, next) => {
     store.commit('toggleOverlay')
     next() // 如果匹配到正确跳转
   }
+
+  if (from.name === 'Home') {
+    document.querySelector('.shape-overlays').classList.add('shape-overlays-home-to-others')
+    document.querySelector('.shape-overlays').classList.remove('shape-overlays-others-to-home')
+  } else {
+    document.querySelector('.shape-overlays').classList.add('shape-overlays-others-to-home')
+    document.querySelector('.shape-overlays').classList.remove('shape-overlays-home-to-others')
+  }
 })
 
 router.afterEach((to, from) => {

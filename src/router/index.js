@@ -11,7 +11,11 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
-    component: () => import(/* webpackChunkName: "blog" */ '../views/Home.vue')
+    component: () => import(/* webpackChunkName: "blog" */ '../views/Home.vue'),
+    meta: {
+      title: 'HOME',
+      keepAlive: true
+    }
   },
   {
     path: '/blog',
@@ -19,7 +23,11 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "blog" */ '../views/Blog.vue')
+    component: () => import(/* webpackChunkName: "blog" */ '../views/Blog.vue'),
+    meta: {
+      title: 'BLOG',
+      keepAlive: true
+    }
   },
   {
     path: '/about',
@@ -27,7 +35,11 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "blog" */ '../views/About.vue')
+    component: () => import(/* webpackChunkName: "blog" */ '../views/About.vue'),
+    meta: {
+      title: 'ABOUT',
+      keepAlive: true
+    }
   }
 ]
 

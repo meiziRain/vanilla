@@ -16,10 +16,8 @@
         <img alt="Hit counter" src="https://hitcount.io/api/_gAVzrOcg">
       </a>
       <div id="corner" />
-      <div id="magnetic-btn">
-        <router-link to="/blog">
-          <MagneticButton />
-        </router-link>
+      <div id="magnetic-btn" @click="diiiscover">
+        <MagneticButton />
       </div>
     </div>
   </div>
@@ -83,7 +81,7 @@ export default {
         duration: 1
       })
     },
-    discover() {
+    diiiscover() {
       this.$router.push('blog')
     }
   }
@@ -91,7 +89,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#home{
+#home, #home-content{
   width:100vw;
   height: 100vh;
   // background-color: var(--background-color);
