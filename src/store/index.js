@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     isMobile: false,
     overlay: {},
+    flashword: false,
     home: {}, // home, about, blog
     blog: {},
     about: {}

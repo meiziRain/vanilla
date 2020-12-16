@@ -118,6 +118,7 @@ export default {
 
       this.$GSAP.delayedCall(2, () => {
         console.log('initAnimations')
+        this.$store.state.flashword = true
         this.$eventHub.$emit('initAnimations')
       })
     },

@@ -6,7 +6,7 @@
     <div>
       <div id="word">
         <Flashword
-          v-if="flashword"
+          v-if="$store.state.flashword"
           ref="words"
           :key="refreshKey"
           :mode="dark"
@@ -41,7 +41,6 @@ export default {
   data() {
     return {
       dark: false,
-      flashword: false,
       refreshKey: '',
       homeBgImage: require('@/assets/imgs/food.png'),
       bgImage: require('@/assets/imgs/girl-illu-triangle.png')
@@ -55,10 +54,8 @@ export default {
   },
   mounted() {
     console.log('Home mounted')
-
     this.$store.state.home = this
     this.$eventHub.$on('initAnimations', () => {
-      this.flashword = true
       this.initAnim()
     })
     this.$eventHub.$on('darkListener', (data) => {
