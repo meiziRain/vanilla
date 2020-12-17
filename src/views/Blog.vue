@@ -9,7 +9,9 @@
           class="slideshow-list__el"
           :style="{backgroundImage: 'url('+ require('@/assets/imgs/miao1.jpg') +')'}"
           @click="showDetail('Daisies')"
-          @mouseenter="articleHover('rgb(207, 130, 125)')"
+          @mouseenter="articleMouseenter('rgb(207, 130, 125)')"
+          @mouseleave="articleMouseleave"
+          @mousemove="articleMove"
         >
           <div class="tile__content">
             <h2 class="tile__title | title title--medium ">
@@ -20,7 +22,8 @@
           ref="gardenias"
           class="slideshow-list__el"
           :style="{backgroundImage: 'url('+ require('@/assets/imgs/miao1.jpg') +')'}"
-          @mouseenter="articleHover('rgb(136, 114, 103)')"
+          @mouseenter="articleMouseenter('rgb(136, 114, 103)')"
+          @mousemove="articleMove"
         >
           <div class="tile__content">
             <h2 class="tile__title | title title--medium ">
@@ -30,6 +33,7 @@
         <article
           class="slideshow-list__el"
           :style="{backgroundImage: 'url('+ require('@/assets/imgs/miao1.jpg') +')'}"
+          @mousemove="articleMove"
         >
           <div class="tile__content">
             <h2 class="tile__title | title title--medium ">
@@ -48,7 +52,7 @@
 
 <script>
 // eslint-disable-next-line no-unused-vars
-import { Power1, Power2, Power4, Sine, Expo } from 'gsap'
+import { Power1, Power2, Power3, Power4, Sine, Expo } from 'gsap'
 import { map } from '@/assets/js/utils'
 // 滚动
 import Scrollbar from 'smooth-scrollbar'
@@ -57,6 +61,7 @@ import HorizontalScrollPlugin from '@/assets/js/HorizontalScrollPlugin'
 Scrollbar.use(HorizontalScrollPlugin, OverscrollPlugin)
 // import DetailView from '@/views/detail/daisies/index.vue'
 import DaisiesPcDetailView from '@/views/detail/daisies/pc-index.vue'
+import { getMousePos } from '@/assets/js/utils.js'
 export default {
   components: {
     DaisiesPcDetailView
@@ -99,6 +104,8 @@ export default {
     console.log('Blog mounted')
     this.initScroller()
     this.$store.state.blog = this
+
+    // this.initEvents()
     this.$eventHub.$on('initAnimations', () => {
       this.initAnim()
     })
@@ -122,7 +129,7 @@ export default {
           boxShadow: ''
         }, {
           y: 40,
-          boxShadow: '0 2px 4px rgba(0,0,0,.1)',
+          boxShadow: '5px 5px 10px  2px rgba(0,0,0,0.6)',
           ease: Expo.easeOut,
           duration: 1.5
         }, 1.2)
@@ -132,7 +139,7 @@ export default {
           boxShadow: ''
         }, {
           y: -40,
-          boxShadow: '0 2px 4px rgba(0,0,0,.1)',
+          boxShadow: '5px 5px 10px  2px rgba(0,0,0,0.6)',
           alpha: 1,
           ease: Expo.easeOut,
           duration: 1.5
@@ -141,8 +148,26 @@ export default {
         document.body.classList.remove('non-clickable')
       })
     },
-    articleHover(color) {
-      // this.$refs.blog.style.setProperty('background-color', color)
+    articleMouseleave(ev) {
+      requestAnimationFrame(() => {
+        // Reset tilt and image scale.
+        this.$GSAP.to(ev.target.querySelectorAll('.tile__content'), 1.8, {
+          ease: 'Power4.easeOut',
+          x: 0,
+          y: 0,
+          rotationX: 0,
+          rotationY: 0
+        })
+      })
+    },
+    articleMove(ev) {
+      requestAnimationFrame(() => {
+        // Tilt the current slide.
+        this.tilt(ev)
+      })
+    },
+    articleMouseenter(color) {
+      console.log(color)
       this.$refs.bg_title.style.setProperty('color', color)
     },
     initScroller() {
@@ -232,6 +257,43 @@ export default {
     updateScrollBar() {
       const progress = map(this.progress * 100, 0, 100, 5, 100)
       this.$GSAP.to(this.$refs.progress, 0.3, { xPercent: progress, force3D: true })
+    },
+    tilt(ev) {
+      const mousepos = getMousePos(ev)
+      // Document scrolls.
+      const docScrolls = {
+        left: document.body.scrollLeft + document.documentElement.scrollLeft,
+        top: document.body.scrollTop + document.documentElement.scrollTop
+      }
+      const bounds = ev.target.getBoundingClientRect()
+      // Mouse position relative to the main element (this.DOM.el).
+      const relmousepos = {
+        x: mousepos.x - bounds.left - docScrolls.left,
+        y: mousepos.y - bounds.top - docScrolls.top
+      }
+
+      // Move the element from -20 to 20 pixels in both x and y axis.
+      // Rotate the element from -15 to 15 degrees in both x and y axis.
+      const t = { x: [-20, 20], y: [-20, 20] }
+      const r = { x: [-15, 15], y: [-15, 15] }
+
+      const transforms = {
+        translation: {
+          x: (t.x[1] - t.x[0]) / bounds.width * relmousepos.x + t.x[0],
+          y: (t.y[1] - t.y[0]) / bounds.height * relmousepos.y + t.y[0]
+        },
+        rotation: {
+          x: (r.x[1] - r.x[0]) / bounds.height * relmousepos.y + r.x[0],
+          y: (r.y[1] - r.y[0]) / bounds.width * relmousepos.x + r.y[0]
+        }
+      }
+
+      // Move the texts wrap.
+      this.$GSAP.to(ev.target.querySelectorAll('.tile__content'), 1.5, {
+        ease: 'Power1.easeOut',
+        x: -1 * transforms.translation.x,
+        y: -1 * transforms.translation.y
+      })
     }
   }
 }
@@ -301,20 +363,19 @@ export default {
 }
 
 .tile__title {
-    margin-left: -15%;
-    margin-top: 20%;
-    white-space: nowrap;
-    font-size: 3vw;
+  margin-top: 20%;
+  margin-left: -15%;
+  white-space: nowrap;
+  font-size: 3vw;
 }
 
 .slideshow-list__el {
-  cursor: pointer;
   width: 40vw;
   height: 60vh;
+  margin-left: 15vw;
   min-width: 25rem;
   max-width: 40vmin;
   background-size: cover;
-  margin-left: 15vw;
   transition: opacity 1s;
   // box-shadow: 5px 5px 10px  2px rgba(0,0,0,0.6);
   &:nth-child(1){

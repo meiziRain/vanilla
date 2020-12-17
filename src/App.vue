@@ -14,7 +14,7 @@
       <Zip ref="zip" />
       <Gates ref="gates" />
       <!-- 正文 -->
-      <svg class="shape-overlays shape-overlays-home-to-others" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <svg class="shape-overlays" viewBox="0 0 100 100" preserveAspectRatio="none">
         <path class="shape-overlays__path" />
         <path class="shape-overlays__path" />
         <path class="shape-overlays__path" />

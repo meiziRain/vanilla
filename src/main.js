@@ -94,12 +94,13 @@ router.beforeEach((to, from, next) => {
     next() // 如果匹配到正确跳转
   }
 
+  const overlays = document.querySelector('.shape-overlays')
   if (from.name === 'Home') {
-    document.querySelector('.shape-overlays').classList.add('shape-overlays-home-to-others')
-    document.querySelector('.shape-overlays').classList.remove('shape-overlays-others-to-home')
+    overlays.classList.remove('shape-overlays-others-to-home')
+    overlays.classList.add('shape-overlays-home-to-others')
   } else {
-    document.querySelector('.shape-overlays').classList.add('shape-overlays-others-to-home')
-    document.querySelector('.shape-overlays').classList.remove('shape-overlays-home-to-others')
+    overlays.classList.remove('shape-overlays-home-to-others')
+    overlays.classList.add('shape-overlays-others-to-home')
   }
 })
 
