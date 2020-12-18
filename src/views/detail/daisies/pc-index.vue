@@ -7,7 +7,7 @@
       <div class="section active">
         <div class="section-content section-content-offset">
           <h2 class="section-one-text section-one-title">
-            Rocks & <span class="title__offset title__offset--medium">Mountains</span>
+            重庆-阿巴阿巴
           </h2>
           <p id="section-one-paragraph" class="section-one-text section-font">
             <RoughNotation
@@ -323,6 +323,7 @@ export default {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  font-family: '楷体';
 }
 
 .daisies_closer{

@@ -1,44 +1,36 @@
 <template>
   <!-- :style="{backgroundImage: 'url('+bgImage+')'}" !-->
   <div id="blog" ref="blog">
-    <h1 ref="bg_title" class="page-title | title">What's your next <span class="slideshow__title__offset | title__offset">destination?</span></h1>
+    <h1 ref="bg_title" class="page-title | title">What's your next <br> <span class="slideshow__title__offset | title__offset">destination?</span></h1>
     <section class="cata">
       <div class="scroll-content">
         <article
           ref="daisies"
+          id="daisies"
           class="slideshow-list__el"
-          :style="{backgroundImage: 'url('+ require('@/assets/imgs/miao1.jpg') +')'}"
+          :style="{backgroundImage: 'url('+ require('@/assets/imgs/shancheng.jpg') +')'}"
           @click="showDetail('Daisies')"
-          @mouseenter="articleMouseenter('rgb(207, 130, 125)')"
+          @mouseenter="articleMouseenter('rgb(166, 142, 119)')"
           @mouseleave="articleMouseleave"
           @mousemove="articleMove"
         >
-          <div class="tile__content">
-            <h2 class="tile__title | title title--medium ">
-              山 <span class="title__offset title__offset--medium">城</span></h2>
-          </div>
+        <p
+          class="tile__content tile__title"
+          :style="{backgroundImage: 'url('+ require('@/assets/imgs/sugar-bee.jpg') +')'}">
+            山城
+        </p>
         </article>
         <article
           ref="gardenias"
           class="slideshow-list__el"
-          :style="{backgroundImage: 'url('+ require('@/assets/imgs/miao1.jpg') +')'}"
           @mouseenter="articleMouseenter('rgb(136, 114, 103)')"
           @mousemove="articleMove"
         >
-          <div class="tile__content">
-            <h2 class="tile__title | title title--medium ">
-              Rocks & <span class="title__offset title__offset--medium">Mountains</span></h2>
-          </div>
         </article>
         <article
           class="slideshow-list__el"
-          :style="{backgroundImage: 'url('+ require('@/assets/imgs/miao1.jpg') +')'}"
           @mousemove="articleMove"
         >
-          <div class="tile__content">
-            <h2 class="tile__title | title title--medium ">
-              Rocks & <span class="title__offset title__offset--medium">Mountains</span></h2>
-          </div>
         </article>
       </div>
     </section>
@@ -151,7 +143,7 @@ export default {
     articleMouseleave(ev) {
       requestAnimationFrame(() => {
         // Reset tilt and image scale.
-        this.$GSAP.to(ev.target.querySelectorAll('.tile__content'), 1.8, {
+        this.$GSAP.to(ev.target.querySelectorAll('.move-text'), 1.8, {
           ease: 'Power4.easeOut',
           x: 0,
           y: 0,
@@ -167,7 +159,6 @@ export default {
       })
     },
     articleMouseenter(color) {
-      console.log(color)
       this.$refs.bg_title.style.setProperty('color', color)
     },
     initScroller() {
@@ -289,7 +280,7 @@ export default {
       }
 
       // Move the texts wrap.
-      this.$GSAP.to(ev.target.querySelectorAll('.tile__content'), 1.5, {
+      this.$GSAP.to(ev.target.querySelectorAll('.move-text'), 1.5, {
         ease: 'Power1.easeOut',
         x: -1 * transforms.translation.x,
         y: -1 * transforms.translation.y
@@ -358,23 +349,31 @@ export default {
   flex-wrap: nowrap;
 }
 
-.tile__content {
+.tile__content move-text {
   transition: color .3s;
 }
 
 .tile__title {
-  margin-top: 20%;
-  margin-left: -15%;
+  position:absolute;
+  bottom: 10%;
+  left: -30%;
   white-space: nowrap;
-  font-size: 3vw;
+  font-size: 6em;
+  background-size: cover;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;//设置文字填充色为透明
+  color:transparent;
+  &:first-letter {
+    font-size:4em;
+  }
 }
 
 .slideshow-list__el {
-  width: 40vw;
+  width: 40vh;
   height: 60vh;
   margin-left: 15vw;
   min-width: 25rem;
-  max-width: 40vmin;
+  max-width: 40vh;
   background-size: cover;
   transition: opacity 1s;
   // box-shadow: 5px 5px 10px  2px rgba(0,0,0,0.6);
@@ -405,6 +404,10 @@ export default {
   opacity: 0;
   z-index: -1;
   transition: opacity .4s ease-in-out;
+}
+
+#daisies{
+  font-family: '楷体';
 }
 
 .section{

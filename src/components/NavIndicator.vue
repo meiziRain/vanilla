@@ -138,7 +138,7 @@ export default {
 	left: 25%;
 	width: 50%;
 	height: 50%;
-	background: var(--background-color);
+	background: red;
 	-webkit-transition: -webkit-transform 0.5s;
 	transition: transform 0.5s;
 	-webkit-transition-timing-function: cubic-bezier(0.2,1,0.3,1);
