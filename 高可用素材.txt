@@ -80,3 +80,5 @@ https://www.jianshu.com/p/d30bc9e83e00
 https://bashooka.com/coding/javascript-css-libraries-for-hover-animations/
 
 28. http://ariona.github.io/hover3d/index.html
+
+29. https://tympanus.net/Development/HorizontalSmoothScrollLayout/index4.html
