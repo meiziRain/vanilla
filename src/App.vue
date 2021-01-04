@@ -110,19 +110,22 @@ export default {
   },
   methods: {
     init() {
-      this.initCursor()
-      this.$refs.nav.keepNavRender()
-      this.initOverlay()
-      this.$refs.zip.zip()
-      this.$GSAP.delayedCall(1 /* zip 下拉动画过渡时间 */, () => {
-        this.$refs.gates.openGates()
-      })
-      document.querySelector('.cursor').style.visibility = 'visible'
+      document.fonts.ready.then(() => {
+        console.log('active')
+        this.initCursor()
+        this.$refs.nav.keepNavRender()
+        this.initOverlay()
+        this.$refs.zip.zip()
+        this.$GSAP.delayedCall(1 /* zip 下拉动画过渡时间 */, () => {
+          this.$refs.gates.openGates()
+        })
+        document.querySelector('.cursor').style.visibility = 'visible'
 
-      this.$GSAP.delayedCall(2, () => {
-        console.log('initAnimations')
-        this.$store.state.flashword = true
-        this.$eventHub.$emit('initAnimations')
+        this.$GSAP.delayedCall(2, () => {
+          console.log('initAnimations')
+          this.$store.state.flashword = true
+          this.$eventHub.$emit('initAnimations')
+        })
       })
     },
     initOverlay() {
@@ -585,19 +588,23 @@ $cursor-color: var(--cursor-color);  //mix-blend-mode 元素颜色必须设置�
 	pointer-events: auto;
 }
 
-.shape-overlays__path:nth-of-type(1) {
-	fill: var(--path-fill-1);
-}
+.shape-overlays__path {
+  will-change: transform;
 
-.shape-overlays__path:nth-of-type(2) {
-	fill: var(--path-fill-2);
-}
+  &:nth-of-type(1) {
+    fill: var(--path-fill-1);
+  }
 
-.shape-overlays__path:nth-of-type(3) {
-	fill: var(--path-fill-3);
-}
+  &:nth-of-type(2) {
+    fill: var(--path-fill-2);
+  }
 
-.shape-overlays__path:nth-of-type(4) {
-	fill: var(--path-fill-4);
+  &:nth-of-type(3) {
+    fill: var(--path-fill-3);
+  }
+
+  &:nth-of-type(4) {
+    fill: var(--path-fill-4);
+  }
 }
 </style>

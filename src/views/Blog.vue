@@ -5,8 +5,8 @@
     <section class="cata">
       <div class="scroll-content">
         <article
-          ref="daisies"
           id="daisies"
+          ref="daisies"
           class="slideshow-list__el"
           :style="{backgroundImage: 'url('+ require('@/assets/imgs/shancheng.jpg') +')'}"
           @click="showDetail('Daisies')"
@@ -14,24 +14,24 @@
           @mouseleave="articleMouseleave"
           @mousemove="articleMove"
         >
-        <p
-          class="tile__content tile__title"
-          :style="{backgroundImage: 'url('+ require('@/assets/imgs/sugar-bee.jpg') +')'}">
+        <!-- 使用大图sugar-bee.jpg(>3M)时，第一次加载位移动画会卡顿 -->
+          <p
+            class="tile__content tile__title"
+            :style="{backgroundImage: 'url('+ require('@/assets/imgs/sugar-bee.jpg') +')'}"
+          >
             山城
-        </p>
+          </p>
         </article>
         <article
           ref="gardenias"
           class="slideshow-list__el"
           @mouseenter="articleMouseenter('rgb(136, 114, 103)')"
           @mousemove="articleMove"
-        >
-        </article>
+        />
         <article
           class="slideshow-list__el"
           @mousemove="articleMove"
-        >
-        </article>
+        />
       </div>
     </section>
     <div id="detail-wrapper" ref="daisies_dv">
@@ -99,13 +99,20 @@ export default {
 
     // this.initEvents()
     this.$eventHub.$on('initAnimations', () => {
-      this.initAnim()
+      this.$GSAP.set(document.querySelectorAll('.slideshow-list__el'), {
+        alpha: 0,
+        y: 200,
+        onComplete: () => {
+          this.initAnim()
+        }
+      })
     })
   },
   methods: {
     initAnim() {
       this.$GSAP.killTweensOf((document.querySelectorAll('.slideshow-list__el')))
       const blogActivatedTimeline = this.$GSAP.timeline({ repeat: 0, repeatDelay: 0 })
+      console.time('slideshow')
       blogActivatedTimeline.fromTo(document.querySelectorAll('.slideshow-list__el'), {
         alpha: 0,
         y: 200
@@ -113,7 +120,10 @@ export default {
         alpha: 1,
         y: 0,
         ease: Expo.easeOut,
-        duration: 1
+        duration: 1,
+        onComplete: () => {
+          console.timeEnd('slideshow')
+        }
       })
       blogActivatedTimeline.fromTo(
         document.querySelectorAll('.slideshow-list__el:nth-child(odd)'), {
@@ -369,9 +379,11 @@ export default {
 }
 
 .slideshow-list__el {
+  opacity: 0;
   width: 40vh;
   height: 60vh;
   margin-left: 15vw;
+  will-change: transform, opacity;
   min-width: 25rem;
   max-width: 40vh;
   background-size: cover;

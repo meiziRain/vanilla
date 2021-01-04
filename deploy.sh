@@ -10,7 +10,7 @@ npm run build
 
 git add .
 
-git commit -m 'deploy'
+git commit -m '大图卡顿'
 
 # 部署到 https://<USERNAME>.github.io/<REPO>
 git push gitee master

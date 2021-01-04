@@ -17,7 +17,7 @@
       </a>
       <div id="corner" />
       <div id="magnetic-btn" @click="diiiscover">
-        <MagneticButton />
+        <MagneticButton ref="btn" />
       </div>
     </div>
   </div>
@@ -75,7 +75,11 @@ export default {
         scale: 1,
         ease: Expo.easeOut,
         force3D: true,
-        duration: 1
+        duration: 1,
+        onComplete: () => {
+          // 现象: 调整视口大小后才会浮动 原因: 时机？
+          this.$refs.btn.init()
+        }
       })
     },
     diiiscover() {
