@@ -11,7 +11,7 @@ export default {
   name: 'Logo',
   data() {
     return {
-      bgImage: require('@/assets/imgs/Logo.png')
+      bgImage: require('@/assets/imgs/red-head-high.jpg')
     }
   },
   created() {

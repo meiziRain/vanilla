@@ -12,7 +12,22 @@
 <script>
 export default {
   name: 'NavIndicator',
+  props: {
+    outcolor: {
+      type: String,
+      default: '#c1dff9',
+      description: '圆圈和字的颜色'
+    },
+    incolor: {
+      type: String,
+      default: '#c1dff9',
+      description: '圆圈和字的颜色'
+    }
+  },
   mounted() {
+    const nav = document.querySelector('.nav')
+    nav.style.setProperty('--outcolor', this.outcolor)
+    nav.style.setProperty('--incolor', this.incolor)
     var navItems = [].slice.call(document.querySelectorAll('.nav__item'))
     navItems.forEach((item, index) => {
       item.addEventListener('click', () => {
@@ -49,6 +64,8 @@ export default {
 /* General styles */
 
 .nav {
+	--outcolor: #c1dff9;
+	--incolor: red;
 	position: relative;
 	width: 8em;
 	margin: 0 0 0 3em;
@@ -138,7 +155,7 @@ export default {
 	left: 25%;
 	width: 50%;
 	height: 50%;
-	background: red;
+	background: var(--incolor);
 	-webkit-transition: -webkit-transform 0.5s;
 	transition: transform 0.5s;
 	-webkit-transition-timing-function: cubic-bezier(0.2,1,0.3,1);
@@ -174,7 +191,7 @@ export default {
 
 .nav--shamso .nav__item--current::after {
 	opacity: 1;
-	box-shadow: inset 0 0 0 3px #c1dff9;
+	box-shadow: inset 0 0 0 3px var(--outcolor);
 	-webkit-transform: scale3d(1,1,1);
 	transform: scale3d(1,1,1);
 }
@@ -187,7 +204,7 @@ export default {
 	white-space: nowrap;
 	pointer-events: none;
 	opacity: 0;
-	color: #c1dff9;
+	color: var(--outcolor);
 	-webkit-transform: scale3d(0.1,0.1,1);
 	transform: scale3d(0.1,0.1,1);
 	-webkit-transform-origin: 50% 50%;

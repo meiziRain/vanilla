@@ -164,12 +164,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/fonts/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2"
   },
   {
-    "revision": "547a04697844cf81d28d",
-    "url": "css/app.6ac33394.css"
+    "revision": "d119199d6252fd972e5f",
+    "url": "css/app.7f32355f.css"
   },
   {
-    "revision": "69f6e763b10b4f8aecb8",
-    "url": "css/blog.b6772dac.css"
+    "revision": "d150056aaabe6c11eb42",
+    "url": "css/blog.32244f0c.css"
   },
   {
     "revision": "5f1295d5698ba955da57",
@@ -212,24 +212,28 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/miao1.0a938cc4.jpg"
   },
   {
-    "revision": "a5620371379c1d366c39f33ff578735b",
-    "url": "img/shancheng.a5620371.jpg"
+    "revision": "761b9bcacf73567ec176cee13b667623",
+    "url": "img/red-head-high.761b9bca.jpg"
+  },
+  {
+    "revision": "4112bd41b68ddf276c045c6320c193be",
+    "url": "img/shancheng-high.4112bd41.jpg"
   },
   {
     "revision": "dd754839444390cfa4265e48baa39019",
     "url": "img/sugar-bee.dd754839.jpg"
   },
   {
-    "revision": "c84618a92fe034887b03d6b7cfdaa2e4",
+    "revision": "5e244c3f706ed446ac3e6e019b5d67db",
     "url": "index.html"
   },
   {
-    "revision": "547a04697844cf81d28d",
-    "url": "js/app.31296a51.js"
+    "revision": "d119199d6252fd972e5f",
+    "url": "js/app.eea5d709.js"
   },
   {
-    "revision": "69f6e763b10b4f8aecb8",
-    "url": "js/blog.3805724a.js"
+    "revision": "d150056aaabe6c11eb42",
+    "url": "js/blog.51b22d2c.js"
   },
   {
     "revision": "5f1295d5698ba955da57",

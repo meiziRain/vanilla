@@ -29,6 +29,9 @@
   --top-index: 99999;
   --the-top: 100000;
 
+  // 使被转换的子元素保留其 3D 转换：
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
 }
 
 [data-user-color-scheme='light'] {
@@ -45,6 +48,15 @@
     --background-color:var(--background-dark);
     --border-color: var(--border-dark);
 }
+
+// 弥补图片缩放产生的差异
+// img{
+//     image-rendering: -moz-crisp-edges; 
+//     image-rendering: -o-crisp-edges; 
+//     image-rendering: -webkit-optimize-contrast; 
+//     image-rendering: crisp-edges; 
+//     -ms-interpolation-mode: nearest-neighbor;
+// }
 
 body {
     margin: 0;

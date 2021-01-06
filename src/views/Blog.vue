@@ -8,29 +8,31 @@
           id="daisies"
           ref="daisies"
           class="slideshow-list__el"
-          :style="{backgroundImage: 'url('+ require('@/assets/imgs/shancheng.jpg') +')'}"
           @click="showDetail('Daisies')"
           @mouseenter="articleMouseenter('rgb(166, 142, 119)')"
-          @mouseleave="articleMouseleave"
-          @mousemove="articleMove"
         >
-        <!-- 使用大图sugar-bee.jpg(>3M)时，第一次加载位移动画会卡顿 -->
-          <p
-            class="tile__content tile__title"
-            :style="{backgroundImage: 'url('+ require('@/assets/imgs/sugar-bee.jpg') +')'}"
-          >
-            山城
-          </p>
+          <img src="@/assets/imgs/shancheng-high.jpg">
         </article>
-        <article
+        <!-- 使用大图sugar-bee.jpg(>3M)时，第一次加载位移动画会卡顿 -->
+        <!-- :style="{backgroundImage: 'url('+ require('@/assets/imgs/sugar-bee.jpg') +')'}" -->
+        <!-- <img style="width: 100%; height: 100%;" src="@/assets/imgs/shancheng-high.jpg"> -->
+        <!-- <p
+            class="tile__content tile__title"
+            :style="{backgroundImage: 'url('+ require('@/assets/imgs/shancheng-high.jpg') +')'}"
+          >
+            Green
+          </p> -->
+        <img
+          id="gardenias"
           ref="gardenias"
           class="slideshow-list__el"
+          src="@/assets/imgs/shancheng-high.jpg"
+          @click="showDetail('Gardenias')"
           @mouseenter="articleMouseenter('rgb(136, 114, 103)')"
-          @mousemove="articleMove"
-        />
+        >
         <article
+          :style="{backgroundImage: 'url('+ require('@/assets/imgs/shancheng-high.jpg') +')'}"
           class="slideshow-list__el"
-          @mousemove="articleMove"
         />
       </div>
     </section>
@@ -53,7 +55,7 @@ import HorizontalScrollPlugin from '@/assets/js/HorizontalScrollPlugin'
 Scrollbar.use(HorizontalScrollPlugin, OverscrollPlugin)
 // import DetailView from '@/views/detail/daisies/index.vue'
 import DaisiesPcDetailView from '@/views/detail/daisies/pc-index.vue'
-import { getMousePos } from '@/assets/js/utils.js'
+// import { getMousePos } from '@/assets/js/utils.js'
 export default {
   components: {
     DaisiesPcDetailView
@@ -89,7 +91,8 @@ export default {
     console.log('Blog activated')
     this.$GSAP.set(document.querySelectorAll('.slideshow-list__el'), {
       alpha: 0,
-      y: 200
+      y: 200,
+      force3D: true
     })
   },
   mounted() {
@@ -102,6 +105,7 @@ export default {
       this.$GSAP.set(document.querySelectorAll('.slideshow-list__el'), {
         alpha: 0,
         y: 200,
+        force3D: true,
         onComplete: () => {
           this.initAnim()
         }
@@ -115,12 +119,14 @@ export default {
       console.time('slideshow')
       blogActivatedTimeline.fromTo(document.querySelectorAll('.slideshow-list__el'), {
         alpha: 0,
-        y: 200
+        y: 200,
+        force3D: true
       }, {
         alpha: 1,
         y: 0,
         ease: Expo.easeOut,
         duration: 1,
+        force3D: true,
         onComplete: () => {
           console.timeEnd('slideshow')
         }
@@ -128,23 +134,22 @@ export default {
       blogActivatedTimeline.fromTo(
         document.querySelectorAll('.slideshow-list__el:nth-child(odd)'), {
           y: 0,
-          boxShadow: ''
+          force3D: true
         }, {
           y: 40,
-          boxShadow: '5px 5px 10px  2px rgba(0,0,0,0.6)',
           ease: Expo.easeOut,
-          duration: 1.5
+          duration: 1.5,
+          force3D: true
         }, 1.2)
       blogActivatedTimeline.fromTo(
         document.querySelectorAll('.slideshow-list__el:nth-child(even)'), {
           y: 0,
-          boxShadow: ''
+          force3D: true
         }, {
           y: -40,
-          boxShadow: '5px 5px 10px  2px rgba(0,0,0,0.6)',
-          alpha: 1,
           ease: Expo.easeOut,
-          duration: 1.5
+          duration: 1.5,
+          force3D: true
         }, 1.2)
       blogActivatedTimeline.eventCallback('onComplete', () => {
         document.body.classList.remove('non-clickable')
@@ -160,12 +165,6 @@ export default {
           rotationX: 0,
           rotationY: 0
         })
-      })
-    },
-    articleMove(ev) {
-      requestAnimationFrame(() => {
-        // Tilt the current slide.
-        this.tilt(ev)
       })
     },
     articleMouseenter(color) {
@@ -219,6 +218,9 @@ export default {
       if (item === 'Daisies') {
         this.showDaisiesDetail()
       }
+      if (item === 'Gardenias') {
+        this.showGardeniasDetail()
+      }
     },
     showDaisiesDetail() {
       // list页滚动条退场
@@ -245,6 +247,12 @@ export default {
         })
       }
     },
+    showGardeniasDetail() {
+      this.$GSAP.to('#gardenias', 0.9, {
+        scale: 1.3,
+        ease: Power2.easeInOut
+      })
+    },
     /* Handlers
     --------------------------------------------------------- */
     onScroll({ limit, offset }) {
@@ -258,43 +266,6 @@ export default {
     updateScrollBar() {
       const progress = map(this.progress * 100, 0, 100, 5, 100)
       this.$GSAP.to(this.$refs.progress, 0.3, { xPercent: progress, force3D: true })
-    },
-    tilt(ev) {
-      const mousepos = getMousePos(ev)
-      // Document scrolls.
-      const docScrolls = {
-        left: document.body.scrollLeft + document.documentElement.scrollLeft,
-        top: document.body.scrollTop + document.documentElement.scrollTop
-      }
-      const bounds = ev.target.getBoundingClientRect()
-      // Mouse position relative to the main element (this.DOM.el).
-      const relmousepos = {
-        x: mousepos.x - bounds.left - docScrolls.left,
-        y: mousepos.y - bounds.top - docScrolls.top
-      }
-
-      // Move the element from -20 to 20 pixels in both x and y axis.
-      // Rotate the element from -15 to 15 degrees in both x and y axis.
-      const t = { x: [-20, 20], y: [-20, 20] }
-      const r = { x: [-15, 15], y: [-15, 15] }
-
-      const transforms = {
-        translation: {
-          x: (t.x[1] - t.x[0]) / bounds.width * relmousepos.x + t.x[0],
-          y: (t.y[1] - t.y[0]) / bounds.height * relmousepos.y + t.y[0]
-        },
-        rotation: {
-          x: (r.x[1] - r.x[0]) / bounds.height * relmousepos.y + r.x[0],
-          y: (r.y[1] - r.y[0]) / bounds.width * relmousepos.x + r.y[0]
-        }
-      }
-
-      // Move the texts wrap.
-      this.$GSAP.to(ev.target.querySelectorAll('.move-text'), 1.5, {
-        ease: 'Power1.easeOut',
-        x: -1 * transforms.translation.x,
-        y: -1 * transforms.translation.y
-      })
     }
   }
 }
@@ -303,7 +274,6 @@ export default {
 #blog {
   width: 100vw;
   height: 100vh;
-  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
   // background-color: var(--background-color);
   background-color: rgb(253, 251, 243);
   transition-property: background-color;
@@ -380,17 +350,24 @@ export default {
 
 .slideshow-list__el {
   opacity: 0;
-  width: 40vh;
+  width: 45vh;
   height: 60vh;
   margin-left: 15vw;
-  will-change: transform, opacity;
-  min-width: 25rem;
-  max-width: 40vh;
-  background-size: cover;
+  will-change: transform, opacity; // FIXME: 会造成图片模糊?
   transition: opacity 1s;
-  // box-shadow: 5px 5px 10px  2px rgba(0,0,0,0.6);
-  &:nth-child(1){
-    border-radius: 10px 100px / 120px;
+
+  &:nth-child(3){
+    width: 40vh;
+    height: 60vh;
+    background-size: cover;
+    max-width: 40vh;
+    max-height: 60vh;
+  }
+
+  &>img{
+    width:auto;
+    height:auto;
+    max-height:100%;
   }
 }
 
@@ -419,7 +396,7 @@ export default {
 }
 
 #daisies{
-  font-family: '楷体';
+  font-family: "Poiret One", cursive;
 }
 
 .section{

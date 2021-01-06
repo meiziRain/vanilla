@@ -2,12 +2,12 @@
   <div id="daisies-detail-pc">
     <!-- Full-page will init itself automatically on `mount`. -->
     <Closer class="daisies_closer" @clickHandler="closePage" />
-    <NavIndicator id="daisies-nav" ref="daisies_nav_indicator" @choosed="onNavClick" />
+    <NavIndicator id="daisies-nav" ref="daisies_nav_indicator" outcolor="black" incolor="green" @choosed="onNavClick" />
     <full-page id="fullpage" ref="fullpage" :options="options" :skip-init="true">
       <div class="section active">
         <div class="section-content section-content-offset">
           <h2 class="section-one-text section-one-title">
-            重庆-阿巴阿巴
+            阿巴阿巴
           </h2>
           <p id="section-one-paragraph" class="section-one-text section-font">
             <RoughNotation

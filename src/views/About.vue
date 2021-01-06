@@ -25,7 +25,7 @@
           </div>
         </div>
         <div style="height: 100vh">
-
+          <img style="width:60vh;height:auto;" src="@/assets/imgs/shancheng-high.jpg">
         </div>
       </div>
     </div>
