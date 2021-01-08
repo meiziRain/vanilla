@@ -7,33 +7,22 @@
         <article
           id="daisies"
           ref="daisies"
-          class="slideshow-list__el"
+          class="slideshow-list__el odd"
           @click="showDetail('Daisies')"
           @mouseenter="articleMouseenter('rgb(166, 142, 119)')"
         >
           <img src="@/assets/imgs/shancheng-high.jpg">
+          <!-- article 放其他有内容的元素也会引起图片模糊，👴要崩溃了 -->
         </article>
-        <!-- 使用大图sugar-bee.jpg(>3M)时，第一次加载位移动画会卡顿 -->
-        <!-- :style="{backgroundImage: 'url('+ require('@/assets/imgs/sugar-bee.jpg') +')'}" -->
-        <!-- <img style="width: 100%; height: 100%;" src="@/assets/imgs/shancheng-high.jpg"> -->
-        <!-- <p
-            class="tile__content tile__title"
-            :style="{backgroundImage: 'url('+ require('@/assets/imgs/shancheng-high.jpg') +')'}"
-          >
-            Green
-          </p> -->
-        <img
+        <article
           id="gardenias"
           ref="gardenias"
           class="slideshow-list__el"
-          src="@/assets/imgs/shancheng-high.jpg"
           @click="showDetail('Gardenias')"
-          @mouseenter="articleMouseenter('rgb(136, 114, 103)')"
+          @mouseenter="articleMouseenter('rgb(166, 142, 119)')"
         >
-        <article
-          :style="{backgroundImage: 'url('+ require('@/assets/imgs/shancheng-high.jpg') +')'}"
-          class="slideshow-list__el"
-        />
+          <img src="@/assets/imgs/shancheng-high.jpg">
+        </article>
       </div>
     </section>
     <div id="detail-wrapper" ref="daisies_dv">
@@ -116,20 +105,16 @@ export default {
     initAnim() {
       this.$GSAP.killTweensOf((document.querySelectorAll('.slideshow-list__el')))
       const blogActivatedTimeline = this.$GSAP.timeline({ repeat: 0, repeatDelay: 0 })
-      console.time('slideshow')
       blogActivatedTimeline.fromTo(document.querySelectorAll('.slideshow-list__el'), {
         alpha: 0,
-        y: 200,
+        y: 100,
         force3D: true
       }, {
         alpha: 1,
         y: 0,
         ease: Expo.easeOut,
-        duration: 1,
-        force3D: true,
-        onComplete: () => {
-          console.timeEnd('slideshow')
-        }
+        duration: 0.8,
+        force3D: true
       })
       blogActivatedTimeline.fromTo(
         document.querySelectorAll('.slideshow-list__el:nth-child(odd)'), {
@@ -340,6 +325,7 @@ export default {
   white-space: nowrap;
   font-size: 6em;
   background-size: cover;
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;//设置文字填充色为透明
   color:transparent;
@@ -353,8 +339,10 @@ export default {
   width: 45vh;
   height: 60vh;
   margin-left: 15vw;
-  will-change: transform, opacity; // FIXME: 会造成图片模糊?
+  will-change: transform, opacity;
   transition: opacity 1s;
+  // transform: translate3D(0, 0, 0);
+  // overflow: hidden;
 
   &:nth-child(3){
     width: 40vh;

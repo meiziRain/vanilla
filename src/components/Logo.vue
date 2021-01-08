@@ -1,7 +1,9 @@
 <template>
   <div>
     <span class="logo-wrapper">
-      <div id="logo" :style="{backgroundImage: 'url('+bgImage+')'}" @click="goHome" />
+      <div id="logo"  @click="goHome">
+        <img src="@/assets/imgs/red-head-high.jpg">
+      </div>
     </span>
   </div>
 </template>
@@ -11,7 +13,6 @@ export default {
   name: 'Logo',
   data() {
     return {
-      bgImage: require('@/assets/imgs/red-head-high.jpg')
     }
   },
   created() {
@@ -29,9 +30,17 @@ export default {
 #logo{
   color:white;
   cursor: pointer;
+  overflow: hidden;
   border-radius: 50%;
-  background-repeat:no-repeat;
-  background-size: cover;
+
+  &>img{
+    transform: translate3D(9px, 20px, 0) scale3d(8, 8, 8);
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -o-crisp-edges;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: optimizeQuality;
+  }
 }
 </style>
 

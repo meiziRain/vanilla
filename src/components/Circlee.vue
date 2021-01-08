@@ -45,7 +45,7 @@ $displacement: 1%;
     position: absolute;
     width: 100%;
     height: 100%;
-    border: $circle-stroke dashed transparent;
+    border: $circle-stroke solid transparent;
     border-radius: 115% 140% 145% 110%/125% 140% 110% 125%;
     mix-blend-mode: screen;
     &:nth-child(1) {

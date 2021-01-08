@@ -138,8 +138,8 @@ export default {
 /*** Shamso ***/
 
 .nav--shamso .nav__item {
-	width: 2.25em;
-	height: 2.25em;
+	width: 2.5em;
+	height: 2.5em;
 }
 
 .nav--shamso .nav__item::before,
