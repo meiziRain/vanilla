@@ -4,6 +4,10 @@ const map = (x, a, b, c, d) => (x - a) * (d - c) / (b - a) + c
 // Linear interpolation
 const lerp = (a, b, n) => (1 - n) * a + n * b
 
+const randomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1) + min)
+
+const clamp = (num, min, max) => num <= min ? min : num >= max ? max : num
+
 const calcWinsize = () => {
   return { width: window.innerWidth, height: window.innerHeight }
 }
@@ -57,6 +61,8 @@ const antiClick = (fn, el, ...args) => {
 export {
   map,
   lerp,
+  randomNumber,
+  clamp,
   calcWinsize,
   getMousePos,
   distance,

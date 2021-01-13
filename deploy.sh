@@ -10,7 +10,7 @@ npm run build
 
 git add .
 
-git commit -m 'Blog图片不清晰, Keywords: Transform3D, border-radius, box-shadow'
+git commit -m 'deploy'
 
 # 部署到 https://<USERNAME>.github.io/<REPO>
 git push gitee master

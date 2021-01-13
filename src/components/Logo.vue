@@ -34,7 +34,7 @@ export default {
   border-radius: 50%;
 
   &>img{
-    transform: translate3D(9px, 20px, 0) scale3d(8, 8, 8);
+    transform: translate3D(1.3vw, 2.4vw, 0) scale3d(8, 8, 8);
     image-rendering: -moz-crisp-edges;
     image-rendering: -o-crisp-edges;
     image-rendering: -webkit-optimize-contrast;

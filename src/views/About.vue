@@ -24,8 +24,10 @@
             </div>
           </div>
         </div>
-        <div style="height: 100vh">
-          <img style="width:60vh;height:auto;" src="@/assets/imgs/shancheng-high.jpg">
+        <div id="bottom">
+          <div id="bottom-developer">
+            Made with ❤️ by <a>Meizi</a>
+          </div>
         </div>
       </div>
     </div>
@@ -34,7 +36,6 @@
 
 <script>
 import Slider from '@/components/Slider.vue'
-// import { gsap } from 'gsap'
 import Scrollbar from 'smooth-scrollbar'
 import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
 Scrollbar.use(OverscrollPlugin)
@@ -117,6 +118,7 @@ export default {
 #avatar-wrapper{
   height: 100vh;
   width: 100vw;
+  overflow:hidden;
 }
 
 #avatar-text{
@@ -138,16 +140,20 @@ export default {
 }
 
 #bottom{
+  position:relative; // 保证下面的bottom-developer absolute不会参照更上层容器
   width:100vw;
   height:30vh;
-  margin-top: 200px;
-  overflow: hidden;
+
+  & #bottom-developer {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateY(-50%);
+  }
 }
 
 #plans{
-  // height: 100vh;
   width: 100vw;
-  // overflow: hidden;
 }
 
 #plans-article{

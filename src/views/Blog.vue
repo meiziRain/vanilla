@@ -1,33 +1,79 @@
 <template>
   <!-- :style="{backgroundImage: 'url('+bgImage+')'}" !-->
   <div id="blog" ref="blog">
-    <h1 ref="bg_title" class="page-title | title">What's your next <br> <span class="slideshow__title__offset | title__offset">destination?</span></h1>
-    <section class="cata">
-      <div class="scroll-content">
-        <article
-          id="daisies"
-          ref="daisies"
-          class="slideshow-list__el odd"
-          @click="showDetail('Daisies')"
-          @mouseenter="articleMouseenter('rgb(166, 142, 119)')"
-        >
-          <img src="@/assets/imgs/shancheng-high.jpg">
+    <h1 v-show="false" ref="bg_title" class="page-title | title">What's your next <br> <span class="slideshow__title__offset | title__offset">destination?</span></h1>
+    <div class="cata">
+      <div id="scroll-content">
+        <div class="gallery__text__wrapper">
+          <div class="begin-word begin-end-word">
+            <div class="gallery__text">
+              <span
+                class="gallery__text-inner  begin-end-word-up"
+              >draga</span>
+              <span
+                class="gallery__text-inner  begin-end-word-down"
+              >armor</span>
+            </div>
+          </div>
+        </div>
+        <div class="article-wrapper">
+          <div class="article-serial">
+            <span class="gallery__item-number">01</span>
+            <span class="gallery__item-title">Daisies</span>
+          </div>
+          <article
+            id="daisies"
+            ref="daisies"
+            class="slideshow-list__el"
+            @click="showDetail('Daisies')"
+            @mouseenter="articleMouseenter('rgb(166, 142, 119)')"
+          >
+            <img src="@/assets/imgs/shancheng-high.jpg">
           <!-- article 放其他有内容的元素也会引起图片模糊，👴要崩溃了 -->
-        </article>
-        <article
-          id="gardenias"
-          ref="gardenias"
-          class="slideshow-list__el"
-          @click="showDetail('Gardenias')"
-          @mouseenter="articleMouseenter('rgb(166, 142, 119)')"
-        >
-          <img src="@/assets/imgs/shancheng-high.jpg">
-        </article>
+          </article>
+          <div class="article-text">
+            <span>
+              #Sun #Tree #Red & Gray
+            </span>
+          </div>
+        </div>
+        <div class="article-wrapper">
+          <div class="article-serial">
+            <span class="gallery__item-number">02</span>
+            <span class="gallery__item-title">Gardenias</span>
+          </div>
+          <article
+            id="gardenias"
+            ref="gardenias"
+            class="slideshow-list__el even"
+            @click="showDetail('Gardenias')"
+            @mouseenter="articleMouseenter('rgb(166, 142, 119)')"
+          >
+            <img src="@/assets/imgs/shancheng-high.jpg">
+          </article>
+          <div class="article-text">
+            <span>
+              #Neon #Dance in the Dark
+            </span>
+          </div>
+        </div>
+        <div class="gallery__text__wrapper">
+          <div class="end-word begin-end-word">
+            <div class="gallery__text">
+              <span
+                class="gallery__text-inner  begin-end-word-up"
+              >draga</span>
+              <span
+                class="gallery__text-inner  begin-end-word-down"
+              >armor</span>
+            </div>
+          </div>
+        </div>
       </div>
-    </section>
-    <div id="detail-wrapper" ref="daisies_dv">
+    </div>
+    <div id="detail-wrapper" ref="daisies_dv_wrapper">
       <!-- FIXME: 为什么这里DaisiesPcDetailView不用v-if控制不占位会导致滚动条可以下拉？ -->
-      <DaisiesPcDetailView v-if="showDaisiesPcDetailView" ref="pc_daisies_dv" />
+      <DaisiesPcDetailView v-if="showDaisiesPcDetailView" ref="daisies_dv" />
     </div>
     <div ref="progress_ctn" class="slideshow__progress-ctn"><span ref="progress" class="slideshow__progress" /></div>
   </div>
@@ -35,15 +81,14 @@
 
 <script>
 // eslint-disable-next-line no-unused-vars
-import { Power1, Power2, Power3, Power4, Sine, Expo } from 'gsap'
+import { Power2, Expo } from 'gsap'
 import { map } from '@/assets/js/utils'
 // 滚动
 import Scrollbar from 'smooth-scrollbar'
 import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
 import HorizontalScrollPlugin from '@/assets/js/HorizontalScrollPlugin'
 Scrollbar.use(HorizontalScrollPlugin, OverscrollPlugin)
-// import DetailView from '@/views/detail/daisies/index.vue'
-import DaisiesPcDetailView from '@/views/detail/daisies/pc-index.vue'
+import DaisiesPcDetailView from '@/views/detail/daisies/index.vue'
 // import { getMousePos } from '@/assets/js/utils.js'
 export default {
   components: {
@@ -78,7 +123,7 @@ export default {
   },
   activated() {
     console.log('Blog activated')
-    this.$GSAP.set(document.querySelectorAll('.slideshow-list__el'), {
+    this.$GSAP.set(document.querySelectorAll('.article-wrapper'), {
       alpha: 0,
       y: 200,
       force3D: true
@@ -91,7 +136,7 @@ export default {
 
     // this.initEvents()
     this.$eventHub.$on('initAnimations', () => {
-      this.$GSAP.set(document.querySelectorAll('.slideshow-list__el'), {
+      this.$GSAP.set(document.querySelectorAll('.article-wrapper'), {
         alpha: 0,
         y: 200,
         force3D: true,
@@ -103,12 +148,11 @@ export default {
   },
   methods: {
     initAnim() {
-      this.$GSAP.killTweensOf((document.querySelectorAll('.slideshow-list__el')))
+      this.$GSAP.killTweensOf((document.querySelectorAll('.article-wrapper')))
       const blogActivatedTimeline = this.$GSAP.timeline({ repeat: 0, repeatDelay: 0 })
-      blogActivatedTimeline.fromTo(document.querySelectorAll('.slideshow-list__el'), {
+      blogActivatedTimeline.fromTo(document.querySelectorAll('.article-wrapper'), {
         alpha: 0,
-        y: 100,
-        force3D: true
+        y: 100
       }, {
         alpha: 1,
         y: 0,
@@ -116,26 +160,6 @@ export default {
         duration: 0.8,
         force3D: true
       })
-      blogActivatedTimeline.fromTo(
-        document.querySelectorAll('.slideshow-list__el:nth-child(odd)'), {
-          y: 0,
-          force3D: true
-        }, {
-          y: 40,
-          ease: Expo.easeOut,
-          duration: 1.5,
-          force3D: true
-        }, 1.2)
-      blogActivatedTimeline.fromTo(
-        document.querySelectorAll('.slideshow-list__el:nth-child(even)'), {
-          y: 0,
-          force3D: true
-        }, {
-          y: -40,
-          ease: Expo.easeOut,
-          duration: 1.5,
-          force3D: true
-        }, 1.2)
       blogActivatedTimeline.eventCallback('onComplete', () => {
         document.body.classList.remove('non-clickable')
       })
@@ -171,9 +195,9 @@ export default {
       this.cataScroll.addListener((s) => { this.onScroll(s) })
     },
     closeDaisiesDetailPage() {
-      this.$refs.pc_daisies_dv.$refs.fullpage.destroy()
+      this.$refs.daisies_dv.$refs.fullpage.destroy()
       this.showDaisiesPcDetailView = false
-      this.$refs.daisies_dv.classList.toggle('visible')
+      this.$refs.daisies_dv_wrapper.classList.toggle('visible')
       this.$refs.daisies.classList.toggle('trigger')
       this.cataScroll.updatePluginOptions('horizontalScroll', {
         events: [/wheel/]
@@ -219,18 +243,12 @@ export default {
         events: []
       })
 
-      if (this.$store.state.isMobile) {
-        this.$refs.mobile_dv.open()
-        this.$refs.daisies_dv.classList.toggle('visible')
-        this.$refs.daisies.classList.toggle('trigger')
-      } else {
-        this.$refs.daisies_dv.classList.toggle('visible')
-        this.$refs.daisies.classList.toggle('trigger')
-        this.showDaisiesPcDetailView = true
-        this.$nextTick(() => {
-          this.$refs.pc_daisies_dv.showDetail(this.scroll)
-        })
-      }
+      this.$refs.daisies_dv_wrapper.classList.toggle('visible')
+      this.$refs.daisies.classList.toggle('trigger')
+      this.showDaisiesPcDetailView = true
+      this.$nextTick(() => {
+        this.$refs.daisies_dv.showDetail(this.scroll)
+      })
     },
     showGardeniasDetail() {
       this.$GSAP.to('#gardenias', 0.9, {
@@ -245,6 +263,15 @@ export default {
       this.progress = offset.x / limit.x
       // this.$GSAP.to(this.$refs.bg_title, 0.3, { x: -this.progress * this.offsetTitle, force3D: true })
       this.updateScrollBar()
+      this.updateBeginWord()
+    },
+    updateBeginWord() {
+      const progress = map(this.progress * 400, 0, 100, 5, 100)
+      this.$GSAP.to(document.querySelector('.begin-word .begin-end-word-up'), 0.3, { yPercent: -progress, force3D: true })
+      this.$GSAP.to(document.querySelector('.begin-word .begin-end-word-down'), 0.3, { yPercent: progress, force3D: true })
+      const end_progress = map(this.progress * 200, 0, 200, 5, 100)
+      this.$GSAP.to(document.querySelector('.end-word .begin-end-word-up'), 0.3, { yPercent: end_progress, force3D: true })
+      this.$GSAP.to(document.querySelector('.end-word .begin-end-word-down'), 0.3, { yPercent: -end_progress, force3D: true })
     },
     /* Actions
     --------------------------------------------------------- */
@@ -270,6 +297,34 @@ export default {
   overflow: hidden;
 }
 
+.gallery__text-inner {
+	display: block;
+}
+
+.begin-end-word {
+  z-index: 0 !important; // 小于slideshow-list__el
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20vw;
+  line-height: 0.8;
+  margin: 0 0 0 14vw;
+  padding: 0 4vh 0 0;
+  text-transform: lowercase;
+  font-family: moret, serif;
+  -webkit-text-stroke: 1px red;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  font-style: italic;
+  align-self: center;
+}
+
+.gallery__text__wrapper {
+  height: 100vh;
+  flex-shrink: 0;
+  overflow-y: hidden;
+}
+
 .page-title {
   font-family: 'Cabin Sketch', cursive;
   position: fixed;
@@ -289,6 +344,27 @@ export default {
   // transform: rotate(8deg);
 }
 
+.article-serial{
+  z-index: 10;  // > slide-el
+  position: absolute;
+  font-family: moret, serif;
+  font-weight: 800;
+  font-style: italic;
+  align-self: center;
+  transform: translateX(8vh);
+
+  & .gallery__item-number {
+    color: rgb(109, 223, 230);
+    font-size: clamp(2.5rem,9vw,6.5rem);
+  }
+
+  & .gallery__item-title {
+    padding-left: 2vh;
+    color: rgb(74, 82, 94);
+    font-size: clamp(2rem,5vw,4rem);
+  }
+}
+
 @media (min-width: 920px) {
   .page-title {
     font-size: 11vw;
@@ -301,15 +377,10 @@ export default {
   }
 }
 
-.cata {
+#scroll-content {
+  display: flex;
   height: 100vh;
-  display: flex;
   align-items: center;
-  // transform: rotate(-8deg);
-}
-
-.scroll-content {
-  display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
 }
@@ -334,29 +405,28 @@ export default {
   }
 }
 
+.article-wrapper{
+  position:relative;
+  z-index:9; // 大于begin-end-word
+}
+
 .slideshow-list__el {
-  opacity: 0;
   width: 45vh;
   height: 60vh;
   margin-left: 15vw;
   will-change: transform, opacity;
   transition: opacity 1s;
-  // transform: translate3D(0, 0, 0);
-  // overflow: hidden;
-
-  &:nth-child(3){
-    width: 40vh;
-    height: 60vh;
-    background-size: cover;
-    max-width: 40vh;
-    max-height: 60vh;
-  }
 
   &>img{
     width:auto;
     height:auto;
     max-height:100%;
   }
+}
+
+.article-text{
+  text-align: right;
+  transform: translate3d(0, 20px, 0);
 }
 
 .closer{
@@ -391,6 +461,31 @@ export default {
   width: 100%;
   height: 100%;
 }
+
+.slideshow__progress-ctn {
+  overflow: hidden;
+  position: absolute;
+  bottom: 5%;
+  left: calc(50% - 6.5rem);
+  width: 13rem;
+  height: .4rem;
+  background-color: rgba(255, 32, 51, 0.2);
+  border-radius: .4rem;
+  will-change: transform;
+}
+
+.slideshow__progress {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  border-radius: .4rem;
+  transform: translateX(-100%);
+}
+
 // ID选择器 优先级大于 类选择器
 // detail最开始在blog cata下面，点击el后才改变z-index上升为可点击
 .visible{
