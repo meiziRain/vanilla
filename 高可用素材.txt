@@ -82,3 +82,6 @@ https://bashooka.com/coding/javascript-css-libraries-for-hover-animations/
 28. http://ariona.github.io/hover3d/index.html
 
 29. https://tympanus.net/Development/HorizontalSmoothScrollLayout/index4.html
+
+30. 横向滚动 优先级 高 FIXME:
+https://tympanus.net/Development/HorizontalSmoothScrollLayout/index3.html

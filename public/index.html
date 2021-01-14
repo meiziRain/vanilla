@@ -365,6 +365,19 @@
 
 <body oncontextmenu="doNothing()" data-user-color-scheme="light">
   <script type="text/javascript">
+    function fullScreen() {
+      var element = document.documentElement;
+      if (element.requestFullscreen) {
+          element.requestFullscreen();
+      } else if (element.msRequestFullscreen) {
+          element.msRequestFullscreen();
+      } else if (element.mozRequestFullScreen) {
+          element.mozRequestFullScreen();
+      } else if (element.webkitRequestFullscreen) {
+          element.webkitRequestFullscreen();
+      }
+    }
+
     function doNothing() {
       window.event.returnValue = false;
       return false;

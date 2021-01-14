@@ -16,14 +16,13 @@
             </div>
           </div>
         </div>
-        <div class="article-wrapper">
+        <div ref="daisies" class="article-wrapper">
           <div class="article-serial">
             <span class="gallery__item-number">01</span>
             <span class="gallery__item-title">Daisies</span>
           </div>
           <article
             id="daisies"
-            ref="daisies"
             class="slideshow-list__el"
             @click="showDetail('Daisies')"
             @mouseenter="articleMouseenter('rgb(166, 142, 119)')"
@@ -408,6 +407,7 @@ export default {
 .article-wrapper{
   position:relative;
   z-index:9; // 大于begin-end-word
+  transition: opacity 0.8s; // 可以覆盖gsap的
 }
 
 .slideshow-list__el {
@@ -415,7 +415,6 @@ export default {
   height: 60vh;
   margin-left: 15vw;
   will-change: transform, opacity;
-  transition: opacity 1s;
 
   &>img{
     width:auto;

@@ -24,9 +24,25 @@
             </div>
           </div>
         </div>
+        <div class="contact">
+          <div class="contact-title">
+            <h2 class="big-title big-title--no-p"> HAVE A
+              <div class="swapper">
+                <div class="swaps"></div>
+              </div>
+            </h2>
+            <p>Feel free to reach out whether you're interested in working together, have coffee, talk about movies or just want to say hi.</p>
+          </div>
+          <div class="contact-info">
+
+          </div>
+        </div>
         <div id="bottom">
-          <div id="bottom-developer">
+          <!-- <div id="bottom-developer">
             Made with ❤️ by <a>Meizi</a>
+          </div> -->
+          <div id="bottom-developer">
+            💎Proudly developed by <a>Meizi</a>
           </div>
         </div>
       </div>
@@ -48,6 +64,7 @@ export default {
     return {
       currentSlideID: 0,
       isAutoPlay: false,
+      rotateIndex: 0,
       sliderImages: ['https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg', 'https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg', 'https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg']
       // sliderImages: [require('@/assets/imgs/tree.jpg'), require('@/assets/imgs/tree.jpg'), require('@/assets/imgs/tree.jpg')]
     }
@@ -59,10 +76,44 @@ export default {
   },
   mounted() {
     this.$store.state.about = this
+    this.initAnim()
     this.initScroll()
   },
   methods: {
-    initAnim() {},
+    initAnim() {
+      const swaps = document.querySelector('.swaps')
+      this.$GSAP.killTweensOf(swaps)
+      this.$GSAP.timeline({
+        repeat: -1
+      })
+        .fromTo(swaps, {
+          y: 100 + '%'
+        }, {
+          duration: 0.5,
+          y: 0 + '%',
+          ease: 'expo.inOut',
+          force3D: true,
+          onStart: () => {
+            const word = this.getRotateWord()
+            swaps.innerHTML = word
+          }
+        }).to(swaps, {
+          delay: 2,
+          duration: 0.8,
+          y: -100 + '%',
+          ease: 'expo.inOut',
+          force3D: true
+        })
+    },
+    getRotateWord() {
+      const words = [`<div class="swap">1<span class="u-color-yellow">?</span></div>`,
+        `<div class="swap">2<span class="u-color-yellow">?</span></div>`,
+        `<div class="swap">3<span class="u-color-yellow">?</span></div>`,
+        `<div class="swap">4<span class="u-color-yellow">?</span></div>`]
+      const word = words[this.rotateIndex % words.length]
+      this.rotateIndex++
+      return word
+    },
     initScroll() {
       this.about_Scroll = Scrollbar.init(document.querySelector('#about-scroll-viewport'), {
         delegateTo: document.querySelector('#about'),
@@ -111,8 +162,7 @@ export default {
 }
 
 .image-slider-wrapper{
-  left: 20%;
-  transform: translateY(50%);
+  transform: translate(20vw, 50%);
 }
 
 #avatar-wrapper{
@@ -139,6 +189,31 @@ export default {
   font-size: 2.5vw;
 }
 
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 2rem;
+  transform: translate(20vw, 20vh);
+
+  & .contact-title {
+    font-size: 8vw;
+
+    & p{
+      font-size: 1.5vw;
+      max-width:50vw;
+    }
+
+    & .swapper {
+      height: 8vw;
+      overflow-y: hidden;
+
+      & .swap {
+        height: 8vw;
+      }
+    }
+  }
+}
+
 #bottom{
   position:relative; // 保证下面的bottom-developer absolute不会参照更上层容器
   width:100vw;
@@ -148,7 +223,7 @@ export default {
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translateY(-50%);
+    transform: translate(-50%, -50%);
   }
 }
 

@@ -200,12 +200,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/fonts/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2"
   },
   {
-    "revision": "65ea938527c6a346191b",
-    "url": "css/app.ffd2bb8f.css"
+    "revision": "4810601db2bc2ae6e3ff",
+    "url": "css/app.185fd1c7.css"
   },
   {
-    "revision": "221489e2918ead54aa10",
-    "url": "css/blog.2a2a0ad0.css"
+    "revision": "2198394ca450f014efed",
+    "url": "css/blog.69604282.css"
   },
   {
     "revision": "5f1295d5698ba955da57",
@@ -260,16 +260,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/sugar-bee.dd754839.jpg"
   },
   {
-    "revision": "686dfc6fa8d7234fdf109473617f91a9",
+    "revision": "ca6350f0a19fa17d28a6b423d2d417ee",
     "url": "index.html"
   },
   {
-    "revision": "65ea938527c6a346191b",
-    "url": "js/app.e5853ba5.js"
+    "revision": "4810601db2bc2ae6e3ff",
+    "url": "js/app.0440fc39.js"
   },
   {
-    "revision": "221489e2918ead54aa10",
-    "url": "js/blog.a9214ee1.js"
+    "revision": "2198394ca450f014efed",
+    "url": "js/blog.e2ca9e35.js"
   },
   {
     "revision": "5f1295d5698ba955da57",

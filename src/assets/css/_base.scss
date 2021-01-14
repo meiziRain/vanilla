@@ -83,9 +83,9 @@ body {
 .rw-words-1 span{
 	opacity: 0;
 	color: #6b969d;
-	-webkit-animation: rotateWord 12s linear infinite 0s;
-	-ms-animation: rotateWord 12s linear infinite 0s;
-	animation: rotateWord 12s linear infinite 0s;
+	-webkit-animation: rotateWord 12s ease-in infinite 0s;
+	-ms-animation: rotateWord 12s ease-in infinite 0s;
+	animation: rotateWord 12s ease-in infinite 0s;
 }
 
 

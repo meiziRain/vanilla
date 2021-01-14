@@ -127,14 +127,10 @@ export default {
       })
 
       // 点击el外其他的el退场
-      const els = document.querySelectorAll('.slideshow-list__el')
-      els.forEach(it => {
-        if (!it.classList.contains('trigger')) {
-          this.$GSAP.to(it, 0.2, {
-            alpha: 0,
-            ease: Expo.easeInOut
-          })
-        }
+      const els = document.querySelectorAll('.article-wrapper:not(.trigger)')
+      this.$GSAP.to(els, 0.2, {
+        alpha: 0,
+        ease: Expo.easeInOut
       })
 
       // closer进场
@@ -153,24 +149,13 @@ export default {
       // 点击el进场
       const trigger = document.querySelector('.trigger')
       this.offset = getWindowWidth() - getWindowWidth() * 13 / 100 -
-      trigger.clientWidth -
-      trigger.offsetWidth +
+      trigger.clientWidth +
       this.scroll.offset.x -
       document.querySelector('.begin-word').clientWidth -
-      getWindowWidth() * 10 / 100 // (begin-word的margin，适当减小)
+      getWindowWidth() * 15 / 100 // (begin-word的margin，适当减小)
       this.$GSAP.to(trigger, 0.9, {
         x: this.offset,
         scale: 1.3,
-        ease: Power2.easeInOut,
-        force3D: true
-      })
-
-      // 点击el标题y轴退场
-      const content = document.querySelector('.tile__content')
-      const direction = 'up'
-      this.$GSAP.to(content, 0.6, {
-        y: direction === 'up' ? -200 : 200,
-        alpha: 0,
         ease: Power2.easeInOut,
         force3D: true
       })
@@ -209,7 +194,6 @@ export default {
         }, 0.5)
     },
     closePage() {
-      console.log('click')
       this.$refs.fullpage.api.setAllowScrolling(false) // 点击关闭后快速滚动滑轮, el重新入场的bug
       document.querySelector('.daisies_closer').classList.add('non-clickable')
       // wrapper退场
@@ -259,22 +243,16 @@ export default {
         force3D: true
       })
 
-      // 点击el标题复原
-      this.$GSAP.to(document.querySelector('.tile__content'), 0.5, {
-        alpha: 1,
-        y: 0,
-        ease: Power2.easeInOut,
-        force3D: true
-      })
-
       // 点击el标题外其他el恢复可视
-      const els = document.querySelectorAll('.slideshow-list__el')
+      const els = document.querySelectorAll('.article-wrapper:not(.trigger)')
+      // opacity变化事件由article-wrapper的：transition: opacity 0.8s 控制
       els.forEach(it => {
-        this.$GSAP.fromTo(it, 0.2,
+        this.$GSAP.fromTo(it,
           { alpha: 0 },
           {
             alpha: 1,
-            ease: Expo.easeInOut
+            ease: Expo.easeInOut,
+            force3D: true
           })
       })
     },
