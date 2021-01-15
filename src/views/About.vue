@@ -26,24 +26,35 @@
         </div>
         <div class="contact">
           <div class="contact-title">
-            <h2 class="big-title big-title--no-p"> HAVE A
+            <h2 class="big-title big-title--no-p"> HAVE A(N)
               <div class="swapper">
-                <div class="swaps"></div>
+                <div class="swaps" />
               </div>
             </h2>
             <p>Feel free to reach out whether you're interested in working together, have coffee, talk about movies or just want to say hi.</p>
           </div>
           <div class="contact-info">
-
+            <div class="contact-info-item">
+              <h6>🏠Address</h6>
+              <p>Around the world</p>
+            </div>
+            <div class="contact-info-item">
+              <h6>📠Phone</h6>
+              <p>+52 1 66 7102 3892</p>
+            </div>
+            <div class="contact-info-item">
+              <h6>📧Email</h6>
+              <a href="mailto:hola@miistudio.com.mx">hola@miistudio.com.mx</a>
+            </div>
+            <div class="qr-code">
+              <img src=" " alt="">
+            </div>
           </div>
         </div>
         <div id="bottom">
           <!-- <div id="bottom-developer">
             Made with ❤️ by <a>Meizi</a>
           </div> -->
-          <div id="bottom-developer">
-            💎Proudly developed by <a>Meizi</a>
-          </div>
         </div>
       </div>
     </div>
@@ -106,10 +117,10 @@ export default {
         })
     },
     getRotateWord() {
-      const words = [`<div class="swap">1<span class="u-color-yellow">?</span></div>`,
-        `<div class="swap">2<span class="u-color-yellow">?</span></div>`,
-        `<div class="swap">3<span class="u-color-yellow">?</span></div>`,
-        `<div class="swap">4<span class="u-color-yellow">?</span></div>`]
+      const words = [`<div class="swap">CAT<span class="u-color-yellow">?</span></div>`,
+        `<div class="swap">IDEA<span class="u-color-yellow">?</span></div>`,
+        `<div class="swap">DRINK<span class="u-color-yellow">!</span></div>`,
+        `<div class="swap">NICE DAY<span class="u-color-yellow">.</span></div>`]
       const word = words[this.rotateIndex % words.length]
       this.rotateIndex++
       return word
@@ -195,15 +206,30 @@ export default {
   grid-gap: 2rem;
   transform: translate(20vw, 20vh);
 
+  & .contact-info {
+    line-height: 2vw;
+    transform: translateX(-10vw);
+    justify-self: center;
+    align-self: flex-start;
+    margin-top: 0;
+
+    & .contact-info-item {
+      padding-top: 2vh;
+    }
+  }
+
   & .contact-title {
     font-size: 8vw;
 
     & p{
+      line-height: 2vw;
+      transform: translateY(10vh);
       font-size: 1.5vw;
       max-width:50vw;
     }
 
     & .swapper {
+      line-height: 1.2;
       height: 8vw;
       overflow-y: hidden;
 
@@ -218,13 +244,6 @@ export default {
   position:relative; // 保证下面的bottom-developer absolute不会参照更上层容器
   width:100vw;
   height:30vh;
-
-  & #bottom-developer {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
 }
 
 #plans{
