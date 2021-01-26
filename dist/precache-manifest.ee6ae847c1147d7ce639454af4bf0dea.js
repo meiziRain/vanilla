@@ -200,11 +200,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/fonts/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2"
   },
   {
-    "revision": "a67ef8450ec042cf577d",
+    "revision": "6bc3da495dc760f91c1f",
     "url": "css/app.c0813399.css"
   },
   {
-    "revision": "93b4180b296f2ad1da54",
+    "revision": "1403166a46806cfda66c",
     "url": "css/blog.798120d6.css"
   },
   {
@@ -296,16 +296,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/sugar-bee.dd754839.jpg"
   },
   {
-    "revision": "88d8a100fdc8b942fd600716cfc94cd2",
+    "revision": "325f2bf51a1b3df0d5bdc88d1f3c5a90",
     "url": "index.html"
   },
   {
-    "revision": "a67ef8450ec042cf577d",
-    "url": "js/app.05100c42.js"
+    "revision": "6bc3da495dc760f91c1f",
+    "url": "js/app.c6361349.js"
   },
   {
-    "revision": "93b4180b296f2ad1da54",
-    "url": "js/blog.04db04cd.js"
+    "revision": "1403166a46806cfda66c",
+    "url": "js/blog.87676d37.js"
   },
   {
     "revision": "5f1295d5698ba955da57",

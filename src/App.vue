@@ -10,6 +10,17 @@
       <img src="@/assets/imgs/girl-illu-triangle.png">
       <img src="@/assets/imgs/miao1.jpg">
       <img src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg">
+
+      <img src="@/assets/imgs/layer/1.jpg">
+      <img src="@/assets/imgs/layer/2.jpg">
+      <img src="@/assets/imgs/layer/3.jpg">
+      <img src="@/assets/imgs/layer/4.jpg">
+      <img src="@/assets/imgs/layer/5.jpg">
+      <img src="@/assets/imgs/layer/6.jpg">
+      <img src="@/assets/imgs/layer/7.jpg">
+      <img src="@/assets/imgs/layer/8.jpg">
+      <img src="@/assets/imgs/layer/9.jpg">
+      <img src="@/assets/imgs/layer/10.jpg">
     </div>
     <div v-if="loader" id="loader">
       <Loader />
