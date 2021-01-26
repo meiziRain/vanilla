@@ -10,7 +10,7 @@ npm run build
 
 git add .
 
-git commit -m 'home页layer, 全局黑夜模式亮度filter: brightness(0.7);'
+git commit -m 'deploy'
 
 # 部署到 https://<USERNAME>.github.io/<REPO>
 git push gitee master

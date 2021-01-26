@@ -9,10 +9,10 @@
             <div class="gallery__text">
               <span
                 class="gallery__text-inner  begin-end-word-up"
-              >draga</span>
+              >Story</span>
               <span
                 class="gallery__text-inner  begin-end-word-down"
-              >armor</span>
+              >Begin</span>
             </div>
           </div>
         </div>
@@ -61,10 +61,10 @@
             <div class="gallery__text">
               <span
                 class="gallery__text-inner  begin-end-word-up"
-              >draga</span>
+              >End</span>
               <span
                 class="gallery__text-inner  begin-end-word-down"
-              >armor</span>
+              >The</span>
             </div>
           </div>
         </div>

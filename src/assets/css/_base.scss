@@ -47,8 +47,10 @@
     
 
     // dark 模式降低亮度
-    -webkit-filter: brightness(0.7);
-    filter: brightness(0.7);
+    &:not(.neon) {
+      -webkit-filter: brightness(0.7);
+      filter: brightness(0.7);
+    }
 }
 
 // 弥补图片缩放产生的差异

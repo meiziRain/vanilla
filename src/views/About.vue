@@ -1,5 +1,5 @@
 <template>
-  <div id="about">
+  <div id="about" class="neon">
     <div id="about-scroll-viewport">
       <div id="about-scroll-content">
         <div>
