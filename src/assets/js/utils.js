@@ -58,6 +58,8 @@ const antiClick = (fn, el, ...args) => {
   fn.call(this, ...args)
 }
 
+const randomFloat = (min, max) => parseFloat(Math.min(min + (Math.random() * (max - min)), max).toFixed(2))
+
 export {
   map,
   lerp,
@@ -67,6 +69,7 @@ export {
   getMousePos,
   distance,
   getRandomFloat,
+  randomFloat,
   getWindowWidth,
   antiClick
 }

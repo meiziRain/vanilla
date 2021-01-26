@@ -204,7 +204,7 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 2rem;
-  transform: translate(20vw, 20vh);
+  transform: translate(10vw, 20vh);
 
   & .contact-info {
     line-height: 2vw;

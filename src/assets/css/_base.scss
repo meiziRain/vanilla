@@ -3,19 +3,13 @@
 }
 
 :root {
-  --color-text1: #deedcf;
-  --color-text2: #ffcbcc;
-  --color-text3: #b9e6e3;
-  --color-text4: #e1d0a1;
-  --color-text5: #ccd3f6;
-  --color-text: var(--color-text1);
-  --color-link: var(--color-text);
+
   --color-link-hover: #fff;
 
   --background-light: #fff;
-  --color-text-light:#0c0f13;
-  --background-dark:#0c0f13;
-  --color-text-dark:#fff;
+  --color-text-light: #0c0f13;
+  --background-dark: #0c0f13;
+  --color-text-dark: #fff;
   --color-text-el-drak-bg:#fff;
   --color-text-el-light-bg:#0c0f13;
 
@@ -40,6 +34,9 @@
     --el-text-color: var(--color-text-el-drak-bg);
     --background-color: var(--background-light);
     --border-color: var(--border-light);
+
+    -webkit-filter: none;
+    filter: none;
 }
 [data-user-color-scheme='dark'] {
     --color-mode: 'dark';
@@ -47,6 +44,11 @@
     --el-text-color: var(--color-text-el-light-bg);
     --background-color:var(--background-dark);
     --border-color: var(--border-dark);
+    
+
+    // dark 模式降低亮度
+    -webkit-filter: brightness(0.7);
+    filter: brightness(0.7);
 }
 
 // 弥补图片缩放产生的差异
@@ -59,15 +61,32 @@
 // }
 
 body {
-    margin: 0;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
-    background-color: var(--background-color);
-    transition: background-color .5s;
-    font-family: 'source-sans-pro', sans-serif;
-    font-size: 1.4rem;
-    font-weight: 400;
+  margin: 0;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--background-color);
+  transition: background-color .5s;
+  font-family: 'source-sans-pro', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 400;
 }
+
+.dark-filter { // 图片暗度滤镜
+  -webkit-filter: brightness(0.7);
+  filter: brightness(0.7);
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 .rw-words > span{

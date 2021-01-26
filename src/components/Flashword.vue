@@ -1,8 +1,8 @@
 <template>
   <div id="flashword">
     <div class="text">
-      <h2 class="content__title">V A N I L L A</h2>
-      <div class="content__subtitle">Click following button, Dive into me</div>
+      <h2 class="flashword__content__title">V A N I L L A</h2>
+      <div class="flashword__content__subtitle">Click following button, Dive into me</div>
     </div>
     <div class="overlay" />
   </div>
@@ -14,7 +14,7 @@ const charming = require('charming')
 export default {
   name: 'Flashword',
   props: {
-    mode: {
+    dark: {
       type: Boolean,
       default: false,
       description: 'light or dark mode'
@@ -29,7 +29,7 @@ export default {
     // 点击切换 light/dark 模式
   },
   mounted() {
-    this.mode ? this.animateTitles(true) : this.animateTitles(false) // true -> 白色 #fff
+    window.localStorage.getItem('dark') === 'true' ? this.animateTitles(true) : this.animateTitles(false) // true -> 白色 #fff
     this.$eventHub.$on('darkListener', (data) => {
       !data ? this.animateTitles(true) : this.animateTitles(false) // true -> 白色 #fff
     })
@@ -46,11 +46,11 @@ export default {
         opacity: 0
       })
 
-      TweenMax.set(Array.from(document.querySelector('.content__title').querySelectorAll('span')), {
+      TweenMax.set(Array.from(document.querySelector('.flashword__content__title').querySelectorAll('span')), {
         opacity: 0
       })
       TweenMax.staggerTo(
-        Array.from(document.querySelector('.content__title').querySelectorAll('span')),
+        Array.from(document.querySelector('.flashword__content__title').querySelectorAll('span')),
         1.5, {
           ease: Expo.easeOut,
           startAt: {
@@ -66,13 +66,13 @@ export default {
     },
     animateTitles(dark) {
       const getRandomNumber = (min, max) => Math.random() * (max - min) + min
-      const title = document.querySelector('.content__title')
+      const title = document.querySelector('.flashword__content__title')
       charming(title)
       const titleLetters = Array.from(title.querySelectorAll('span'))
 
       this.staggerTo()
 
-      const subtitle = document.querySelector('.content__subtitle')
+      const subtitle = document.querySelector('.flashword__content__subtitle')
       TweenMax.set(subtitle, {
         opacity: 0
       })
@@ -132,23 +132,24 @@ export default {
 </style>
 
 <style>
-.content__title {
+.flashword__content__title {
   font-size: 10vw;
   margin: 0 auto;
 }
 
-.content__title span {
+.flashword__content__title span {
   display: inline-block;
   white-space: pre;
   transform-origin: 50% -50%;
 }
 
-.content__title {
+.flashword__content__title {
   font-family: 'Bungee Inline';
-  /* font-family: 'Cabin Sketch', cursive; */
+  /* color: red;
+  font-family: "Monoton", cursive; */
 }
 
-.content__subtitle {
+.flashword__content__subtitle {
   font-family: 'Cabin Sketch', cursive;
   color: wheat;
   margin-top: 3vw;
@@ -156,11 +157,11 @@ export default {
 }
 
 @media screen and (max-width: 600px) {
-  .content__title {
+  .flashword__content__title {
     font-size: 4em;
   }
 
-  .content__subtitle {
+  .flashword__content__subtitle {
     font-size: 0.8em;
   }
 }

@@ -562,18 +562,19 @@ $cursor-color: var(--cursor-color);  //mix-blend-mode 元素颜色必须设置�
 }
 
 .shape-overlays {
-  &-home-to-others{
+  &-home-to-others {
+    // 颜色由上至下
     --path-fill-1: #fdfbf3;
     --path-fill-2: #869ccc;
     --path-fill-3: black;
-    --path-fill-4: #c6a7a4;
+    --path-fill-4: var(--background-color);
   }
 
-  &-others-to-home{
-    --path-fill-1: #c6a7a4;
+  &-others-to-home {
+    --path-fill-1: var(--background-color);
     --path-fill-2: #869ccc;
     --path-fill-3: black;
-    --path-fill-4: #fdfbf3;
+    --path-fill-4: rgb(253, 251, 243);
   }
 
   z-index: 1000000;

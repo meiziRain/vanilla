@@ -36,8 +36,6 @@ export default {
   },
   mounted() {
     window.localStorage.getItem('dark') === 'true' ? this.initTheme(true) : this.initTheme(false)
-
-    // PC, Mobile如果切换调整窗口大小回调
     this.$eventHub.$on('darkListener', (data) => {
       // 利用修改key的属性值，重新加载子组件，触发create事件
       this.refreshKey = new Date().getTime()
@@ -61,6 +59,7 @@ export default {
       // localStorage 只能以字符串形式存储, 取值注意类型转换
       window.localStorage.setItem('dark', this.dark)
       this.$eventHub.$emit('darkListener', this.dark)
+      console.log('$emit(darkListener)', this.dark)
       this.initTheme(this.dark)
     }
   }

@@ -1,15 +1,72 @@
 <template>
-  <div id="home" :style="{backgroundImage: 'url('+homeBgImage+')'}">
-    <div id="triangle" :style="{backgroundImage: 'url('+bgImage+')'}" />
+  <div id="home">
+    <!-- :style="{backgroundImage: 'url('+bgImage+')'}" -->
+    <!-- <div id="triangle" :style="{backgroundImage: 'url('+bgImage+')'}" /> -->
     <Soul v-if="false" id="soul" />
     <Marquee v-if="false" />
+    <div class="intro">
+      <div class="content">
+        <div class="grid">
+          <div class="grid__item grid__item--a">
+            <img src="@/assets/imgs/layer/3.jpg">
+          </div>
+          <div class="grid__item grid__item--b">
+            <img src="@/assets/imgs/layer/2.jpg">
+          </div>
+          <div class="grid__item grid__item--c">
+            <img src="@/assets/imgs/layer/10.jpg">
+          </div>
+          <div class="grid__item grid__item--d">
+            <img src="@/assets/imgs/layer/5.jpg">
+          </div>
+          <div class="grid__item grid__item--e">
+            <img src="@/assets/imgs/layer/8.jpg">
+          </div>
+          <div class="grid__item grid__item--f">
+            <img src="@/assets/imgs/layer/6.jpg">
+          </div>
+        </div>
+      </div>
+      <div class="layers">
+        <div class="layers__item">
+          <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage1+')'}" />
+        </div>
+        <div class="layers__item">
+          <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage2+')'}" />
+        </div>
+        <div class="layers__item">
+          <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage3+')'}" />
+        </div>
+        <div class="layers__item">
+          <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage4+')'}" />
+        </div>
+        <div class="layers__item">
+          <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage5+')'}" />
+        </div>
+        <div class="layers__item">
+          <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage6+')'}" />
+        </div>
+        <div class="layers__item">
+          <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage7+')'}" />
+        </div>
+        <div class="layers__item">
+          <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage8+')'}" />
+        </div>
+        <div class="layers__item">
+          <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage10+')'}" />
+        </div>
+        <div class="layers__item">
+          <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage9+')'}" />
+        </div>
+      </div>
+    </div>
     <div>
       <div id="word">
         <Flashword
           v-if="$store.state.flashword"
           ref="words"
           :key="refreshKey"
-          :mode="dark"
+          :dark="dark"
         />
       </div>
       <a v-if="false" href="https://hitcount.io" target="__blank" style="position:absolute;">
@@ -25,6 +82,7 @@
 
 <script>
 // @ is an alias to /src
+import Revealer from '@/assets/js/revealer'
 import Marquee from '@/components/Marquee.vue'
 import Soul from '@/components/Soul.vue'
 import MagneticButton from '@/components/MagneticButton.vue'
@@ -42,8 +100,18 @@ export default {
     return {
       dark: false,
       refreshKey: '',
-      homeBgImage: require('@/assets/imgs/food.png'),
-      bgImage: require('@/assets/imgs/girl-illu-triangle.png')
+      bgImage: require('@/assets/imgs/shancheng-high.jpg'),
+      bgImage1: require('@/assets/imgs/layer/1.jpg'),
+      bgImage2: require('@/assets/imgs/layer/2.jpg'),
+      bgImage3: require('@/assets/imgs/layer/3.jpg'),
+      bgImage4: require('@/assets/imgs/layer/4.jpg'),
+      bgImage5: require('@/assets/imgs/layer/5.jpg'),
+      bgImage6: require('@/assets/imgs/layer/6.jpg'),
+      bgImage7: require('@/assets/imgs/layer/7.jpg'),
+      bgImage8: require('@/assets/imgs/layer/8.jpg'),
+      bgImage9: require('@/assets/imgs/layer/9.jpg'),
+      bgImage10: require('@/assets/imgs/layer/10.jpg'),
+      homeBgImage: require('@/assets/imgs/girl-illu-triangle.png')
     }
   },
   activated() {
@@ -56,6 +124,8 @@ export default {
     console.log('Home mounted')
     this.$store.state.home = this
     this.$eventHub.$on('initAnimations', () => {
+      const revealer = new Revealer()
+      revealer.reveal()
       this.initAnim()
     })
     this.$eventHub.$on('darkListener', (data) => {
@@ -66,7 +136,9 @@ export default {
   },
   methods: {
     initAnim() {
-      console.log('#magnetic-btn')
+      // 每次切换路由会调用
+      console.log('home store: initHomeAnim')
+      // this.initBeginnings()
       this.$GSAP.fromTo(document.querySelector('#magnetic-btn'), {
         y: 0,
         scale: 0
@@ -82,6 +154,21 @@ export default {
         }
       })
     },
+    initBeginnings() {
+      const timeline = this.$GSAP.timeline({ repeat: 0, repeatDelay: 0 })
+      timeline.to(document.querySelector('.beginnings.left'), {
+        x: '-70%',
+        rotate: -10,
+        duration: 0.8,
+        ease: 'expo.inOut'
+      })
+      timeline.to(document.querySelector('.beginnings.right'), {
+        x: '60%',
+        rotate: 5,
+        duration: 0.8,
+        ease: 'expo.inOut'
+      })
+    },
     diiiscover() {
       this.$router.push('blog')
     }
@@ -93,8 +180,8 @@ export default {
 #home, #home-content{
   width:100vw;
   height: 100vh;
-  // background-color: var(--background-color);
-  background-color: #c6a7a4;
+  background-color: var(--background-color);
+  // background-color: #c6a7a4;
   overflow: hidden;
 }
 
@@ -105,6 +192,7 @@ export default {
 #word {
   width: 100vw;
   margin-top: 50vh;
+  z-index:9;
   transform: translateY(-50%);
   font-size: 5vw;
   text-align: center;
@@ -151,5 +239,110 @@ export default {
   top:50%;
   transform: translate(-50%,-50%);
   background-size: cover;
+}
+
+.beginnings{
+  will-change: transform;
+  left: 50%;
+  top: 50%;
+  z-index:1;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  width: 45vh;
+  height: 60vh;
+
+  &:nth-child(2) {
+    z-index:2;
+  }
+}
+
+//////////////////////////////////
+.grid {
+  grid-area: 1 / 1 / 2 / 2;
+  width: 80%;
+  height: 93%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(13,1fr);
+  grid-template-rows: repeat(8,1fr);
+  grid-gap: 1vw;
+  position: relative;
+}
+
+.grid::after {
+	content: '';
+	height: 6rem;
+	width: 1px;
+	background: #fff;
+	position: absolute;
+	bottom: 2rem;
+	left: 50%;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  object-fit: cover
+}
+
+.grid__item {
+  opacity: 0;
+}
+
+.grid__item--a {
+  grid-area: 2 / 1 / 5 / 3;
+}
+
+.grid__item--b {
+  grid-area: 6 / 2 / 9 / 5;
+}
+
+.grid__item--c {
+  grid-area: 3 / 4 / 7 / 7;
+}
+
+.grid__item--d {
+  grid-area: 1 / 8 / 4 / 10;
+}
+
+.grid__item--e {
+  grid-area: 4 / 10 / 7 / 14;
+}
+
+.grid__item--f {
+  grid-area: 6 / 9 / 9 / 12;
+}
+
+.layers {
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  overflow: hidden;
+  z-index: 2000;
+  pointer-events: none;
+}
+
+.layers__item {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transform: translate3d(0, 101%, 0);
+}
+
+.layers__item-img {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: 50% 50%;
+  transform: translate3d(0, -101%, 0);
+}
+
+.content, .layers {
+  position:absolute;
+  height: 100vh;
+  width:100vw;
 }
 </style>
