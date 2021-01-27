@@ -83,7 +83,7 @@ export default {
 }
 </script>
 <style lang="scss">
-$mainColor:#000000;
+$mainColor: rgb(217, 79, 92);
 /*----------------------------------------------- */
 /* Common styles for all menus */
 #menu {

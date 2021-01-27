@@ -24,30 +24,32 @@
             </div>
           </div>
         </div>
-        <div class="contact">
-          <div class="contact-title">
-            <h2 class="big-title big-title--no-p"> HAVE A(N)
-              <div class="swapper">
-                <div class="swaps" />
+        <div id="contact-wrapper">
+          <div class="contact">
+            <div class="contact-title">
+              <h2 class="big-title big-title--no-p"> HAVE A(N)
+                <div class="swapper">
+                  <div class="swaps" />
+                </div>
+              </h2>
+              <p>Feel free to reach out whether you're interested in working together, have coffee, talk about movies or just want to say hi.</p>
+            </div>
+            <div class="contact-info">
+              <div class="contact-info-item">
+                <h6>🏠Address</h6>
+                <p>Around the world</p>
               </div>
-            </h2>
-            <p>Feel free to reach out whether you're interested in working together, have coffee, talk about movies or just want to say hi.</p>
-          </div>
-          <div class="contact-info">
-            <div class="contact-info-item">
-              <h6>🏠Address</h6>
-              <p>Around the world</p>
-            </div>
-            <div class="contact-info-item">
-              <h6>📠Phone</h6>
-              <p>+52 1 66 7102 3892</p>
-            </div>
-            <div class="contact-info-item">
-              <h6>📧Email</h6>
-              <a href="mailto:hola@miistudio.com.mx">hola@miistudio.com.mx</a>
-            </div>
-            <div class="qr-code">
-              <img src=" " alt="">
+              <div class="contact-info-item">
+                <h6>📠Phone</h6>
+                <p>+52 1 66 7102 3892</p>
+              </div>
+              <div class="contact-info-item">
+                <h6>📧Email</h6>
+                <a href="mailto:hola@miistudio.com.mx">hola@miistudio.com.mx</a>
+              </div>
+              <div class="qr-code">
+                <img src=" " alt="">
+              </div>
             </div>
           </div>
         </div>
@@ -164,6 +166,7 @@ export default {
   overflow: hidden;
   filter: brightness(0.7);
   background: var(--background-color);
+  color: var(--text-color);
   // background-color: rgb(253, 251, 243);
 }
 
@@ -188,7 +191,6 @@ export default {
 }
 
 #avatar-text{
-  color: white;
   left: 50%;
   position: absolute;
   margin-top: 20vh;
@@ -203,6 +205,12 @@ export default {
 #introduce{
   margin-top: 12vh;
   font-size: 2.5vw;
+}
+
+#contact-wrapper {
+  height: 100vh;
+  width: 100vw;
+  overflow:hidden;
 }
 
 .contact {
@@ -329,12 +337,5 @@ export default {
     background-color: #fdfbf3;
     letter-spacing: .5em;
   }
-}
-
-.neon{
-  width: 100vw;
-  height: 30vh;
-  background-color: white;
-  filter: none;
 }
 </style>

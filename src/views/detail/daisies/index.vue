@@ -294,6 +294,7 @@ export default {
 
 <style lang="scss" scoped>
 #daisies-detail-pc{
+  color: var(--text-color);
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -343,7 +344,6 @@ export default {
 
 .section-one-title{
   font-size: 5vw;
-  color: var(--color-text1);
   padding-top: 10vh;
   text-align: center;
 }
