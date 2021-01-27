@@ -61,8 +61,13 @@
       <div id="pc">
         <LightSwitch id="pc-light-switch" />
         <Iris id="pc-nav" ref="nav" />
-        <Logo id="pc-logo" />
-        <Circlee id="logo-circle" size="8vw" />
+        <!-- <Logo id="pc-logo" />
+        <Circlee id="logo-circle" size="8vw" /> -->
+        <div id="pc-logo" class="logo">
+          <router-link to="/">
+            V
+          </router-link>
+        </div>
       </div>
       <keep-alive>
         <router-view />
@@ -76,16 +81,16 @@
 import Loader from '@/components/Loader.vue'
 import Zip from '@/components/Zip.vue'
 import Gates from '@/components/Gates.vue'
-import Circlee from '@/components/Circlee.vue'
-import Logo from '@/components/Logo.vue'
+// import Circlee from '@/components/Circlee.vue'
+// import Logo from '@/components/Logo.vue'
 import Ham from '@/components/Ham.vue'
 import Iris from '@/components/Iris.vue'
 import LightSwitch from '@/components/LightSwitch.vue'
 import { getMousePos, lerp } from '@/assets/js/utils.js'
 export default {
   components: {
-    Circlee,
-    Logo,
+    // Circlee,
+    // Logo,
     Ham,
     Iris,
     LightSwitch,
@@ -134,7 +139,8 @@ export default {
         document.querySelector('.cursor').style.visibility = 'visible'
 
         this.$GSAP.delayedCall(2, () => {
-          console.log('initAnimations')
+          console.log('App: initAnimations')
+          this.$store.state.isInitAnimations = true
           this.$store.state.flashword = true
           this.$eventHub.$emit('initAnimations')
         })
@@ -448,6 +454,15 @@ export default {
   z-index: 999;
 }
 
+.logo {
+  font-size: 9vh;
+  font-family: Monoton,cursive;
+  font-weight: var(--logo-weight);
+  z-index: var(--top-index);
+  color: red;
+  text-shadow: var(--logo-shadow)
+}
+
 @media (min-width: 920px) {
   #mobile,
   #mobile-header-wrapper {
@@ -575,7 +590,8 @@ $cursor-color: var(--cursor-color);  //mix-blend-mode 元素颜色必须设置�
 .shape-overlays {
   &-home-to-others {
     // 颜色由上至下
-    --path-fill-1: #fdfbf3;
+    --path-fill-1: var(--background-color);
+    // --path-fill-1: #fdfbf3;
     --path-fill-2: #869ccc;
     --path-fill-3: black;
     --path-fill-4: var(--background-color);
@@ -585,7 +601,8 @@ $cursor-color: var(--cursor-color);  //mix-blend-mode 元素颜色必须设置�
     --path-fill-1: var(--background-color);
     --path-fill-2: #869ccc;
     --path-fill-3: black;
-    --path-fill-4: rgb(253, 251, 243);
+    // --path-fill-4: rgb(253, 251, 243);
+    --path-fill-4: var(--background-color);
   }
 
   z-index: 1000000;

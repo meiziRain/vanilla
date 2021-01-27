@@ -52,6 +52,9 @@
           </div>
         </div>
         <div id="bottom">
+          <div class="neon">
+            123
+          </div>
           <!-- <div id="bottom-developer">
             Made with ❤️ by <a>Meizi</a>
           </div> -->
@@ -76,8 +79,9 @@ export default {
       currentSlideID: 0,
       isAutoPlay: false,
       rotateIndex: 0,
-      sliderImages: ['https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg', 'https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg', 'https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg']
-      // sliderImages: [require('@/assets/imgs/tree.jpg'), require('@/assets/imgs/tree.jpg'), require('@/assets/imgs/tree.jpg')]
+      sliderImages: [require('@/assets/imgs/layer/2.jpg'),
+        require('@/assets/imgs/layer/4.jpg'),
+        require('@/assets/imgs/layer/8.jpg')]
     }
   },
   activated() {
@@ -158,8 +162,9 @@ export default {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  // background: var(--background-color);
-  background-color: rgb(253, 251, 243);
+  filter: brightness(0.7);
+  background: var(--background-color);
+  // background-color: rgb(253, 251, 243);
 }
 
 #about-scroll-viewport{
@@ -324,5 +329,12 @@ export default {
     background-color: #fdfbf3;
     letter-spacing: .5em;
   }
+}
+
+.neon{
+  width: 100vw;
+  height: 30vh;
+  background-color: white;
+  filter: none;
 }
 </style>

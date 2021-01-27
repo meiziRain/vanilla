@@ -10,7 +10,8 @@ export default new Vuex.Store({
     flashword: false,
     home: {}, // home, about, blog
     blog: {},
-    about: {}
+    about: {},
+    isInitAnimations: false
   },
   mutations: {
     toggleOverlay(state) {

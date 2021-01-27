@@ -123,9 +123,13 @@ export default {
   mounted() {
     console.log('Home mounted')
     this.$store.state.home = this
+    if (this.$store.state.isInitAnimations) {
+      // http://localhost:8082/#/about 进入 home 时也要触发
+      this.initRevealer()
+    }
     this.$eventHub.$on('initAnimations', () => {
-      const revealer = new Revealer()
-      revealer.reveal()
+      console.log('Home page:initAnimations')
+      this.initRevealer()
       this.initAnim()
     })
     this.$eventHub.$on('darkListener', (data) => {
@@ -135,6 +139,10 @@ export default {
     })
   },
   methods: {
+    initRevealer() {
+      const revealer = new Revealer()
+      revealer.reveal()
+    },
     initAnim() {
       // 每次切换路由会调用
       console.log('home store: initHomeAnim')

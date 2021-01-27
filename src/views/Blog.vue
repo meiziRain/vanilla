@@ -285,8 +285,8 @@ export default {
 #blog {
   width: 100vw;
   height: 100vh;
-  // background-color: var(--background-color);
-  background-color: rgb(253, 251, 243);
+  background-color: var(--background-color);
+  // background-color: rgb(253, 251, 243);
   transition-property: background-color;
   -webkit-transition-property: background-color;
   transition-duration: 0.8s;
@@ -407,7 +407,7 @@ export default {
 .article-wrapper{
   position:relative;
   z-index:9; // 大于begin-end-word
-  transition: opacity 0.8s; // 可以覆盖gsap的
+  transition: opacity 0.3s; // 可以覆盖gsap的
 }
 
 .slideshow-list__el {

@@ -120,24 +120,25 @@ export default {
 
 <style lang="scss" scoped>
 .slider{
-    position: relative;
-    width: 50vw;
-    outline: none;
-    height: 50vh;
-    overflow: hidden;
-    -webkit-transform: translateZ(0px);
-    transform: translateZ(0px)
+  position: relative;
+  width: 50vw;
+  outline: none;
+  height: 50vh;
+  overflow: hidden;
+  -webkit-transform: translateZ(0px);
+  transform: translateZ(0px)
 }
+
 .slide-item{
-    position: absolute;
-    outline: none;
-    width: 50vw;
-    -webkit-transform: translateZ(0px);
-    transform: translateZ(0px);
-    height: 50vh;
-    will-change: transform;
-    background-repeat:no-repeat;
-    background-size: auto;
+  position: absolute;
+  outline: none;
+  width: 50vw;
+  -webkit-transform: translateZ(0px);
+  transform: translateZ(0px);
+  height: 50vh;
+  will-change: transform;
+  background-repeat:no-repeat;
+  background-size: cover;
 }
 
 </style>

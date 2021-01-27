@@ -35,8 +35,15 @@
     --background-color: var(--background-light);
     --border-color: var(--border-light);
 
-    -webkit-filter: none;
-    filter: none;
+
+    // logo
+    --logo-weight: 300;
+    --logo-shadow: none;
+
+    img {
+      -webkit-filter: none;
+      filter: none;
+    }
 }
 [data-user-color-scheme='dark'] {
     --color-mode: 'dark';
@@ -44,10 +51,13 @@
     --el-text-color: var(--color-text-el-light-bg);
     --background-color:var(--background-dark);
     --border-color: var(--border-dark);
-    
 
+    // logo
+    --logo-weight: 600;
+    --logo-shadow: 0 0 80px red, 0 0 30px firebrick, 0 0 6px darkred;
+    
     // dark 模式降低亮度
-    &:not(.neon) {
+    img {
       -webkit-filter: brightness(0.7);
       filter: brightness(0.7);
     }
