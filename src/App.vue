@@ -139,9 +139,9 @@ export default {
         document.querySelector('.cursor').style.visibility = 'visible'
 
         this.$GSAP.delayedCall(2, () => {
+          // 这2s时Gates动画完成时间
           console.log('App: initAnimations')
           this.$store.state.isInitAnimations = true
-          this.$store.state.flashword = true
           this.$eventHub.$emit('initAnimations')
         })
       })
@@ -460,7 +460,7 @@ export default {
   font-weight: var(--logo-weight);
   z-index: var(--top-index);
   color: red;
-  text-shadow: var(--logo-shadow)
+  text-shadow: var(--red-shadow)
 }
 
 @media (min-width: 920px) {

@@ -223,6 +223,12 @@ export default {
         ease: Expo.easeIn
       })
 
+      // 标题退场, 进场放在Closer组件中
+      this.$GSAP.to(document.querySelectorAll('.article-serial'), 0.2, {
+        alpha: 0,
+        ease: Expo.easeInOut
+      })
+
       if (item === 'Daisies') {
         this.showDaisiesDetail()
       }
@@ -353,8 +359,10 @@ export default {
   transform: translateX(8vh);
 
   & .gallery__item-number {
-    color: rgb(109, 223, 230);
+    color: blue;
     font-size: clamp(2.5rem,9vw,6.5rem);
+    font-family: Monoton,cursive;
+    text-shadow: var(--blue-shadow);
   }
 
   & .gallery__item-title {

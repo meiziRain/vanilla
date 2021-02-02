@@ -38,7 +38,8 @@
 
     // logo
     --logo-weight: 300;
-    --logo-shadow: none;
+    --red-shadow: none;
+    --blue-shadow: none;
 
     img {
       -webkit-filter: none;
@@ -54,10 +55,11 @@
 
     // logo
     --logo-weight: 600;
-    --logo-shadow: 0 0 80px red, 0 0 30px firebrick, 0 0 6px darkred;
+    --red-shadow: 0 0 80px red, 0 0 30px firebrick, 0 0 6px darkred;
+    --blue-shadow: 0 0 80px blue, 0 0 30px darkblue, 0 0 6px darkblue;
     
     // dark 模式降低亮度
-    img {
+    img, #about {
       -webkit-filter: brightness(0.7);
       filter: brightness(0.7);
     }
@@ -65,11 +67,11 @@
 
 // 弥补图片缩放产生的差异
 // img{
-//     image-rendering: -moz-crisp-edges; 
-//     image-rendering: -o-crisp-edges; 
-//     image-rendering: -webkit-optimize-contrast; 
-//     image-rendering: crisp-edges; 
-//     -ms-interpolation-mode: nearest-neighbor;
+//   image-rendering: -moz-crisp-edges; 
+//   image-rendering: -o-crisp-edges; 
+//   image-rendering: -webkit-optimize-contrast; 
+//   image-rendering: crisp-edges; 
+//   -ms-interpolation-mode: nearest-neighbor;
 // }
 
 body {

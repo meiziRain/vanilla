@@ -19,7 +19,6 @@
   <title>Vanilla</title>
   <link rel="stylesheet" type="text/css" href="normalize.css" />
   <link rel="stylesheet" type="text/css" href="assets/fonts/fonts.css" />
-
   <!-- icons -->
   <link rel="apple-touch-icon" sizes="57x57" href="./img/icons/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="./img/icons/apple-icon-60x60.png">
@@ -360,10 +359,62 @@
     .gitter-open-chat-button:hover {
       background-color: var(--color-main);
     }
+
+    .font-pre-render {
+      position: absolute;
+      height: 0;
+      width: 0;
+      visibility: hidden;
+      z-index: -99999;
+    }
+
+    /* <!-- 浏览器将普通字渲染成修饰后的字体有个间隙，此处在app inject前先走字体渲染过程 --> */
+    .font-pre-render:nth-child(1){
+      font-family: Monoton,cursive;
+    }
+    
+    .font-pre-render:nth-child(2) {
+      font-family: 'Bungee Inline';
+    }
+    
+    .font-pre-render:nth-child(3) {
+      font-family: 'Cabin Sketch', cursive;
+    }
+
+    .font-pre-render:nth-child(4) {
+      font-family: "Poiret One", cursive;
+    }
+
+    .font-pre-render:nth-child(5) {
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    .font-pre-render:nth-child(6) {
+      font-family: moret, serif;
+    }
   </style>
 </head>
 
 <body oncontextmenu="doNothing()" data-user-color-scheme="light">
+  <!-- 浏览器将普通字渲染成修饰后的字体有个间隙，此处在app inject前先走字体渲染过程 -->
+  <div class="font-pre-render">
+    Q
+  </div>
+  <div class="font-pre-render">
+    Q
+  </div>
+  <div class="font-pre-render">
+    Q
+  </div>
+  <div class="font-pre-render">
+    Q
+  </div>
+  <div class="font-pre-render">
+    Q
+  </div>
+  <div class="font-pre-render">
+    Q
+  </div>
   <script type="text/javascript">
     function fullScreen() {
       var element = document.documentElement;

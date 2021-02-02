@@ -63,18 +63,19 @@
     <div>
       <div id="word">
         <Flashword
-          v-if="$store.state.flashword"
+          v-if="flash"
           ref="words"
           :key="refreshKey"
           :dark="dark"
         />
+        <div class="this-is">This is?</div>
       </div>
       <a v-if="false" href="https://hitcount.io" target="__blank" style="position:absolute;">
         <img alt="Hit counter" src="https://hitcount.io/api/_gAVzrOcg">
       </a>
       <div id="corner" />
       <div id="magnetic-btn" @click="diiiscover">
-        <MagneticButton ref="btn" />
+        <MagneticButton :key="refreshKey" ref="btn" />
       </div>
     </div>
   </div>
@@ -100,6 +101,7 @@ export default {
     return {
       dark: false,
       refreshKey: '',
+      flash: false,
       bgImage: require('@/assets/imgs/shancheng-high.jpg'),
       bgImage1: require('@/assets/imgs/layer/1.jpg'),
       bgImage2: require('@/assets/imgs/layer/2.jpg'),
@@ -124,29 +126,43 @@ export default {
     console.log('Home mounted')
     this.$store.state.home = this
     if (this.$store.state.isInitAnimations) {
-      // http://localhost:8082/#/about 进入 home 时也要触发
-      this.initRevealer()
+      // 从其他页进入 home 时也要触发
+      this.initRevealer(() => {
+        // Revealer 动画完成后才执行flashword动画
+        this.refreshKey = new Date().getTime()
+      })
     }
     this.$eventHub.$on('initAnimations', () => {
+      // 直接从home页进入的情况
       console.log('Home page:initAnimations')
-      this.initRevealer()
+      this.initRevealer(() => {
+        this.flash = true
+        this.magBtnAnim()
+      })
       this.initAnim()
     })
     this.$eventHub.$on('darkListener', (data) => {
       // 利用修改key的属性值，重新加载子组件，触发create事件
-      this.refreshKey = new Date().getTime()
       this.dark = data
     })
   },
   methods: {
-    initRevealer() {
-      const revealer = new Revealer()
-      revealer.reveal()
+    initRevealer(callback) {
+      this.$GSAP.delayedCall(1, () => {
+        // 给定1s 来显示 `this is`
+        const revealer = new Revealer(callback)
+        revealer.reveal()
+      })
     },
     initAnim() {
       // 每次切换路由会调用
       console.log('home store: initHomeAnim')
       // this.initBeginnings()
+      if (this.flash) {
+        this.magBtnAnim()
+      }
+    },
+    magBtnAnim() {
       this.$GSAP.fromTo(document.querySelector('#magnetic-btn'), {
         y: 0,
         scale: 0
@@ -205,6 +221,15 @@ export default {
   font-size: 5vw;
   text-align: center;
   position: absolute;
+}
+
+.this-is {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  color: var(--text-color);
+  font-family: 'Bungee Inline';
 }
 
 #magnetic-btn{
@@ -328,7 +353,7 @@ img {
   height: 100vh;
   position: absolute;
   overflow: hidden;
-  z-index: 2000;
+  z-index: 999;
   pointer-events: none;
 }
 

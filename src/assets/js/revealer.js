@@ -9,7 +9,8 @@ class ImageLayer {
 }
 
 export default class Revealer {
-  constructor() {
+  constructor(callback) {
+    console.log('callback', typeof callback)
     this.DOM = {}
     this.layers = [];
     [...document.querySelectorAll('.layers__item')].forEach(item => this.layers.push(new ImageLayer(item)))
@@ -19,9 +20,9 @@ export default class Revealer {
       duration: 1,
       panelDelay: 0.15
     }
-    this.createTimeline()
+    this.createTimeline(callback)
   }
-  createTimeline() {
+  createTimeline(callback) {
     this.tl = gsap.timeline({ paused: true })
 
     // animate the Image layers
@@ -44,7 +45,10 @@ export default class Revealer {
       .to([this.layers[this.layersTotal - 1].DOM.el, this.layers[this.layersTotal - 1].DOM.image], {
         duration: this.options.duration,
         ease: 'Expo.easeInOut',
-        y: (index) => index ? '101%' : '-101%'
+        y: (index) => index ? '101%' : '-101%',
+        onComplete: () => {
+          callback()
+        }
       }, 'halfway')
     // show grid items
       .fromTo(this.gridItems, { y: () => randomFloat(100, 500) }, {

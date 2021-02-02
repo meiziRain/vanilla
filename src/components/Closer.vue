@@ -17,6 +17,11 @@ export default {
   methods: {
     closeDetail() {
       this.$emit('clickHandler', '')
+      // 标题退场
+      this.$GSAP.to(document.querySelectorAll('.article-serial'), 0.5, {
+        alpha: 1,
+        ease: 'Expo.easeInOut'
+      })
     }
   }
 }

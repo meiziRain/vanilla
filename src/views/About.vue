@@ -164,7 +164,6 @@ export default {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  filter: brightness(0.7);
   background: var(--background-color);
   color: var(--text-color);
   // background-color: rgb(253, 251, 243);
