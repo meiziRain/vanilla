@@ -200,7 +200,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/fonts/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2"
   },
   {
-    "revision": "83b7b7ace11ffee094bb",
+    "revision": "c0dfee05b0cca8546f20",
     "url": "css/app.04348304.css"
   },
   {
@@ -292,16 +292,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/shancheng-high.4112bd41.jpg"
   },
   {
-    "revision": "dd754839444390cfa4265e48baa39019",
-    "url": "img/sugar-bee.dd754839.jpg"
-  },
-  {
-    "revision": "2a319e58908687aad4d19d31d8b9c412",
+    "revision": "bb7097bdfa6c0c017e045adc27ae617d",
     "url": "index.html"
   },
   {
-    "revision": "83b7b7ace11ffee094bb",
-    "url": "js/app.7720311b.js"
+    "revision": "c0dfee05b0cca8546f20",
+    "url": "js/app.8e4035d5.js"
   },
   {
     "revision": "1662ded3c597c6131f75",

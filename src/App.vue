@@ -3,7 +3,6 @@
     <div v-show="false" id="img-factory" style="width:0;height:0">
       <!-- 图片必须预先加载完, 否则动画会卡顿, 不要漏图片了 -->
       <img src="@/assets/imgs/red-head-high.jpg">
-      <img src="@/assets/imgs/sugar-bee.jpg">
       <img src="@/assets/imgs/shancheng-high.jpg">
       <img src="@/assets/imgs/Logo-2.png">
       <img src="@/assets/imgs/Logo.png">
