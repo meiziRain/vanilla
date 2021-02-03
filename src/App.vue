@@ -8,8 +8,6 @@
       <img src="@/assets/imgs/Logo.png">
       <img src="@/assets/imgs/girl-illu-triangle.png">
       <img src="@/assets/imgs/miao1.jpg">
-      <img src="https://www.keysshoes.com/ecommerce/wp-content/uploads/2020/07/adv1.jpg">
-
       <img src="@/assets/imgs/layer/1.jpg">
       <img src="@/assets/imgs/layer/2.jpg">
       <img src="@/assets/imgs/layer/3.jpg">
@@ -42,7 +40,7 @@
         <div id="mobile" ref="mobile">
           <div id="mobile-header">
             <Ham id="hamburger" ref="ham" @click.native="onHamClick()" />
-            <LightSwitch v-if="false" id="light-switch" />
+            <LightSwitch id="light-switch" />
           </div>
           <div id="mobile-nav" ref="mobile_nav" @click="jump">
             <router-link to="/">
@@ -397,7 +395,7 @@ export default {
 
 #mobile-header {
   display: flex;
-  background-color: white;
+  background-color: var(--background-color);
   justify-content: space-between;
   height: 60px;
   width: 100vw;
@@ -421,8 +419,8 @@ export default {
   height: 1px;
   z-index: 999;
   overflow: hidden;
-  background-color: white;
-  box-shadow: inset 0px -1px 0px #e7e7e7;
+  background-color: var(--background-color);
+  box-shadow: inset 0px -1px 0px var(--background-color);
 }
 
 #mobile-nav>a {

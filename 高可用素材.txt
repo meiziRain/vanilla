@@ -47,10 +47,10 @@ https://tympanus.net/Tutorials/InfiniteLights/index4.html
 16. 可以成为detailview 优先级 中
 https://tympanus.net/Development/DiagonalThumbnails/index2.html 
 
-17 滚动不规则 优先级 中
+17 滚动不规则 优先级 高 FIXME:
 https://tympanus.net/Development/MorphingBackgroundShapes/index2.html
 
-18 字 linear 动画结束后可以加荧光 优先级 高 FIXME:
+18 字 linear 动画结束后可以加荧光 优先级 中
 https://tympanus.net/Development/LetterInteractions/weaver.html
 
 19. 也许可以用，页面切换边际过渡 优先级 中

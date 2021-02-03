@@ -502,11 +502,11 @@ export default {
 
 @media (max-width: 920px) {
   .cata {
-    height: calc(100vh - 60px);
     display: flex;
     align-items: center;
   }
 }
+
 @media (max-width: 400px) {
   .slideshow-list__el{
     width: 80vw !important;

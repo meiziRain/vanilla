@@ -29,6 +29,9 @@ export default {
     // 点击切换 light/dark 模式
   },
   mounted() {
+    this.$GSAP.killTweensOf(document.querySelector('.flashword__content__title'))
+    this.$GSAP.killTweensOf(document.querySelector('.flashword__content__subtitle'))
+    this.$GSAP.killTweensOf(Array.from(document.querySelectorAll('span')))
     window.localStorage.getItem('dark') === 'true' ? this.animateTitles(true) : this.animateTitles(false) // true -> 白色 #fff
     this.$eventHub.$on('darkListener', (data) => {
       !data ? this.animateTitles(true) : this.animateTitles(false) // true -> 白色 #fff
@@ -67,12 +70,13 @@ export default {
     animateTitles(dark) {
       const getRandomNumber = (min, max) => Math.random() * (max - min) + min
       const title = document.querySelector('.flashword__content__title')
+      const subtitle = document.querySelector('.flashword__content__subtitle')
+      this.$GSAP.killTweensOf(title)
+      this.$GSAP.killTweensOf(subtitle)
+      this.$GSAP.killTweensOf(titleLetters)
       charming(title)
       const titleLetters = Array.from(title.querySelectorAll('span'))
-
       this.staggerTo()
-
-      const subtitle = document.querySelector('.flashword__content__subtitle')
       TweenMax.set(subtitle, {
         opacity: 0
       })
@@ -97,8 +101,7 @@ export default {
         setTimeout(() => {
           TweenMax.set(el, {
             x: 0,
-            y: 0,
-            color: dark ? '#fff' : '#000'
+            y: 0
           })
           glitch(el, cycles - 1)
         }, getRandomNumber(20, 100))
@@ -145,6 +148,7 @@ export default {
 
 .flashword__content__title {
   font-family: 'Bungee Inline';
+  color: var(--text-color);
   /* color: red;
   font-family: "Monoton", cursive; */
 }

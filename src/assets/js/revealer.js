@@ -41,6 +41,10 @@ export default class Revealer {
           gsap.set(panel.DOM.el, { opacity: 0 })
         })
       }, this, 'halfway')
+      // this-is
+      .to('.this-is', {
+        alpha: 0
+      })
     // now hide the last Image Layer
       .to([this.layers[this.layersTotal - 1].DOM.el, this.layers[this.layersTotal - 1].DOM.image], {
         duration: this.options.duration,

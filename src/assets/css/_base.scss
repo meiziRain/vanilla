@@ -40,6 +40,7 @@
     --logo-weight: 300;
     --red-shadow: none;
     --blue-shadow: none;
+    --green-shadow: none;
 
     img {
       -webkit-filter: none;
@@ -50,13 +51,14 @@
     --color-mode: 'dark';
     --text-color: var(--color-text-dark);
     --el-text-color: var(--color-text-el-light-bg);
-    --background-color:var(--background-dark);
+    --background-color: var(--background-dark);
     --border-color: var(--border-dark);
 
     // logo
     --logo-weight: 600;
     --red-shadow: 0 0 80px red, 0 0 30px firebrick, 0 0 6px darkred;
     --blue-shadow: 0 0 80px blue, 0 0 30px darkblue, 0 0 6px darkblue;
+    --green-shadow: 0 0 80px green, 0 0 30px rgb(1, 126, 1), 0 0 6px darkgreen;
     
     // dark 模式降低亮度
     img, #about {

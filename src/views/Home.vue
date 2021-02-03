@@ -127,9 +127,12 @@ export default {
     this.$store.state.home = this
     if (this.$store.state.isInitAnimations) {
       // 从其他页进入 home 时也要触发
-      this.initRevealer(() => {
-        // Revealer 动画完成后才执行flashword动画
-        this.refreshKey = new Date().getTime()
+      this.$GSAP.delayedCall(1, () => {
+        // 其他页面进入时, Overlay也需要1s时间，加上initRevealer中的1s，所以此种情况共等了2s
+        this.initRevealer(() => {
+          // Revealer 动画完成后才执行flashword动画
+          this.refreshKey = new Date().getTime()
+        })
       })
     }
     this.$eventHub.$on('initAnimations', () => {
@@ -173,7 +176,6 @@ export default {
         force3D: true,
         duration: 1,
         onComplete: () => {
-          // 现象: 调整视口大小后才会浮动 原因: 时机？
           this.$refs.btn.init()
         }
       })
@@ -228,8 +230,10 @@ export default {
   left: 50%;
   transform: translate(-50%, -50%);
   position: absolute;
-  color: var(--text-color);
+  color: green;
+  font-size: 18vh;
   font-family: 'Bungee Inline';
+  text-shadow: var(--green-shadow)
 }
 
 #magnetic-btn{

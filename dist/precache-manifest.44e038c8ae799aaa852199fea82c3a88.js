@@ -200,12 +200,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/fonts/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2"
   },
   {
-    "revision": "c0dfee05b0cca8546f20",
-    "url": "css/app.04348304.css"
+    "revision": "a8a37ff55659ec088f6b",
+    "url": "css/app.8c994007.css"
   },
   {
-    "revision": "1662ded3c597c6131f75",
-    "url": "css/blog.b14e569d.css"
+    "revision": "0e455d7c282d857aed83",
+    "url": "css/blog.1352e498.css"
   },
   {
     "revision": "5f1295d5698ba955da57",
@@ -292,16 +292,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/shancheng-high.4112bd41.jpg"
   },
   {
-    "revision": "bb7097bdfa6c0c017e045adc27ae617d",
+    "revision": "417d8b0874c7016d2849d3e11c0850af",
     "url": "index.html"
   },
   {
-    "revision": "c0dfee05b0cca8546f20",
-    "url": "js/app.8e4035d5.js"
+    "revision": "a8a37ff55659ec088f6b",
+    "url": "js/app.ab7f9cf6.js"
   },
   {
-    "revision": "1662ded3c597c6131f75",
-    "url": "js/blog.2f6cd6c4.js"
+    "revision": "0e455d7c282d857aed83",
+    "url": "js/blog.354e0fb1.js"
   },
   {
     "revision": "5f1295d5698ba955da57",
