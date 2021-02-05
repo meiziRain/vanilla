@@ -57,8 +57,9 @@
         </div>
       </div>
       <div id="pc">
+        <div class="click-me"  :style="{backgroundImage: 'url('+bgImage+')'}"></div>
         <LightSwitch id="pc-light-switch" />
-        <Iris id="pc-nav" ref="nav" />
+        <Iris v-if="!_isMobile()" id="pc-nav" ref="nav" />
         <!-- <Logo id="pc-logo" />
         <Circlee id="logo-circle" size="8vw" /> -->
         <div id="pc-logo" class="logo">
@@ -99,7 +100,8 @@ export default {
   data() {
     return {
       cursor: {},
-      loader: true
+      loader: true,
+      bgImage: require('@/assets/imgs/click-me.png')
     }
   },
   created() {
@@ -128,7 +130,9 @@ export default {
       document.fonts.ready.then(() => {
         console.log('fonts.ready')
         this.initCursor()
-        this.$refs.nav.keepNavRender()
+        if (!this._isMobile) {
+          this.$refs.nav.keepNavRender()
+        }
         this.initOverlay()
         this.$refs.zip.zip()
         this.$GSAP.delayedCall(1 /* zip 下拉动画过渡时间 */, () => {
@@ -407,6 +411,30 @@ export default {
   z-index: 999;
   right: 3%;
   top: 3%;
+}
+
+.click-me {
+  bottom: -25%;
+  left: -15%;
+  position: fixed;
+  width: 40vw;
+  height: 40vw;
+  background-size: cover;
+  z-index: calc(var(--top-index) - 1);
+  animation: 10s linear infinite logoRotateAnim;
+  filter: contrast(0);
+}
+
+@keyframes logoRotateAnim{
+  0%{
+    transform: rotate(0);
+  }
+  50%{
+    transform: rotate(-180deg);
+  }
+  100%{
+    transform: rotate(-360deg);
+  }
 }
 
 #pc-light-switch{

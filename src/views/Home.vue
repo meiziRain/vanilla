@@ -102,6 +102,7 @@ export default {
       dark: false,
       refreshKey: '',
       flash: false,
+      cataScroll: {},
       bgImage: require('@/assets/imgs/shancheng-high.jpg'),
       bgImage1: require('@/assets/imgs/layer/1.jpg'),
       bgImage2: require('@/assets/imgs/layer/2.jpg'),

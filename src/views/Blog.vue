@@ -46,7 +46,7 @@
             class="slideshow-list__el even"
             @click="showDetail('Gardenias')"
           >
-            <img src="@/assets/imgs/shancheng-high.jpg">
+            <img src="@/assets/imgs/neon-cs.jpg">
           </article>
           <div class="article-text">
             <span>
@@ -381,26 +381,6 @@ export default {
   flex-wrap: nowrap;
 }
 
-.tile__content move-text {
-  transition: color .3s;
-}
-
-.tile__title {
-  position:absolute;
-  bottom: 10%;
-  left: -30%;
-  white-space: nowrap;
-  font-size: 6em;
-  background-size: cover;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;//设置文字填充色为透明
-  color:transparent;
-  &:first-letter {
-    font-size:4em;
-  }
-}
-
 .article-wrapper{
   position:relative;
   z-index:9; // 大于begin-end-word
@@ -422,9 +402,13 @@ export default {
   }
 }
 
-.article-text{
+.article-text {
   text-align: right;
   transform: translate3d(0, 20px, 0);
+
+  & > span {
+    color: var(--text-color);
+  }
 }
 
 .closer{
@@ -453,11 +437,6 @@ export default {
 
 #daisies{
   font-family: "Poiret One", cursive;
-}
-
-.section{
-  width: 100%;
-  height: 100%;
 }
 
 .slideshow__progress-ctn {
