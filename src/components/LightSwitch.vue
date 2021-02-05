@@ -37,8 +37,6 @@ export default {
   mounted() {
     window.localStorage.getItem('dark') === 'false' ? this.initTheme(false) : this.initTheme(true)
     this.$eventHub.$on('darkListener', (data) => {
-      // 利用修改key的属性值，重新加载子组件，触发create事件
-      this.refreshKey = new Date().getTime()
       this.dark = data
     })
   },
@@ -46,10 +44,12 @@ export default {
     initTheme(dark) {
       if (dark) {
         this.dark = true
+        this.$store.state.dark = true
         document.body.setAttribute('data-user-color-scheme', 'dark')
         this.$refs.switch.style.color = 'white'
       } else {
         this.dark = false
+        this.$store.state.dark = false
         document.body.setAttribute('data-user-color-scheme', 'light')
         this.$refs.switch.style.color = 'black'
       }

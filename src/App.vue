@@ -4,6 +4,7 @@
       <!-- 图片必须预先加载完, 否则动画会卡顿, 不要漏图片了 -->
       <img src="@/assets/imgs/red-head-high.jpg">
       <img src="@/assets/imgs/shancheng-high.jpg">
+      <img src="@/assets/imgs/shancheng-low.jpg">
       <img src="@/assets/imgs/Logo-2.png">
       <img src="@/assets/imgs/Logo.png">
       <img src="@/assets/imgs/girl-illu-triangle.png">
@@ -125,7 +126,7 @@ export default {
   methods: {
     init() {
       document.fonts.ready.then(() => {
-        console.log('active')
+        console.log('fonts.ready')
         this.initCursor()
         this.$refs.nav.keepNavRender()
         this.initOverlay()

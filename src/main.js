@@ -108,12 +108,15 @@ router.afterEach((to, from) => {
   if (from.name !== null) {
     store.commit('toggleOverlay')
     if (to.name === 'Home') {
+      console.log('store afterEach initHomeAnim')
       store.commit('initHomeAnim')
     }
     if (to.name === 'About') {
+      console.log('store afterEach initAboutAnim')
       store.commit('initAboutAnim')
     }
     if (to.name === 'Blog') {
+      console.log('store afterEach initBlogAnim')
       store.commit('initBlogAnim')
     }
   }

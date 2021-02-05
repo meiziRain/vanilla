@@ -10,7 +10,6 @@ class ImageLayer {
 
 export default class Revealer {
   constructor(callback) {
-    console.log('callback', typeof callback)
     this.DOM = {}
     this.layers = [];
     [...document.querySelectorAll('.layers__item')].forEach(item => this.layers.push(new ImageLayer(item)))
@@ -34,7 +33,8 @@ export default class Revealer {
       }, this.options.panelDelay * i)
     }
 
-    this.tl.addLabel('halfway', this.options.panelDelay * (this.layersTotal - 1) + this.options.duration)
+    this.tl
+      .addLabel('halfway', this.options.panelDelay * (this.layersTotal - 1) + this.options.duration)
       .call(() => {
         // hide all Image layers except the last one (at this point the last Image layer is visible fullscreen)
         this.layers.filter((_, pos) => pos !== this.layers.length - 1).forEach((panel, pos) => {
@@ -60,7 +60,15 @@ export default class Revealer {
         ease: 'Expo.easeOut',
         y: 0,
         opacity: 1
-      }, 'halfway')
+      }, 'halfway').fromTo('#pc-nav', {
+        alpha: 0,
+        display: 'none'
+      }, {
+        alpha: 1,
+        display: 'block',
+        duration: 1,
+        ease: 'Expo.easeOut'
+      })
   }
   reveal() {
     this.tl.restart()

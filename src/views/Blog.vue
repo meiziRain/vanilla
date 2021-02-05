@@ -25,7 +25,6 @@
             id="daisies"
             class="slideshow-list__el"
             @click="showDetail('Daisies')"
-            @mouseenter="articleMouseenter('rgb(166, 142, 119)')"
           >
             <img src="@/assets/imgs/shancheng-high.jpg">
           <!-- article 放其他有内容的元素也会引起图片模糊，👴要崩溃了 -->
@@ -46,7 +45,6 @@
             ref="gardenias"
             class="slideshow-list__el even"
             @click="showDetail('Gardenias')"
-            @mouseenter="articleMouseenter('rgb(166, 142, 119)')"
           >
             <img src="@/assets/imgs/shancheng-high.jpg">
           </article>
@@ -80,7 +78,6 @@
 
 <script>
 // eslint-disable-next-line no-unused-vars
-import { Power2, Expo } from 'gsap'
 import { map } from '@/assets/js/utils'
 // 滚动
 import Scrollbar from 'smooth-scrollbar'
@@ -132,11 +129,10 @@ export default {
     console.log('Blog mounted')
     this.initScroller()
     this.$store.state.blog = this
-
     // this.initEvents()
     this.$eventHub.$on('initAnimations', () => {
       this.$GSAP.set(document.querySelectorAll('.article-wrapper'), {
-        alpha: 0,
+        opacity: 0,
         y: 200,
         force3D: true,
         onComplete: () => {
@@ -144,39 +140,31 @@ export default {
         }
       })
     })
+    // darkListener
+  },
+  destroyed() {
+    console.log('destroyed')
   },
   methods: {
     initAnim() {
       this.$GSAP.killTweensOf((document.querySelectorAll('.article-wrapper')))
       const blogActivatedTimeline = this.$GSAP.timeline({ repeat: 0, repeatDelay: 0 })
       blogActivatedTimeline.fromTo(document.querySelectorAll('.article-wrapper'), {
-        alpha: 0,
+        opacity: 0,
         y: 100
       }, {
-        alpha: 1,
+        opacity: 1,
         y: 0,
-        ease: Expo.easeOut,
+        ease: 'Expo.easeOut',
         duration: 0.8,
         force3D: true
       })
+      // hack，通过调整brightness值让图片不模糊，饮鸠止渴😭
+      // eslint-disable-next-line no-empty
+      if (this.$store.state.dark) {}
       blogActivatedTimeline.eventCallback('onComplete', () => {
         document.body.classList.remove('non-clickable')
       })
-    },
-    articleMouseleave(ev) {
-      requestAnimationFrame(() => {
-        // Reset tilt and image scale.
-        this.$GSAP.to(ev.target.querySelectorAll('.move-text'), 1.8, {
-          ease: 'Power4.easeOut',
-          x: 0,
-          y: 0,
-          rotationX: 0,
-          rotationY: 0
-        })
-      })
-    },
-    articleMouseenter(color) {
-      this.$refs.bg_title.style.setProperty('color', color)
     },
     initScroller() {
       this.cataScroll = Scrollbar.init(document.querySelector('.cata'), {
@@ -205,14 +193,14 @@ export default {
       const fade_ele = document.querySelectorAll('#pc-logo, #logo-circle, .slideshow__progress-ctn')
       this.$GSAP.to(fade_ele, 0.3, {
         alpha: 1,
-        ease: Expo.easeIn
+        ease: 'Expo.easeIn'
       })
       // iris
       const pcNav = document.querySelector('#pc-nav')
       this.$GSAP.to(pcNav, 0.5, {
         x: 0,
         alpha: 1,
-        ease: Expo.easeOut
+        ease: 'Expo.easeOut'
       })
     },
     showDetail(item) {
@@ -220,13 +208,13 @@ export default {
       const fade_ele = document.querySelectorAll('#pc-logo, #logo-circle, .slideshow__progress-ctn')
       this.$GSAP.to(fade_ele, 0.5, {
         alpha: 0,
-        ease: Expo.easeIn
+        ease: 'Expo.easeIn'
       })
 
       // 标题退场, 进场放在Closer组件中
       this.$GSAP.to(document.querySelectorAll('.article-serial'), 0.2, {
         alpha: 0,
-        ease: Expo.easeInOut
+        ease: 'Expo.easeInOut'
       })
 
       if (item === 'Daisies') {
@@ -242,7 +230,7 @@ export default {
       this.$GSAP.to(pcNav, 0.5, {
         x: 800,
         alpha: 0,
-        ease: Expo.easeIn
+        ease: 'Expo.easeIn'
       })
       this.cataScroll.updatePluginOptions('horizontalScroll', {
         events: []
@@ -258,7 +246,7 @@ export default {
     showGardeniasDetail() {
       this.$GSAP.to('#gardenias', 0.9, {
         scale: 1.3,
-        ease: Power2.easeInOut
+        ease: 'Power2.easeInOut'
       })
     },
     /* Handlers
@@ -303,7 +291,8 @@ export default {
 }
 
 .gallery__text-inner {
-	display: block;
+  display: block;
+  font-family: 'Bungee Inline';
 }
 
 .begin-end-word {
@@ -311,16 +300,16 @@ export default {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 20vw;
+  font-size: 15vw;
   line-height: 0.8;
   margin: 0 0 0 14vw;
   padding: 0 4vh 0 0;
-  text-transform: lowercase;
-  font-family: moret, serif;
-  -webkit-text-stroke: 1px red;
-  -webkit-text-fill-color: transparent;
+  color:red;
+  // text-transform: lowercase;
+  // -webkit-text-stroke: 1px red;
+  // -webkit-text-fill-color: transparent;
   font-weight: 800;
-  font-style: italic;
+  // font-style: italic;
   align-self: center;
 }
 
@@ -423,11 +412,13 @@ export default {
   height: 60vh;
   margin-left: 15vw;
   will-change: transform, opacity;
+  // 设置img外层filter(_base.scss)，可以使will-change提升img清晰度后，不会冲突而降低清晰度, 只是会影响字体
 
   &>img{
-    width:auto;
-    height:auto;
-    max-height:100%;
+    width: auto;
+    height: auto;
+    max-height: 100%;
+    filter: none;
   }
 }
 

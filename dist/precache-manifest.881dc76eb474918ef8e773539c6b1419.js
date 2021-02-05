@@ -200,12 +200,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/fonts/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2"
   },
   {
-    "revision": "a8a37ff55659ec088f6b",
-    "url": "css/app.8c994007.css"
+    "revision": "ec898d0d39e9e4a3edc0",
+    "url": "css/app.4910c87b.css"
   },
   {
-    "revision": "0e455d7c282d857aed83",
-    "url": "css/blog.1352e498.css"
+    "revision": "6de65d69a783f9d102fb",
+    "url": "css/blog.14fad3d6.css"
   },
   {
     "revision": "5f1295d5698ba955da57",
@@ -268,10 +268,6 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/Logo.9f019711.png"
   },
   {
-    "revision": "52c5e3eadd1c0f0678e2a25d21dd6997",
-    "url": "img/back.52c5e3ea.svg"
-  },
-  {
     "revision": "291dd036ce0250a821cedf5cc244d9e0",
     "url": "img/girl-illu-triangle.291dd036.png"
   },
@@ -292,16 +288,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/shancheng-high.4112bd41.jpg"
   },
   {
-    "revision": "417d8b0874c7016d2849d3e11c0850af",
+    "revision": "a5620371379c1d366c39f33ff578735b",
+    "url": "img/shancheng-low.a5620371.jpg"
+  },
+  {
+    "revision": "fb08906d9a95520dd810df08e843a193",
     "url": "index.html"
   },
   {
-    "revision": "a8a37ff55659ec088f6b",
-    "url": "js/app.ab7f9cf6.js"
+    "revision": "ec898d0d39e9e4a3edc0",
+    "url": "js/app.7111db1f.js"
   },
   {
-    "revision": "0e455d7c282d857aed83",
-    "url": "js/blog.354e0fb1.js"
+    "revision": "6de65d69a783f9d102fb",
+    "url": "js/blog.d5c2368e.js"
   },
   {
     "revision": "5f1295d5698ba955da57",

@@ -125,13 +125,20 @@ export default {
   mounted() {
     console.log('Home mounted')
     this.$store.state.home = this
+    this.$GSAP.set('#pc-nav', {
+      alpha: 0,
+      display: 'none'
+    })
     if (this.$store.state.isInitAnimations) {
       // 从其他页进入 home 时也要触发
       this.$GSAP.delayedCall(1, () => {
+        console.log('其他页进入 home 时也要触发')
         // 其他页面进入时, Overlay也需要1s时间，加上initRevealer中的1s，所以此种情况共等了2s
         this.initRevealer(() => {
+          console.log('refresh')
           // Revealer 动画完成后才执行flashword动画
-          this.refreshKey = new Date().getTime()
+          this.flash = true
+          this.magBtnAnim()
         })
       })
     }

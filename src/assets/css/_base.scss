@@ -43,7 +43,6 @@
     --green-shadow: none;
 
     img {
-      -webkit-filter: none;
       filter: none;
     }
 }
@@ -60,9 +59,8 @@
     --blue-shadow: 0 0 80px blue, 0 0 30px darkblue, 0 0 6px darkblue;
     --green-shadow: 0 0 80px green, 0 0 30px rgb(1, 126, 1), 0 0 6px darkgreen;
     
-    // dark 模式降低亮度
-    img, #about {
-      -webkit-filter: brightness(0.7);
+    // // dark 模式降低亮度
+    img, .article-wrapper { // .article-wrapper 设置img外层filter，可以使will-change提升img清晰度后，不会冲突而降低清晰度
       filter: brightness(0.7);
     }
 }
@@ -86,21 +84,6 @@ body {
   font-size: 1.4rem;
   font-weight: 400;
 }
-
-.dark-filter { // 图片暗度滤镜
-  -webkit-filter: brightness(0.7);
-  filter: brightness(0.7);
-}
-
-
-
-
-
-
-
-
-
-
 
 
 
