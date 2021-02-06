@@ -413,11 +413,11 @@ export default {
 }
 
 .click-me {
-  bottom: -25%;
-  left: -15%;
+  bottom: -20vh;
+  left: -20vh;
   position: fixed;
-  width: 40vw;
-  height: 40vw;
+  width: 60vh;
+  height: 60vh;
   background-size: cover;
   z-index: calc(var(--top-index) - 1);
   animation: 10s linear infinite logoRotateAnim;
