@@ -29,12 +29,11 @@ export default {
     // 点击切换 light/dark 模式
   },
   mounted() {
-    this.$GSAP.killTweensOf(document.querySelector('.flashword__content__title'))
-    this.$GSAP.killTweensOf(document.querySelector('.flashword__content__subtitle'))
-    this.$GSAP.killTweensOf(Array.from(document.querySelectorAll('span')))
     window.localStorage.getItem('dark') === 'true' ? this.animateTitles(true) : this.animateTitles(false) // true -> 白色 #fff
     this.$eventHub.$on('darkListener', (data) => {
-      !data ? this.animateTitles(true) : this.animateTitles(false) // true -> 白色 #fff
+      if (this.$route.name === 'Home') {
+        !data ? this.animateTitles(true) : this.animateTitles(false) // true -> 白色 #fff
+      }
     })
   },
   methods: {
@@ -68,12 +67,12 @@ export default {
       )
     },
     animateTitles(dark) {
-      const getRandomNumber = (min, max) => Math.random() * (max - min) + min
       const title = document.querySelector('.flashword__content__title')
+      // 清除上次动画产生的<span>
+      title.innerHTML = 'V A N I L L A'
       const subtitle = document.querySelector('.flashword__content__subtitle')
-      this.$GSAP.killTweensOf(title)
-      this.$GSAP.killTweensOf(subtitle)
-      this.$GSAP.killTweensOf(titleLetters)
+      const getRandomNumber = (min, max) => Math.random() * (max - min) + min
+      this.$GSAP.killTweensOf(title.querySelectorAll('span'))
       charming(title)
       const titleLetters = Array.from(title.querySelectorAll('span'))
       this.staggerTo()

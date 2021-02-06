@@ -41,7 +41,7 @@
         <div id="mobile" ref="mobile">
           <div id="mobile-header">
             <Ham id="hamburger" ref="ham" @click.native="onHamClick()" />
-            <LightSwitch id="light-switch" />
+            <LightSwitch id="mobile-light-switch" />
           </div>
           <div id="mobile-nav" ref="mobile_nav" @click="jump">
             <router-link to="/">
@@ -57,9 +57,9 @@
         </div>
       </div>
       <div id="pc">
-        <div class="click-me"  :style="{backgroundImage: 'url('+bgImage+')'}"></div>
-        <LightSwitch id="pc-light-switch" />
-        <Iris v-if="!_isMobile()" id="pc-nav" ref="nav" />
+        <div class="click-me" :style="{backgroundImage: 'url('+bgImage+')'}" />
+        <LightSwitch id="pc-light-switch" size="6vh" />
+        <Iris id="pc-nav" ref="nav" />
         <!-- <Logo id="pc-logo" />
         <Circlee id="logo-circle" size="8vw" /> -->
         <div id="pc-logo" class="logo">
@@ -390,7 +390,6 @@ export default {
 
 #mobile-header-wrapper {
   position: absolute;
-  height: 60px;
 }
 
 #mobile {
@@ -438,9 +437,18 @@ export default {
 }
 
 #pc-light-switch{
-  position: fixed;
-  bottom: 0;
+  position: absolute;
+  bottom: 5vh;
+  left: 5vh;
   z-index: var(--top-index);
+}
+
+#mobile-light-switch {
+  height: 30px;
+  position: relative;
+  top: 50%;
+  right:3%;
+  transform: translateY(-50%);
 }
 
 #mobile-nav {
@@ -489,15 +497,15 @@ export default {
   text-shadow: var(--red-shadow)
 }
 
-@media (min-width: 920px) {
+@media (min-width: 600px) {
   #mobile,
   #mobile-header-wrapper {
     display: none;
   }
 }
 
-@media (max-width: 920px) {
-  #pc-nav, #pc-logo, #pc-light-switch {
+@media (max-width: 600px) {
+  #pc-nav, #pc-logo, #pc-light-switch, #pc-nav, .click-me {
     display: none;
   }
 }

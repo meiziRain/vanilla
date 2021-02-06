@@ -6,6 +6,7 @@
       @click="switchLightMode"
     >
       <svg
+        ref="lightswitch"
         class="lightswitch__icon"
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -29,12 +30,21 @@
 
 <script>
 export default {
+  props: {
+    size: {
+      type: String,
+      default: '30px',
+      description: '尺寸'
+    }
+  },
   data() {
     return {
       dark: true
     }
   },
   mounted() {
+    this.initStyle()
+
     window.localStorage.getItem('dark') === 'false' ? this.initTheme(false) : this.initTheme(true)
     this.$eventHub.$on('darkListener', (data) => {
       this.dark = data
@@ -61,6 +71,11 @@ export default {
       this.$eventHub.$emit('darkListener', this.dark)
       console.log('$emit(darkListener)', this.dark)
       this.initTheme(this.dark)
+    },
+    initStyle() {
+      const el = this.$refs.lightswitch
+      el.style.width = this.size
+      el.style.height = this.size
     }
   }
 }
@@ -69,21 +84,10 @@ export default {
 <style>
 #light-switch-wrapper {
   cursor: pointer;
-  position: relative;
-  width: 60px;
-  height: 60px;
 }
 
 .lightswitch__icon {
   display: block;
-  width: 24px;
-  height: 24px;
   fill: currentColor;
-  transform: scale(1.2);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -12px;
-  margin-left: -12px;
 }
 </style>

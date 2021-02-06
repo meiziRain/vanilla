@@ -117,6 +117,9 @@ export default {
       homeBgImage: require('@/assets/imgs/girl-illu-triangle.png')
     }
   },
+  created() {
+    document.body.classList.add('non-clickable')
+  },
   activated() {
     this.$GSAP.set(document.querySelector('#magnetic-btn'), {
       y: 0,
@@ -126,10 +129,6 @@ export default {
   mounted() {
     console.log('Home mounted')
     this.$store.state.home = this
-    this.$GSAP.set('#pc-nav', {
-      alpha: 0,
-      display: 'none'
-    })
     if (this.$store.state.isInitAnimations) {
       // 从其他页进入 home 时也要触发
       this.$GSAP.delayedCall(1, () => {

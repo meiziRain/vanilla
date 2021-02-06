@@ -59,16 +59,11 @@ export default class Revealer {
         duration: this.options.duration * 2,
         ease: 'Expo.easeOut',
         y: 0,
-        opacity: 1
-      }, 'halfway').fromTo('#pc-nav', {
-        alpha: 0,
-        display: 'none'
-      }, {
-        alpha: 1,
-        display: 'block',
-        duration: 1,
-        ease: 'Expo.easeOut'
-      })
+        opacity: 1,
+        onComplete: () => {
+          document.body.classList.remove('non-clickable')
+        }
+      }, 'halfway')
   }
   reveal() {
     this.tl.restart()

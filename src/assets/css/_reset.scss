@@ -8,6 +8,7 @@
 *::before {
   box-sizing: border-box;
   cursor: none;
+  transition: background-color 0.5s;
 }
 
 // 图片自带3px缝隙, 去除

@@ -200,12 +200,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/fonts/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2"
   },
   {
-    "revision": "7facc7ab1c956ca30d8f",
-    "url": "css/app.b46e3f23.css"
+    "revision": "5a98534483e668f999d2",
+    "url": "css/app.9f59c639.css"
   },
   {
-    "revision": "a8d055903ebde522d1d3",
-    "url": "css/blog.0c2fccac.css"
+    "revision": "66f38cef39d6c4d94ba0",
+    "url": "css/blog.1f3fc9f1.css"
   },
   {
     "revision": "5f1295d5698ba955da57",
@@ -300,16 +300,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/shancheng-low.a5620371.jpg"
   },
   {
-    "revision": "20940942cb36ec5db267316361a233a0",
+    "revision": "e76c1a8bf364c4d34c358d3475eca18a",
     "url": "index.html"
   },
   {
-    "revision": "7facc7ab1c956ca30d8f",
-    "url": "js/app.0d373587.js"
+    "revision": "5a98534483e668f999d2",
+    "url": "js/app.69aa5022.js"
   },
   {
-    "revision": "a8d055903ebde522d1d3",
-    "url": "js/blog.9b611f4d.js"
+    "revision": "66f38cef39d6c4d94ba0",
+    "url": "js/blog.62e3198b.js"
   },
   {
     "revision": "5f1295d5698ba955da57",
