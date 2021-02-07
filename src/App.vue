@@ -4,10 +4,8 @@
       <!-- 图片必须预先加载完, 否则动画会卡顿, 不要漏图片了 -->
       <img src="@/assets/imgs/red-head-high.jpg">
       <img src="@/assets/imgs/shancheng-high.jpg">
-      <img src="@/assets/imgs/shancheng-low.jpg">
       <img src="@/assets/imgs/Logo-2.png">
       <img src="@/assets/imgs/Logo.png">
-      <img src="@/assets/imgs/girl-illu-triangle.png">
       <img src="@/assets/imgs/miao1.jpg">
       <img src="@/assets/imgs/layer/1.jpg">
       <img src="@/assets/imgs/layer/2.jpg">
@@ -21,7 +19,7 @@
       <img src="@/assets/imgs/layer/10.jpg">
     </div>
     <div v-if="loader" id="loader">
-      <Loader />
+      <Loader v-model="progressNumber" />
     </div>
     <div v-else id="container">
       <Zip ref="zip" />
@@ -101,6 +99,7 @@ export default {
     return {
       cursor: {},
       loader: true,
+      progressNumber: 4,
       bgImage: require('@/assets/imgs/click-me.png')
     }
   },
@@ -115,15 +114,17 @@ export default {
   },
   mounted() {
     console.log('APP mounted')
-
     const imgLoad = this.$imagesLoaded('#img-factory')
-    imgLoad.on('done', (imgs) => {
-      console.log('imagesLoaded', imgs)
-      this.loader = false
-      this.$nextTick(() => {
-        this.init()
+    imgLoad
+      .on('progress', (res) => {
+        this.progressNumber += Math.floor(96 / res.images.length)
       })
-    })
+      .on('done', (imgs) => {
+        this.loader = false
+        this.$nextTick(() => {
+          this.init()
+        })
+      })
   },
   methods: {
     init() {

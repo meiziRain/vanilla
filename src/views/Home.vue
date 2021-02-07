@@ -113,8 +113,7 @@ export default {
       bgImage7: require('@/assets/imgs/layer/7.jpg'),
       bgImage8: require('@/assets/imgs/layer/8.jpg'),
       bgImage9: require('@/assets/imgs/layer/9.jpg'),
-      bgImage10: require('@/assets/imgs/layer/10.jpg'),
-      homeBgImage: require('@/assets/imgs/girl-illu-triangle.png')
+      bgImage10: require('@/assets/imgs/layer/10.jpg')
     }
   },
   created() {
