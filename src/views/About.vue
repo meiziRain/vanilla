@@ -1,5 +1,5 @@
 <template>
-  <div id="about" class="neon">
+  <div id="about">
     <div id="about-scroll-viewport">
       <div id="about-scroll-content">
         <div>
@@ -55,7 +55,7 @@
         </div>
         <div id="bottom">
           <div class="neon">
-            123
+            123 <span>》》》》</span> <span>> > >  > > ></span>
           </div>
           <!-- <div id="bottom-developer">
             Made with ❤️ by <a>Meizi</a>
@@ -250,6 +250,15 @@ export default {
       }
     }
   }
+}
+
+.neon {
+  font-size: 9vh;
+  font-family: Monoton,cursive;
+  font-weight: var(--logo-weight);
+  z-index: var(--top-index);
+  color: #df979a;
+  text-shadow: 0 0 80px #df979a, 0 0 30px #e2a3a4, 0 0 6px #ba6466;
 }
 
 #bottom{

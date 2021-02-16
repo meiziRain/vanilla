@@ -16,6 +16,11 @@
             </div>
           </div>
         </div>
+        <div class="arrow-left">
+          <span>></span>
+          <span>></span>
+          <span>></span>
+        </div>
         <div ref="daisies" class="article-wrapper">
           <div class="article-serial">
             <span class="gallery__item-number">01</span>
@@ -59,10 +64,10 @@
             <div class="gallery__text">
               <span
                 class="gallery__text-inner  begin-end-word-up"
-              >End</span>
+              >待续</span>
               <span
                 class="gallery__text-inner  begin-end-word-down"
-              >The</span>
+              >未完</span>
             </div>
           </div>
         </div>
@@ -77,7 +82,6 @@
 </template>
 
 <script>
-// eslint-disable-next-line no-unused-vars
 import { map } from '@/assets/js/utils'
 // 滚动
 import Scrollbar from 'smooth-scrollbar'
@@ -164,6 +168,17 @@ export default {
       if (this.$store.state.dark) {}
       blogActivatedTimeline.eventCallback('onComplete', () => {
         document.body.classList.remove('non-clickable')
+      })
+
+      this.$GSAP.to('.arrow-left > span', {
+        textShadow: '0 0 80px #df979a, 0 0 30px #e2a3a4, 0 0 6px #ba6466',
+        stagger: { // wrap advanced options in an object
+          each: 0.2,
+          ease: 'power2.inOut'
+        },
+        onComplete: () => {
+          document.querySelector('.arrow-left > span:last-child').style.animation = 'arrowsblink 4s ease infinite'
+        }
       })
     },
     initScroller() {
@@ -262,7 +277,7 @@ export default {
       const progress = map(this.progress * 400, 0, 100, 5, 100)
       this.$GSAP.to(document.querySelector('.begin-word .begin-end-word-up'), 0.3, { yPercent: -progress, force3D: true })
       this.$GSAP.to(document.querySelector('.begin-word .begin-end-word-down'), 0.3, { yPercent: progress, force3D: true })
-      const end_progress = map(this.progress * 200, 0, 200, 5, 100)
+      const end_progress = map(this.progress * 250, 0, 200, 5, 100)
       this.$GSAP.to(document.querySelector('.end-word .begin-end-word-up'), 0.3, { yPercent: end_progress, force3D: true })
       this.$GSAP.to(document.querySelector('.end-word .begin-end-word-down'), 0.3, { yPercent: -end_progress, force3D: true })
     },
@@ -300,11 +315,11 @@ export default {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 15vw;
+  font-size: 20vh;
   line-height: 0.8;
-  margin: 0 0 0 14vw;
+  margin: 0 0 0 7vw;
   padding: 0 4vh 0 0;
-  color:red;
+  color: #df979a;
   // text-transform: lowercase;
   // -webkit-text-stroke: 1px red;
   // -webkit-text-fill-color: transparent;
@@ -336,6 +351,12 @@ export default {
   transition-timing-function: ease;
   -webkit-transition-timing-function: ease;
   // transform: rotate(8deg);
+}
+
+.arrow-left{
+  font-size: 20vh;
+  font-family: Monoton,cursive;
+  color: #df979a;
 }
 
 .article-serial{

@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.32f480bc5012aede2fb681bde4c9a1f2.js"
+  "precache-manifest.cb1fec037fed917cd862729cd48ba899.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "vanilla"});
+workbox.core.setCacheNameDetails({prefix: "Vanilla"});
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {

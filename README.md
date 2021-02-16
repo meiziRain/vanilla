@@ -1,4 +1,4 @@
-# vanilla
+# Vanilla
 
 ## Project setup
 ```

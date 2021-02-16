@@ -52,7 +52,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 2.5vw;
+  font-size: 4vh;
   font-family: Monoton,cursive;
 }
 

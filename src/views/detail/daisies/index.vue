@@ -81,7 +81,7 @@
 import { Power1, Power2, Power4, Sine, Expo } from 'gsap'
 import Closer from '@/components/Closer.vue'
 import NavIndicator from '@/components/NavIndicator.vue'
-import { getWindowWidth } from '@/assets/js/utils'
+import { getWindowWidth, getWindowHeight } from '@/assets/js/utils'
 export default {
   components: {
     Closer,
@@ -152,7 +152,8 @@ export default {
       trigger.clientWidth +
       this.scroll.offset.x -
       document.querySelector('.begin-word').clientWidth -
-      getWindowWidth() * 15 / 100 // (begin-word的margin，适当减小)
+      getWindowWidth() * 5 / 100 - // (begin-word的margin，适当减小)
+      getWindowHeight() * 60 / 100
       this.$GSAP.to(trigger, 0.9, {
         x: this.offset,
         scale: 1.3,

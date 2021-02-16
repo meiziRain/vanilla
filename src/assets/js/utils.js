@@ -46,6 +46,14 @@ const getWindowWidth = () => {
   }
 }
 
+const getWindowHeight = () => {
+  if (document.compatMode === 'CSS1Compat') {
+    return document.documentElement.clientHeight
+  } else {
+    return document.body.clientHeight
+  }
+}
+
 const antiClick = (fn, el, ...args) => {
   if (el.getAttribute('data-have-click') === 'true') {
     return
@@ -71,5 +79,6 @@ export {
   getRandomFloat,
   randomFloat,
   getWindowWidth,
+  getWindowHeight,
   antiClick
 }
