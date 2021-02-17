@@ -8,22 +8,22 @@
       <div class="content">
         <div class="grid">
           <div class="grid__item grid__item--a">
-            <img src="@/assets/imgs/layer/3.jpg">
+            <img src="@/assets/imgs/sunset.jpg">
           </div>
           <div class="grid__item grid__item--b">
-            <img src="@/assets/imgs/layer/2.jpg">
+            <img src="@/assets/imgs/side.jpg">
           </div>
           <div class="grid__item grid__item--c">
-            <img src="@/assets/imgs/layer/10.jpg">
+            <img src="@/assets/imgs/lookback.png">
           </div>
           <div class="grid__item grid__item--d">
-            <img src="@/assets/imgs/layer/5.jpg">
+            <img src="@/assets/imgs/leg.jpg">
           </div>
           <div class="grid__item grid__item--e">
-            <img src="@/assets/imgs/layer/8.jpg">
+            <img src="@/assets/imgs/smile.jpg">
           </div>
           <div class="grid__item grid__item--f">
-            <img src="@/assets/imgs/layer/6.jpg">
+            <img src="@/assets/imgs/miao1.jpg">
           </div>
         </div>
       </div>
@@ -43,20 +43,20 @@
         <div class="layers__item">
           <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage5+')'}" />
         </div>
-        <div class="layers__item">
+        <!-- <div class="layers__item">
           <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage6+')'}" />
-        </div>
+        </div> -->
         <div class="layers__item">
           <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage7+')'}" />
         </div>
         <div class="layers__item">
           <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage8+')'}" />
         </div>
+        <!-- <div class="layers__item">
+          <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage9+')'}" />
+        </div> -->
         <div class="layers__item">
           <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage10+')'}" />
-        </div>
-        <div class="layers__item">
-          <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage9+')'}" />
         </div>
       </div>
     </div>
@@ -103,17 +103,16 @@ export default {
       refreshKey: '',
       flash: false,
       cataScroll: {},
-      bgImage: require('@/assets/imgs/shancheng-high.jpg'),
-      bgImage1: require('@/assets/imgs/layer/1.jpg'),
-      bgImage2: require('@/assets/imgs/layer/2.jpg'),
-      bgImage3: require('@/assets/imgs/layer/3.jpg'),
-      bgImage4: require('@/assets/imgs/layer/4.jpg'),
-      bgImage5: require('@/assets/imgs/layer/5.jpg'),
-      bgImage6: require('@/assets/imgs/layer/6.jpg'),
-      bgImage7: require('@/assets/imgs/layer/7.jpg'),
-      bgImage8: require('@/assets/imgs/layer/8.jpg'),
-      bgImage9: require('@/assets/imgs/layer/9.jpg'),
-      bgImage10: require('@/assets/imgs/layer/10.jpg')
+      bgImage1: require('@/assets/imgs/sunset.jpg'),
+      bgImage2: require('@/assets/imgs/back-low.jpg'),
+      bgImage3: require('@/assets/imgs/teeth.png'),
+      bgImage4: require('@/assets/imgs/skirt.jpg'),
+      bgImage5: require('@/assets/imgs/mountain.jpg'),
+      // bgImage6: require('@/assets/imgs/smile.jpg'),
+      bgImage7: require('@/assets/imgs/cute.jpg'),
+      bgImage8: require('@/assets/imgs/side.jpg'),
+      // bgImage9: require('@/assets/imgs/lookback-low.jpg'),
+      bgImage10: require('@/assets/imgs/9.jpg')
     }
   },
   created() {
@@ -334,7 +333,7 @@ img {
 }
 
 .grid__item--a {
-  grid-area: 2 / 1 / 5 / 3;
+  grid-area: 2 / 1 / 5 / 4;
 }
 
 .grid__item--b {
@@ -350,7 +349,7 @@ img {
 }
 
 .grid__item--e {
-  grid-area: 4 / 10 / 7 / 14;
+  grid-area: 3 / 10 / 6 / 14;
 }
 
 .grid__item--f {

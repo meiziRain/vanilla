@@ -2,21 +2,8 @@
   <div id="app">
     <div v-show="false" id="img-factory" style="width:0;height:0">
       <!-- 图片必须预先加载完, 否则动画会卡顿, 不要漏图片了 -->
-      <img src="@/assets/imgs/red-head-high.jpg">
-      <img src="@/assets/imgs/shancheng-high.jpg">
-      <img src="@/assets/imgs/Logo-2.png">
-      <img src="@/assets/imgs/Logo.png">
-      <img src="@/assets/imgs/miao1.jpg">
-      <img src="@/assets/imgs/layer/1.jpg">
-      <img src="@/assets/imgs/layer/2.jpg">
-      <img src="@/assets/imgs/layer/3.jpg">
-      <img src="@/assets/imgs/layer/4.jpg">
-      <img src="@/assets/imgs/layer/5.jpg">
-      <img src="@/assets/imgs/layer/6.jpg">
-      <img src="@/assets/imgs/layer/7.jpg">
-      <img src="@/assets/imgs/layer/8.jpg">
-      <img src="@/assets/imgs/layer/9.jpg">
-      <img src="@/assets/imgs/layer/10.jpg">
+      <img v-for="(item, i) in imgBox" :src="item" :key="i">
+      <!-- 高质量的图片在layer的动画中会卡顿 -->
     </div>
     <div v-if="loader" id="loader">
       <Loader v-model="progressNumber" />
@@ -100,7 +87,25 @@ export default {
       cursor: {},
       loader: true,
       progressNumber: 4,
-      bgImage: require('@/assets/imgs/click-me.png')
+      bgImage: require('@/assets/imgs/click-me.png'),
+      imgBox: [require('@/assets/imgs/red-head-high.jpg'),
+        require('@/assets/imgs/shancheng-high.jpg'),
+        require('@/assets/imgs/Logo.png'),
+        require('@/assets/imgs/miao1.jpg'),
+        require('@/assets/imgs/9.jpg'),
+        require('@/assets/imgs/back.png'),
+        require('@/assets/imgs/leg.jpg'),
+        require('@/assets/imgs/side.jpg'),
+        require('@/assets/imgs/sunset.jpg'),
+        require('@/assets/imgs/cute.jpg'),
+        require('@/assets/imgs/mountain.jpg'),
+        require('@/assets/imgs/skirt.jpg'),
+        require('@/assets/imgs/smile.jpg'),
+        require('@/assets/imgs/teeth.png'),
+        require('@/assets/imgs/back-low.jpg'),
+        require('@/assets/imgs/lookback.png'),
+        require('@/assets/imgs/lookback-low.jpg'),
+        require('@/assets/imgs/click-me.png')]
     }
   },
   created() {

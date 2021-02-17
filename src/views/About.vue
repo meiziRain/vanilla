@@ -14,12 +14,12 @@
               <div
                 id="name"
                 class="animate__animated animate__fadeInUp animate__delay-1s"
-              >Title</div>
+              >Hi~</div>
               <div
                 id="introduce"
                 class="animate__animated animate__fadeInUp animate__delay-2s"
-              >Rubén de Eguía,
-                <br> modernizar a los clásicos
+              >This is Vanilla.
+                <br>
               </div>
             </div>
           </div>
@@ -81,9 +81,9 @@ export default {
       currentSlideID: 0,
       isAutoPlay: false,
       rotateIndex: 0,
-      sliderImages: [require('@/assets/imgs/layer/2.jpg'),
-        require('@/assets/imgs/layer/4.jpg'),
-        require('@/assets/imgs/layer/8.jpg')]
+      sliderImages: [require('@/assets/imgs/sunset.jpg'),
+        require('@/assets/imgs/back.png'),
+        require('@/assets/imgs/teeth.png')]
     }
   },
   activated() {
