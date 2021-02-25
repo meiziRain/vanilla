@@ -9,7 +9,7 @@
           <h2 class="section-one-text section-one-title">
             阿巴阿巴
           </h2>
-          <p id="section-one-paragraph" class="section-one-text section-font">
+          <p id="section-one-paragraph" class="section-one-text section-padding">
             <RoughNotation
               :is-show="title_line"
               type="underline"
@@ -25,27 +25,13 @@
         </div>
       </div>
       <div id="second-section" class="section">
-        <div class="section-content section-two-text section-font">
-          <div class="chat-box">
-            <div class="chat-box-border" />
-            <div class="chat-box-main">
-              <div class="chat-conversation-header" />
-              <div class="chat-conversation-list">
-                <div class="chat-conversation-list-right">
-                  <div class="chat-bubble-right">I just bought a swimsuit.</div>
-                  <div class="img"><img src="@/assets/imgs/shancheng-high.jpg"></div>
-                </div>
-
-                <div v-for="(item, key) in myMsgs" :key="key" class="chat-conversation-list-left">
-                  <div class="chat-bubble-left">{{ item }}</div>
-                </div>
-              </div>
-              <div class="chat-conversation-input">
-                <div class="message-box">
-                  <input v-model="msg" type="text" class="message-input" placeholder="Type message...">
-                  <button type="submit" class="message-submit" @click="send">Send</button>
-                </div>
-              </div>
+        <div class="section-content section-two-text section-padding">
+          <div class="blush-img"><img src="@/assets/imgs/blush-her.png"></div>
+          <div class="blush-chat">
+            <div class="talk-img"><img src="@/assets/imgs/blush-her.png"></div>
+            <div class="blush-words">
+              <p class="blush-word">i just bought a swimsuit.</p>
+              <p class="blush-word">i want to fuck u in the ass right now</p>
             </div>
           </div>
         </div>
@@ -110,8 +96,6 @@ export default {
   },
   data() {
     return {
-      msg: '',
-      myMsgs: ['😍'],
       options: {
         lockAnchors: true,
         anchors: ['firstPage', 'secondPage', 'thirdPage'],
@@ -130,14 +114,6 @@ export default {
   mounted() {
   },
   methods: {
-    send() {
-      this.myMsgs.push(this.msg)
-      this.$nextTick(() => {
-        const ele = document.querySelector('.chat-conversation-list')
-        ele.scrollTop = ele.scrollHeight
-      })
-      this.msg = ''
-    },
     onNavClick(index) {
       this.$refs.fullpage.api.moveTo(index + 1)
     },
@@ -291,6 +267,14 @@ export default {
     },
     pageOnLeave(origin, destination, direction) {
       console.log('pageOnLeave', origin, destination, direction)
+      const trigger = document.querySelector('.trigger')
+      if (destination.index === 1) {
+        this.$GSAP.to(trigger, 0.3, {
+          alpha: 0,
+          ease: 'Power2.easeOut',
+          force3D: true
+        })
+      }
     },
     // origin, destination, direction 这三者的含义要清楚
     afterLoad(origin, destination, direction) {
@@ -308,13 +292,36 @@ export default {
         })
       }
       if (destination.index === 1) {
-        // document.querySelector('#daisies > img')
-        //   .setAttribute('src', require('@/assets/imgs/red-head-high.jpg'))
-        this.$GSAP.to(trigger, 0.2, {
-          alpha: 0,
-          ease: 'Power2.easeOut',
+        console.log('Section 2 ended loading')
+        const chatTimeline = this.$GSAP.timeline({ repeat: 0, repeatDelay: 0 })
+        const blush_imgs = document.querySelector('.talk-img')
+        const blush_word_1 = document.querySelector('.blush-word:nth-child(1)')
+        chatTimeline.fromTo(blush_imgs, {
+          top: '100%',
+          alpha: 0
+        }, {
+          top: '20%',
+          alpha: 1,
+          ease: 'Power2.easeInOut',
+          duration: 1,
           force3D: true
-        })
+        }).to([blush_imgs, blush_word_1], {
+          delay: 2,
+          top: '-100%',
+          duration: 1,
+          alpha: 0,
+          ease: 'Power2.easeInOut',
+          force3D: true
+        }).fromTo(blush_word_1, {
+          top: '100%',
+          alpha: 0
+        }, {
+          top: '50%',
+          alpha: 1,
+          ease: 'Power2.easeInOut',
+          duration: 1,
+          force3D: true
+        }, '-=2')
       }
     }
   }
@@ -346,6 +353,11 @@ export default {
 .section{
   width: 100%;
   height: 100%;
+  & img{
+    width: 100%;
+    height: auto;
+    filter: none;
+  }
 }
 
 .section-content{
@@ -363,10 +375,11 @@ export default {
   text-align: left !important;
 }
 
-.section-font{
+.section-padding {
+  position: relative;
   text-align: center;
   font-size: 2vw;
-  padding: 10vh 10vw 0vh 10vw;
+  padding: 10vh 10vw 0vh 15vw;
   font-family: 'Courier New', Courier, monospace;
   line-height: 1.2;
 }
@@ -381,159 +394,40 @@ export default {
   transform: translateX(-100px);
 }
 
-$chat-border: red;
-.chat-box {
-  & .chat-box-border {
-    position: absolute;
-    width: 48vh;
-    height: 72vh;
-    right: 0;
-    z-index: -1;
-    border: 2px solid $chat-border;
-    transform:  translate(calc(-30% + 1vw), 1vw);
+.blush-img {
+  width: 45vh;
+}
 
-    &::after {
-      content: '';
-      position: absolute;
-      width: 48vh;
-      height: 72vh;
-      right: 0;
-      z-index: -1;
-      border: 2px solid $chat-border;
-      transform: translate(1vw, 1vw);
-    }
+.blush-words {
+  & p {
+    font-size: 2vw;
+    padding: 2vh;
+    background-color: darksalmon;
+    border: 2px dashed darkred;
+  }
+}
+
+.blush-chat {
+  align-content: space-between;
+  position: absolute;
+  border: 2px solid red;
+  width: 40vw;
+  height: 70vh;
+  left: 50%;
+  top: 0;
+  padding: 2vh;
+  overflow: hidden;
+  transform: translate(-50%, 10vh);
+
+  & .talk-img, & .blush-words .blush-word {
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transform: translate(-50%, 0);
   }
 
-  & .chat-box-main{
-    width: 48vh;
-    height: 72vh;
-    right: 0;
-    position: absolute;
-    border: 2px solid $chat-border;
-    background-color: var(--background-color);
-    transform:  translate(-30%, 0);
-    font-size: 3vh;
-    word-break:break-all;
-    color: black;
-
-    .chat-conversation-header {
-      height:6vh;
-    }
-
-    .chat-conversation-list {
-      height: 58vh;
-      overflow-y: scroll;
-      overflow-x: hidden;
-      &::-webkit-scrollbar {
-        width: 5px;
-        height: 5px;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background-color:  #595959;
-        -webkit-border-radius: 2em;
-        -moz-border-radius: 2em;
-        border-radius: 2em;
-      }
-
-      & .chat-conversation-list-right{
-        position: relative;
-        & .chat-bubble-right {
-          position: relative;
-          transform: translate(-1.5vh, 4vh);
-          float: right;
-          width: 20vh;
-          padding: 1vh;
-          z-index: 2;
-          background-color: rgb(235, 255, 116);
-          border: 2px solid rgb(79, 66, 205);
-        }
-
-        & .img {
-          position: relative;
-          height: 35vh;
-          float: right;
-          width: 30vh;
-          z-index: 1;
-          margin: 2.5vh 5vh 0 0;
-          object-fit: fill;
-          border: 2px solid rgb(79, 66, 205);
-        }
-
-        &::after {
-          content: "123";
-          display: block;
-          height: 0;
-          clear: both;
-          visibility: hidden;
-        }
-      }
-
-      & .chat-conversation-list-left {
-        margin-top: 2vh;
-        position: relative;
-        & .chat-bubble-left {
-          text-align: justify;
-          transform: translate(1.5vh, 0);
-          position: relative;
-          width: 20vh;
-          z-index: 2;
-          padding: 1vh;
-          background-color: rgb(218, 183, 249);
-          border: 2px solid rgb(79, 66, 205);
-        }
-      }
-    }
-
-    .chat-conversation-input {
-      padding: 1vh;
-      height: 8vh;
-
-      & .message-box{
-        position: relative;
-        width: 100%;
-        height: 100%;
-        border-radius: 10vh;
-        padding: 0.8vh 0.8vh 0.8vh 1.6vh;
-        border: 1px solid #ccc;
-
-        & input {
-          background: none;
-          border: none;
-          outline: none !important;
-          resize: none;
-          font-size: 1.8vh;
-          margin: 0;
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          font-size: 3vh;
-          padding-right: 4vh;
-          width: 39vh;
-          color: #444;
-        }
-
-        & button {
-          position: absolute;
-          z-index: 1;
-          top: 50%;
-          right: 1vh;
-          transform: translateY(-50%);
-          color: #4A90E2;
-          border: none;
-          /* background: #c29d5f; */
-          background: #fff;
-          font-size: 1.8vh;
-          text-transform: uppercase;
-          line-height: 1;
-          padding: 1vh 1.5vh;
-          border-radius: 10vh;
-          outline: none !important;
-          transition: background 0.2s ease;
-          cursor: pointer;
-        }
-      }
-    }
+  .talk-img{
+    width: 20vw;
   }
 }
 </style>

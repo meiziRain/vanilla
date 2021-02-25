@@ -105,7 +105,14 @@ export default {
         require('@/assets/imgs/back-low.jpg'),
         require('@/assets/imgs/lookback.png'),
         require('@/assets/imgs/lookback-low.jpg'),
-        require('@/assets/imgs/click-me.png')]
+        require('@/assets/imgs/click-me.png'),
+        require('@/assets/imgs/blush-her-unhappy2.png'),
+        require('@/assets/imgs/blush-her-unhappy.png'),
+        require('@/assets/imgs/blush-her-fake-smile.png'),
+        require('@/assets/imgs/blush-her.png'),
+        require('@/assets/imgs/blush-man-1.png'),
+        require('@/assets/imgs/blush-man-2.png')
+      ]
     }
   },
   created() {
