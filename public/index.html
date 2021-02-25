@@ -297,30 +297,6 @@
       width: 0px;
       height: 0px;
     }
-    /*定义滚动条轨道*/
-    ::-webkit-scrollbar-track {
-      background-color: transparent;
-      -webkit-border-radius: 2em;
-      -moz-border-radius: 2em;
-      border-radius: 2em;
-    }
-    /*定义滑块 内阴影+圆角*/
-    ::-webkit-scrollbar-thumb {
-      background-color: var(--color-main);
-      background-image: -webkit-linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.4) 25%,
-        transparent 25%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.4) 50%,
-        rgba(255, 255, 255, 0.4) 75%,
-        transparent 75%,
-        transparent
-      );
-      -webkit-border-radius: 2em;
-      -moz-border-radius: 2em;
-      border-radius: 2em;
-    }
 
 
     /* 禁止连接点击出现蓝色 */
@@ -391,6 +367,26 @@
     .font-pre-render:nth-child(6) {
       font-family: moret, serif;
     }
+
+    #toast {
+      visibility: hidden;
+      min-width: 250px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 2px;
+      padding: 16px;
+      position: fixed;
+      z-index: 999;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 1vh;
+      font-size: 17px;
+    }
+
+    .show{
+      visibility: visible !important;
+    }
   </style>
 </head>
 
@@ -429,6 +425,10 @@
     }
 
     function doNothing() {
+      document.querySelector('#toast').classList.add('show')
+      setTimeout(() => {
+        document.querySelector('#toast').classList.remove('show')
+      }, 2000);
       window.event.returnValue = false;
       return false;
     }
@@ -447,6 +447,7 @@
     }
     },{ passive: false});
   </script>
+  <div id="toast" class="">Right click is disabled!</div>
   <div id="app"></div>
   <!-- built files will be auto injected -->
 </body>

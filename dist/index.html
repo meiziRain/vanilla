@@ -252,30 +252,6 @@
       width: 0px;
       height: 0px;
     }
-    /*定义滚动条轨道*/
-    ::-webkit-scrollbar-track {
-      background-color: transparent;
-      -webkit-border-radius: 2em;
-      -moz-border-radius: 2em;
-      border-radius: 2em;
-    }
-    /*定义滑块 内阴影+圆角*/
-    ::-webkit-scrollbar-thumb {
-      background-color: var(--color-main);
-      background-image: -webkit-linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.4) 25%,
-        transparent 25%,
-        transparent 50%,
-        rgba(255, 255, 255, 0.4) 50%,
-        rgba(255, 255, 255, 0.4) 75%,
-        transparent 75%,
-        transparent
-      );
-      -webkit-border-radius: 2em;
-      -moz-border-radius: 2em;
-      border-radius: 2em;
-    }
 
 
     /* 禁止连接点击出现蓝色 */
@@ -345,7 +321,27 @@
 
     .font-pre-render:nth-child(6) {
       font-family: moret, serif;
-    }</style><link href=css/blog.7746cdd6.css rel=prefetch><link href=js/blog.ec166d42.js rel=prefetch><link href=css/app.6fc3ce32.css rel=preload as=style><link href=css/chunk-vendors.3b3b8bb5.css rel=preload as=style><link href=js/app.87450629.js rel=preload as=script><link href=js/chunk-vendors.a53094c0.js rel=preload as=script><link href=css/chunk-vendors.3b3b8bb5.css rel=stylesheet><link href=css/app.6fc3ce32.css rel=stylesheet><link rel=icon type=image/png sizes=32x32 href=img/icons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=img/icons/favicon-16x16.png><link rel=manifest href=manifest.json><meta name=theme-color content=#4DBA87><meta name=apple-mobile-web-app-capable content=no><meta name=apple-mobile-web-app-status-bar-style content=default><meta name=apple-mobile-web-app-title content=Vanilla><link rel=apple-touch-icon href=img/icons/apple-touch-icon-152x152.png><link rel=mask-icon href=img/icons/safari-pinned-tab.svg color=#4DBA87><meta name=msapplication-TileImage content=img/icons/msapplication-icon-144x144.png><meta name=msapplication-TileColor content=#000000></head><body oncontextmenu=doNothing() data-user-color-scheme=light><div class=font-pre-render>Q</div><div class=font-pre-render>Q</div><div class=font-pre-render>Q</div><div class=font-pre-render>Q</div><div class=font-pre-render>Q</div><div class=font-pre-render>Q</div><script>function fullScreen() {
+    }
+
+    #toast {
+      visibility: hidden;
+      min-width: 250px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 2px;
+      padding: 16px;
+      position: fixed;
+      z-index: 999;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 1vh;
+      font-size: 17px;
+    }
+
+    .show{
+      visibility: visible !important;
+    }</style><link href=css/blog.bebac02d.css rel=prefetch><link href=js/blog.b9d9c6cd.js rel=prefetch><link href=css/app.0ba58481.css rel=preload as=style><link href=css/chunk-vendors.3b3b8bb5.css rel=preload as=style><link href=js/app.c102069f.js rel=preload as=script><link href=js/chunk-vendors.5ee9ce69.js rel=preload as=script><link href=css/chunk-vendors.3b3b8bb5.css rel=stylesheet><link href=css/app.0ba58481.css rel=stylesheet><link rel=icon type=image/png sizes=32x32 href=img/icons/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=img/icons/favicon-16x16.png><link rel=manifest href=manifest.json><meta name=theme-color content=#4DBA87><meta name=apple-mobile-web-app-capable content=no><meta name=apple-mobile-web-app-status-bar-style content=default><meta name=apple-mobile-web-app-title content=Vanilla><link rel=apple-touch-icon href=img/icons/apple-touch-icon-152x152.png><link rel=mask-icon href=img/icons/safari-pinned-tab.svg color=#4DBA87><meta name=msapplication-TileImage content=img/icons/msapplication-icon-144x144.png><meta name=msapplication-TileColor content=#000000></head><body oncontextmenu=doNothing() data-user-color-scheme=light><div class=font-pre-render>Q</div><div class=font-pre-render>Q</div><div class=font-pre-render>Q</div><div class=font-pre-render>Q</div><div class=font-pre-render>Q</div><div class=font-pre-render>Q</div><script>function fullScreen() {
       var element = document.documentElement;
       if (element.requestFullscreen) {
           element.requestFullscreen();
@@ -359,6 +355,10 @@
     }
 
     function doNothing() {
+      document.querySelector('#toast').classList.add('show')
+      setTimeout(() => {
+        document.querySelector('#toast').classList.remove('show')
+      }, 2000);
       window.event.returnValue = false;
       return false;
     }
@@ -375,4 +375,4 @@
     if (event.ctrlKey === true || event.metaKey) {
            event.preventDefault();
     }
-    },{ passive: false});</script><div id=app></div><script src=js/chunk-vendors.a53094c0.js></script><script src=js/app.87450629.js></script></body></html>
+    },{ passive: false});</script><div id=toast class="">Right click is disabled!</div><div id=app></div><script src=js/chunk-vendors.5ee9ce69.js></script><script src=js/app.c102069f.js></script></body></html>

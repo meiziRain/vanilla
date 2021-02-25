@@ -26,29 +26,29 @@
       </div>
       <div id="second-section" class="section">
         <div class="section-content section-two-text section-font">
-          <span>A strange idea,</span>
-          <div class="rw-words rw-words-1">
-            <span class="rw-word">Tiny,</span>
-            <span class="rw-word">Big, </span>
-            <span class="rw-word">Break, </span>
-            <span class="rw-word">Cure</span>
-          </div>
-          such a touching scene. <br>
-          I was just wondering. <br>
-          A period of wanting to be accepted. <br>
-          Close to.
-          <br><br>
-          <div class="rw-words rw-words-2">
-            <span class="rw-word">Pride,</span>
-            <span class="rw-word">Coward,</span>
-            <span class="rw-word">Despise,</span>
-            <span class="rw-word">Jealous.</span>
-          </div>
-          Something has happened. <br>
-          Hidden anger. <br>
-          Run away.
-        </div>
+          <div class="chat-box">
+            <div class="chat-box-border" />
+            <div class="chat-box-main">
+              <div class="chat-conversation-header" />
+              <div class="chat-conversation-list">
+                <div class="chat-conversation-list-right">
+                  <div class="chat-bubble-right">I just bought a swimsuit.</div>
+                  <div class="img"><img src="@/assets/imgs/shancheng-high.jpg"></div>
+                </div>
 
+                <div v-for="(item, key) in myMsgs" :key="key" class="chat-conversation-list-left">
+                  <div class="chat-bubble-left">{{ item }}</div>
+                </div>
+              </div>
+              <div class="chat-conversation-input">
+                <div class="message-box">
+                  <input v-model="msg" type="text" class="message-input" placeholder="Type message...">
+                  <button type="submit" class="message-submit" @click="send">Send</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="section">
         <section class="rw-wrapper">
@@ -70,18 +70,39 @@
         </section>
       </div>
       <div class="section">
-        Fourth section ...
+        <span>A strange idea,</span>
+        <div class="rw-words rw-words-1">
+          <span class="rw-word">Tiny,</span>
+          <span class="rw-word">Big, </span>
+          <span class="rw-word">Break, </span>
+          <span class="rw-word">Cure</span>
+        </div>
+        such a touching scene. <br>
+        I was just wondering. <br>
+        A period of wanting to be accepted. <br>
+        Close to.
+        <br><br>
+        <div class="rw-words rw-words-2">
+          <span class="rw-word">Pride,</span>
+          <span class="rw-word">Coward,</span>
+          <span class="rw-word">Despise,</span>
+          <span class="rw-word">Jealous.</span>
+        </div>
+        Something has happened. <br>
+        Hidden anger. <br>
+        Run away.
       </div>
     </full-page>
   </div>
 </template>
 
 <script>
-// eslint-disable-next-line no-unused-vars
-import { Power1, Power2, Power4, Sine, Expo } from 'gsap'
 import Closer from '@/components/Closer.vue'
 import NavIndicator from '@/components/NavIndicator.vue'
 import { getWindowWidth, getWindowHeight } from '@/assets/js/utils'
+import Scrollbar from 'smooth-scrollbar'
+import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
+Scrollbar.use(OverscrollPlugin)
 export default {
   components: {
     Closer,
@@ -89,6 +110,8 @@ export default {
   },
   data() {
     return {
+      msg: '',
+      myMsgs: ['😍'],
       options: {
         lockAnchors: true,
         anchors: ['firstPage', 'secondPage', 'thirdPage'],
@@ -107,6 +130,14 @@ export default {
   mounted() {
   },
   methods: {
+    send() {
+      this.myMsgs.push(this.msg)
+      this.$nextTick(() => {
+        const ele = document.querySelector('.chat-conversation-list')
+        ele.scrollTop = ele.scrollHeight
+      })
+      this.msg = ''
+    },
     onNavClick(index) {
       this.$refs.fullpage.api.moveTo(index + 1)
     },
@@ -123,14 +154,14 @@ export default {
         alpha: 0
       }, {
         alpha: 1,
-        ease: Expo.easeIn
+        ease: 'Expo.easeIn'
       })
 
       // 点击el外其他的el退场
       const els = document.querySelectorAll('.article-wrapper:not(.trigger)')
       this.$GSAP.to(els, 0.2, {
         alpha: 0,
-        ease: Expo.easeInOut
+        ease: 'Expo.easeInOut'
       })
 
       // closer进场
@@ -142,7 +173,7 @@ export default {
         rotate: 0,
         scale: 1,
         alpha: 1,
-        ease: Power2.easeInOut,
+        ease: 'Power2.easeInOut',
         force3D: true
       })
 
@@ -157,7 +188,7 @@ export default {
       this.$GSAP.to(trigger, 0.9, {
         x: this.offset,
         scale: 1.3,
-        ease: Power2.easeInOut,
+        ease: 'Power2.easeInOut',
         force3D: true
       })
 
@@ -167,7 +198,7 @@ export default {
         alpha: 0
       }, {
         alpha: 1,
-        ease: Power2.easeInOut,
+        ease: 'Power2.easeInOut',
         onComplete: () => {
           this.title_line = true
         }
@@ -202,7 +233,7 @@ export default {
         alpha: 1
       }, {
         alpha: 0,
-        ease: Expo.easeIn,
+        ease: 'Expo.easeIn',
         onComplete: () => {
           this.$nextTick(() => {
             this.$parent.closeDaisiesDetailPage()
@@ -216,7 +247,7 @@ export default {
         alpha: 1
       }, {
         alpha: 0,
-        ease: Power2.easeIn
+        ease: 'Power2.easeIn'
       })
 
       // closer 退场
@@ -228,7 +259,7 @@ export default {
         rotate: -45,
         scale: 0,
         alpha: 0,
-        ease: Power2.easeInOut,
+        ease: 'Power2.easeInOut',
         force3D: true,
         onComplete: () => {
           document.querySelector('.daisies_closer').classList.remove('non-clickable')
@@ -239,8 +270,9 @@ export default {
       const trigger = document.querySelector('.trigger')
       this.$GSAP.to(trigger, 0.8, {
         x: 0,
+        alpha: 1,
         scale: 1,
-        ease: Power2.easeInOut,
+        ease: 'Power2.easeInOut',
         force3D: true
       })
 
@@ -252,39 +284,35 @@ export default {
           { alpha: 0 },
           {
             alpha: 1,
-            ease: Expo.easeInOut,
+            ease: 'Expo.easeInOut',
             force3D: true
           })
       })
     },
+    pageOnLeave(origin, destination, direction) {
+      console.log('pageOnLeave', origin, destination, direction)
+    },
     // origin, destination, direction 这三者的含义要清楚
     afterLoad(origin, destination, direction) {
+      console.log('afterLoad', origin, destination, direction)
+      const trigger = document.querySelector('.trigger')
       this.$refs.daisies_nav_indicator.itemChoosed(destination.index)
-      if (destination.index === 0) {
+      if (destination.index === 0 && direction === 'up') {
         console.log('Section 1 ended loading')
+        this.$GSAP.to(trigger, 0.5, {
+          x: this.offset,
+          alpha: 1,
+          scale: 1.3,
+          ease: 'Power2.easeInOut',
+          force3D: true
+        })
       }
       if (destination.index === 1) {
         // document.querySelector('#daisies > img')
         //   .setAttribute('src', require('@/assets/imgs/red-head-high.jpg'))
-        const trigger = document.querySelector('.trigger')
-        this.$GSAP.to(trigger, 0.8, {
-          x: this.offset - 10,
-          scale: 1.1,
-          ease: Power2.easeInOut,
-          force3D: true,
-          onComplete: () => {
-          }
-        })
-      }
-    },
-    pageOnLeave(origin, destination, direction) {
-      // 这种位移动画演示完毕才可以关闭, 否则会停留在
-      if (origin.index === 1) {
-        const trigger = document.querySelector('.trigger')
-        this.$GSAP.to(trigger, 1, {
-          x: this.offset - 10,
-          scale: 1.3,
-          ease: Power2.easeInOut,
+        this.$GSAP.to(trigger, 0.2, {
+          alpha: 0,
+          ease: 'Power2.easeOut',
           force3D: true
         })
       }
@@ -326,7 +354,7 @@ export default {
   text-align: center;
 }
 
-.section-one-text{
+.section-one-text {
   width: 80vw;
   margin: 0 auto;
 }
@@ -353,4 +381,159 @@ export default {
   transform: translateX(-100px);
 }
 
+$chat-border: red;
+.chat-box {
+  & .chat-box-border {
+    position: absolute;
+    width: 48vh;
+    height: 72vh;
+    right: 0;
+    z-index: -1;
+    border: 2px solid $chat-border;
+    transform:  translate(calc(-30% + 1vw), 1vw);
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 48vh;
+      height: 72vh;
+      right: 0;
+      z-index: -1;
+      border: 2px solid $chat-border;
+      transform: translate(1vw, 1vw);
+    }
+  }
+
+  & .chat-box-main{
+    width: 48vh;
+    height: 72vh;
+    right: 0;
+    position: absolute;
+    border: 2px solid $chat-border;
+    background-color: var(--background-color);
+    transform:  translate(-30%, 0);
+    font-size: 3vh;
+    word-break:break-all;
+    color: black;
+
+    .chat-conversation-header {
+      height:6vh;
+    }
+
+    .chat-conversation-list {
+      height: 58vh;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      &::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color:  #595959;
+        -webkit-border-radius: 2em;
+        -moz-border-radius: 2em;
+        border-radius: 2em;
+      }
+
+      & .chat-conversation-list-right{
+        position: relative;
+        & .chat-bubble-right {
+          position: relative;
+          transform: translate(-1.5vh, 4vh);
+          float: right;
+          width: 20vh;
+          padding: 1vh;
+          z-index: 2;
+          background-color: rgb(235, 255, 116);
+          border: 2px solid rgb(79, 66, 205);
+        }
+
+        & .img {
+          position: relative;
+          height: 35vh;
+          float: right;
+          width: 30vh;
+          z-index: 1;
+          margin: 2.5vh 5vh 0 0;
+          object-fit: fill;
+          border: 2px solid rgb(79, 66, 205);
+        }
+
+        &::after {
+          content: "123";
+          display: block;
+          height: 0;
+          clear: both;
+          visibility: hidden;
+        }
+      }
+
+      & .chat-conversation-list-left {
+        margin-top: 2vh;
+        position: relative;
+        & .chat-bubble-left {
+          text-align: justify;
+          transform: translate(1.5vh, 0);
+          position: relative;
+          width: 20vh;
+          z-index: 2;
+          padding: 1vh;
+          background-color: rgb(218, 183, 249);
+          border: 2px solid rgb(79, 66, 205);
+        }
+      }
+    }
+
+    .chat-conversation-input {
+      padding: 1vh;
+      height: 8vh;
+
+      & .message-box{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        border-radius: 10vh;
+        padding: 0.8vh 0.8vh 0.8vh 1.6vh;
+        border: 1px solid #ccc;
+
+        & input {
+          background: none;
+          border: none;
+          outline: none !important;
+          resize: none;
+          font-size: 1.8vh;
+          margin: 0;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 3vh;
+          padding-right: 4vh;
+          width: 39vh;
+          color: #444;
+        }
+
+        & button {
+          position: absolute;
+          z-index: 1;
+          top: 50%;
+          right: 1vh;
+          transform: translateY(-50%);
+          color: #4A90E2;
+          border: none;
+          /* background: #c29d5f; */
+          background: #fff;
+          font-size: 1.8vh;
+          text-transform: uppercase;
+          line-height: 1;
+          padding: 1vh 1.5vh;
+          border-radius: 10vh;
+          outline: none !important;
+          transition: background 0.2s ease;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
 </style>

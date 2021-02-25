@@ -26,6 +26,7 @@
             <span class="gallery__item-number">01</span>
             <span class="gallery__item-title">Daisies</span>
           </div>
+          <Surtur class="surtur" @click.native="showDetail('Daisies')" />
           <article
             id="daisies"
             class="slideshow-list__el"
@@ -82,6 +83,7 @@
 </template>
 
 <script>
+import Surtur from '@/components/hover/Surtur.vue'
 import { map } from '@/assets/js/utils'
 // 滚动
 import Scrollbar from 'smooth-scrollbar'
@@ -92,7 +94,8 @@ import DaisiesPcDetailView from '@/views/detail/daisies/index.vue'
 // import { getMousePos } from '@/assets/js/utils.js'
 export default {
   components: {
-    DaisiesPcDetailView
+    DaisiesPcDetailView,
+    Surtur
   },
   data() {
     return {
@@ -205,7 +208,7 @@ export default {
         events: [/wheel/]
       })
       this.cataScroll.setPosition(this.scroll.x, 0)
-      const fade_ele = document.querySelectorAll('#pc-logo, #logo-circle, .slideshow__progress-ctn')
+      const fade_ele = document.querySelectorAll('#pc-logo, #logo-circle, .slideshow__progress-ctn, .surtur')
       this.$GSAP.to(fade_ele, 0.3, {
         alpha: 1,
         ease: 'Expo.easeIn'
@@ -220,7 +223,7 @@ export default {
     },
     showDetail(item) {
       this.$GSAP.killTweensOf((document.querySelectorAll('.slideshow-list__el')))
-      const fade_ele = document.querySelectorAll('#pc-logo, #logo-circle, .slideshow__progress-ctn')
+      const fade_ele = document.querySelectorAll('#pc-logo, #logo-circle, .slideshow__progress-ctn, .surtur')
       this.$GSAP.to(fade_ele, 0.5, {
         alpha: 0,
         ease: 'Expo.easeIn'
@@ -286,6 +289,9 @@ export default {
     updateScrollBar() {
       const progress = map(this.progress * 100, 0, 100, 5, 100)
       this.$GSAP.to(this.$refs.progress, 0.3, { xPercent: progress, force3D: true })
+      this.$GSAP.to(document.querySelectorAll('.button--surtur .textcircle'), {
+        rotate: progress * 5
+      })
     }
   }
 }
@@ -403,9 +409,16 @@ export default {
 }
 
 .article-wrapper{
-  position:relative;
-  z-index:9; // 大于begin-end-word
+  position: relative;
+  z-index: 9; // 大于begin-end-word
   transition: opacity 0.3s; // 可以覆盖gsap的
+}
+
+.surtur{
+  bottom: 0;
+  left: 20%;
+  position: absolute;
+  z-index: 99;
 }
 
 .slideshow-list__el {

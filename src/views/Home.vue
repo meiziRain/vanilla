@@ -40,15 +40,15 @@
         <div class="layers__item">
           <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage4+')'}" />
         </div>
-        <div class="layers__item">
+        <!-- <div class="layers__item">
           <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage5+')'}" />
-        </div>
+        </div> -->
         <!-- <div class="layers__item">
           <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage6+')'}" />
         </div> -->
-        <div class="layers__item">
+        <!-- <div class="layers__item">
           <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage7+')'}" />
-        </div>
+        </div> -->
         <div class="layers__item">
           <div class="layers__item-img" :style="{backgroundImage: 'url('+bgImage8+')'}" />
         </div>
@@ -107,9 +107,8 @@ export default {
       bgImage2: require('@/assets/imgs/back-low.jpg'),
       bgImage3: require('@/assets/imgs/teeth.png'),
       bgImage4: require('@/assets/imgs/skirt.jpg'),
-      bgImage5: require('@/assets/imgs/mountain.jpg'),
       // bgImage6: require('@/assets/imgs/smile.jpg'),
-      bgImage7: require('@/assets/imgs/cute.jpg'),
+      // bgImage7: require('@/assets/imgs/cute.jpg'),
       bgImage8: require('@/assets/imgs/side.jpg'),
       // bgImage9: require('@/assets/imgs/lookback-low.jpg'),
       bgImage10: require('@/assets/imgs/9.jpg')
@@ -225,7 +224,6 @@ export default {
   margin-top: 50vh;
   z-index:9;
   transform: translateY(-50%);
-  font-size: 5vw;
   text-align: center;
   position: absolute;
 }
@@ -236,7 +234,7 @@ export default {
   transform: translate(-50%, -50%);
   position: absolute;
   color: green;
-  font-size: 18vh;
+  font-size: 10vw;
   font-family: 'Bungee Inline';
   text-shadow: var(--green-shadow)
 }

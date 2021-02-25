@@ -4,9 +4,9 @@
       <div id="about-scroll-content">
         <div>
           <div id="avatar-wrapper">
-            <div class="holder-slider-wrapper">
+            <!-- <div class="holder-slider-wrapper">
               <Slider width="60" height="100" :duration="4" />
-            </div>
+            </div> -->
             <div class="image-slider-wrapper">
               <Slider id="image-slider" :duration="4" :animation-time="1.2" width="55" height="55" :image="true" :backgrounds="sliderImages" />
             </div>
@@ -27,11 +27,11 @@
         <div id="contact-wrapper">
           <div class="contact">
             <div class="contact-title">
-              <h2 class="big-title big-title--no-p"> HAVE A(N)
+              <div class="big-title big-title--no-p"> HAVE A(N)
                 <div class="swapper">
                   <div class="swaps" />
                 </div>
-              </h2>
+              </div>
               <p>Feel free to reach out whether you're interested in working together, have coffee, talk about movies or just want to say hi.</p>
             </div>
             <div class="contact-info">
@@ -57,6 +57,7 @@
           <div class="neon">
             123 <span>》》》》</span> <span>> > >  > > ></span>
           </div>
+          <Surtur style="position:relative;right:0;" />
           <!-- <div id="bottom-developer">
             Made with ❤️ by <a>Meizi</a>
           </div> -->
@@ -68,13 +69,15 @@
 
 <script>
 import Slider from '@/components/Slider.vue'
+import Surtur from '@/components/hover/Surtur.vue'
 import Scrollbar from 'smooth-scrollbar'
 import OverscrollPlugin from 'smooth-scrollbar/plugins/overscroll'
 Scrollbar.use(OverscrollPlugin)
 
 export default {
   components: {
-    Slider
+    Slider,
+    Surtur
   },
   data() {
     return {
@@ -123,9 +126,9 @@ export default {
         })
     },
     getRotateWord() {
-      const words = [`<div class="swap">CAT<span class="u-color-yellow">?</span></div>`,
-        `<div class="swap">IDEA<span class="u-color-yellow">?</span></div>`,
-        `<div class="swap">DRINK<span class="u-color-yellow">!</span></div>`,
+      const words = [`<div class="swap">CAT🐈<span class="u-color-yellow">?</span></div>`,
+        `<div class="swap">IDEA🔑<span class="u-color-yellow">?</span></div>`,
+        `<div class="swap">DRINK🥂<span class="u-color-yellow">!</span></div>`,
         `<div class="swap">NICE DAY<span class="u-color-yellow">.</span></div>`]
       const word = words[this.rotateIndex % words.length]
       this.rotateIndex++
@@ -242,7 +245,6 @@ export default {
 
     & .swapper {
       line-height: 1.2;
-      height: 8vw;
       overflow-y: hidden;
 
       & .swap {
