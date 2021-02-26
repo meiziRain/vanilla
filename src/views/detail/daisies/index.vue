@@ -26,14 +26,17 @@
       </div>
       <div id="second-section" class="section">
         <div class="section-content section-two-text section-padding">
-          <div class="blush-img"><img src="@/assets/imgs/blush-her.png"></div>
+          <div class="blush-img blush-img-left"><img ref="left_img" src="@/assets/imgs/blush-her.png"></div>
           <div class="blush-chat">
             <div class="talk-img"><img src="@/assets/imgs/blush-her.png"></div>
             <div class="blush-words">
-              <p class="blush-word">i just bought a swimsuit.</p>
-              <p class="blush-word">i want to fuck u in the ass right now</p>
+              <p class="blush-word her">i just bought a swimsuit.</p>
+              <p class="blush-word man">i want to fuck u in the ass right now</p>
+              <p class="blush-word her">...</p>
+              <p class="blush-word her">✋打住</p>
             </div>
           </div>
+          <div class="blush-img blush-img-right"><img ref="right_img" src="@/assets/imgs/blush-man-2.png"></div>
         </div>
       </div>
       <div class="section">
@@ -108,10 +111,12 @@ export default {
       margin: 27,
       title_line: false,
       scroll: {},
-      offset: 0
+      offset: 0,
+      chatTimeline: {}
     }
   },
   mounted() {
+    this.initChatTimeline()
   },
   methods: {
     onNavClick(index) {
@@ -269,11 +274,16 @@ export default {
       console.log('pageOnLeave', origin, destination, direction)
       const trigger = document.querySelector('.trigger')
       if (destination.index === 1) {
-        this.$GSAP.to(trigger, 0.3, {
+        this.$GSAP.killTweensOf('.trigger')// 防止进去Section2时依然执行的alpha = 1动画
+        this.$GSAP.to(trigger, {
           alpha: 0,
           ease: 'Power2.easeOut',
+          duration: 0.3,
           force3D: true
         })
+      }
+      if (origin.index === 1) {
+        this.chatTimeline.pause()
       }
     },
     // origin, destination, direction 这三者的含义要清楚
@@ -293,36 +303,94 @@ export default {
       }
       if (destination.index === 1) {
         console.log('Section 2 ended loading')
-        const chatTimeline = this.$GSAP.timeline({ repeat: 0, repeatDelay: 0 })
-        const blush_imgs = document.querySelector('.talk-img')
-        const blush_word_1 = document.querySelector('.blush-word:nth-child(1)')
-        chatTimeline.fromTo(blush_imgs, {
-          top: '100%',
-          alpha: 0
-        }, {
-          top: '20%',
-          alpha: 1,
-          ease: 'Power2.easeInOut',
-          duration: 1,
-          force3D: true
-        }).to([blush_imgs, blush_word_1], {
-          delay: 2,
-          top: '-100%',
-          duration: 1,
-          alpha: 0,
-          ease: 'Power2.easeInOut',
-          force3D: true
-        }).fromTo(blush_word_1, {
-          top: '100%',
-          alpha: 0
-        }, {
-          top: '50%',
-          alpha: 1,
-          ease: 'Power2.easeInOut',
-          duration: 1,
-          force3D: true
-        }, '-=2')
+        this.chatTimeline.resume()
       }
+    },
+    initChatTimeline() {
+      this.chatTimeline = this.$GSAP.timeline({ repeat: 0, repeatDelay: 0, paused: true })
+      const talk_img = document.querySelector('.talk-img')
+      const blush_word_1 = document.querySelector('.blush-word:nth-child(1)')
+      const blush_word_2 = document.querySelector('.blush-word:nth-child(2)')
+      const blush_word_3 = document.querySelector('.blush-word:nth-child(3)')
+      const blush_word_4 = document.querySelector('.blush-word:nth-child(4)')
+      const blush_img_right = document.querySelector('.blush-img-right')
+      this.chatTimeline.fromTo(talk_img, {
+        top: '100%',
+        alpha: 0
+      }, {
+        top: '10%',
+        alpha: 1,
+        ease: 'Power2.easeInOut',
+        duration: 1,
+        force3D: true
+      }).to([talk_img, blush_word_1], {
+        delay: 3,
+        top: '-100%',
+        duration: 1,
+        alpha: 0,
+        ease: 'Power2.easeInOut',
+        force3D: true
+      }).fromTo(blush_word_1, {
+        top: '100%',
+        alpha: 0
+      }, {
+        top: '30%',
+        alpha: 1,
+        ease: 'Power2.easeInOut',
+        duration: 1,
+        force3D: true
+      }, '-=3').fromTo([blush_img_right, blush_word_2], {
+        top: '100%',
+        alpha: 0,
+        ease: 'Power2.easeInOut',
+        force3D: true
+      }, {
+        top: '20%',
+        duration: 1,
+        alpha: 1,
+        ease: 'Power2.easeInOut',
+        force3D: true,
+        onComplete: () => {
+          this.$refs.left_img.src = require('@/assets/imgs/blush-her-unhappy2.png')
+          this.$GSAP.delayedCall(2, () => {
+            this.$refs.left_img.src = require('@/assets/imgs/blush-her-unhappy.png')
+          })
+        }
+      }, '-=1').to([blush_word_2], {
+        top: '10%',
+        alpha: 1,
+        duration: 1,
+        ease: 'Power2.easeInOut',
+        force3D: true,
+        onComplete: () => {
+          this.$refs.right_img.src = require('@/assets/imgs/blush-man-1.png')
+        }
+      }).to([blush_word_3], {
+        top: '40%',
+        alpha: 1,
+        duration: 1,
+        ease: 'Power2.easeInOut',
+        force3D: true
+      }, '-=1').to([blush_word_2, blush_word_3], {
+        delay: 1.5,
+        top: '-100%',
+        alpha: 1,
+        duration: 1,
+        ease: 'Power2.easeInOut',
+        force3D: true
+      }).fromTo(blush_word_4, {
+        top: '100%',
+        alpha: 0
+      }, {
+        top: '20%',
+        alpha: 1,
+        duration: 1,
+        ease: 'Power2.easeInOut',
+        force3D: true,
+        onComplete: () => {
+          this.$refs.right_img.src = require('@/assets/imgs/blush-astonish-man.png')
+        }
+      }, '-=1')
     }
   }
 }
@@ -398,19 +466,25 @@ export default {
   width: 45vh;
 }
 
+.blush-img-right {
+  position: absolute;
+  right: 5%;
+  transform: rotateY(180deg);
+  top: 100%;
+}
+
 .blush-words {
   & p {
     font-size: 2vw;
     padding: 2vh;
-    background-color: darksalmon;
-    border: 2px dashed darkred;
   }
 }
 
 .blush-chat {
   align-content: space-between;
   position: absolute;
-  border: 2px solid red;
+  border: 2vh solid var(--text-color);
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
   width: 40vw;
   height: 70vh;
   left: 50%;
@@ -424,6 +498,19 @@ export default {
     left: 50%;
     top: 100%;
     transform: translate(-50%, 0);
+  }
+
+  & .blush-word {
+    border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+    &.her {
+      background-color: darksalmon;
+      border: 2px dashed darkred;
+    }
+
+    &.man {
+      background-color: darkblue;
+      border: 2px dashed darkred;
+    }
   }
 
   .talk-img{

@@ -111,7 +111,9 @@ export default {
         require('@/assets/imgs/blush-her-fake-smile.png'),
         require('@/assets/imgs/blush-her.png'),
         require('@/assets/imgs/blush-man-1.png'),
-        require('@/assets/imgs/blush-man-2.png')
+        require('@/assets/imgs/blush-man-2.png'),
+        require('@/assets/imgs/blush-astonish-man.png'),
+        require('@/assets/imgs/illustration1.png')
       ]
     }
   },

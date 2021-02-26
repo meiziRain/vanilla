@@ -10,7 +10,7 @@ npm run build
 
 git add .
 
-git commit -m 'chat'
+git commit -m '哈哈, 结束了, 莫名奇妙的人生, Final commit'
 
 # 部署到 https://<USERNAME>.github.io/<REPO>
 git push gitee master
