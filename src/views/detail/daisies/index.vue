@@ -28,7 +28,7 @@
         <div class="section-content section-two-text section-padding">
           <div class="blush-img blush-img-left"><img ref="left_img" src="@/assets/imgs/blush-her.png"></div>
           <div class="blush-chat">
-            <div class="talk-img"><img src="@/assets/imgs/blush-her.png"></div>
+            <div class="talk-img"><img src="@/assets/imgs/leg.jpg"></div>
             <div class="blush-words">
               <p class="blush-word her">i just bought a swimsuit.</p>
               <p class="blush-word man">i want to fuck u in the ass right now</p>

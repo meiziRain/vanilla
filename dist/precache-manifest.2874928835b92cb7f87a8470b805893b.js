@@ -200,12 +200,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "assets/fonts/zOL64pLDlL1D99S8g8PtiKchq-lmjdLh.woff2"
   },
   {
-    "revision": "b9d1ffd1be41040b2aaf",
+    "revision": "c231f92c0610fb9bde72",
     "url": "css/app.0ba58481.css"
   },
   {
-    "revision": "7e2bf6dd2c27a4bbb6cb",
-    "url": "css/blog.1a6e63bd.css"
+    "revision": "109c62f4b4f45aa39f7f",
+    "url": "css/blog.e794b600.css"
   },
   {
     "revision": "445ca6a1aeacb591aebf",
@@ -332,16 +332,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "img/teeth.bbbcd52c.png"
   },
   {
-    "revision": "5e98c7269d5d4cbe030c14297a572bd4",
+    "revision": "67eabf0a5fab591cc90d6275df3abb31",
     "url": "index.html"
   },
   {
-    "revision": "b9d1ffd1be41040b2aaf",
-    "url": "js/app.aeb2111f.js"
+    "revision": "c231f92c0610fb9bde72",
+    "url": "js/app.adeff6d2.js"
   },
   {
-    "revision": "7e2bf6dd2c27a4bbb6cb",
-    "url": "js/blog.337ed359.js"
+    "revision": "109c62f4b4f45aa39f7f",
+    "url": "js/blog.108cc635.js"
   },
   {
     "revision": "445ca6a1aeacb591aebf",
